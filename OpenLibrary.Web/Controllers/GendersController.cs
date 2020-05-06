@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using OpenLibrary.Web.Data;
 using OpenLibrary.Web.Data.Entities;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,24 +23,6 @@ namespace OpenLibrary.Web.Controllers
             return View(await _context.Genders.ToListAsync());
         }
 
-        // GET: Genders/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            GenderEntity genderEntity = await _context.Genders
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (genderEntity == null)
-            {
-                return NotFound();
-            }
-
-            return View(genderEntity);
-        }
-
         // GET: Genders/Create
         public IActionResult Create()
         {
@@ -56,8 +39,18 @@ namespace OpenLibrary.Web.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(genderEntity);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
+                {
+                    if (ex.InnerException.Message.Contains("duplicate"))
+                    {
+                        ModelState.AddModelError(string.Empty, "There is already that gender");
+                    }
+                }
             }
             return View(genderEntity);
         }
@@ -92,23 +85,20 @@ namespace OpenLibrary.Web.Controllers
 
             if (ModelState.IsValid)
             {
+               
+                    _context.Update(genderEntity);
                 try
                 {
-                    _context.Update(genderEntity);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (Exception ex)
                 {
-                    if (!GenderEntityExists(genderEntity.Id))
+                    if (ex.InnerException.Message.Contains("duplicate"))
                     {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
+                        ModelState.AddModelError(string.Empty, "There is already that gender");
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
             return View(genderEntity);
         }
@@ -128,15 +118,6 @@ namespace OpenLibrary.Web.Controllers
                 return NotFound();
             }
 
-            return View(genderEntity);
-        }
-
-        // POST: Genders/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            GenderEntity genderEntity = await _context.Genders.FindAsync(id);
             _context.Genders.Remove(genderEntity);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

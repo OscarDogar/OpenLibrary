@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using OpenLibrary.Web.Data;
 using OpenLibrary.Web.Data.Entities;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,24 +23,6 @@ namespace OpenLibrary.Web.Controllers
             return View(await _context.DocumentLanguages.ToListAsync());
         }
 
-        // GET: DocumentLanguages/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            DocumentLanguageEntity documentLanguageEntity = await _context.DocumentLanguages
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (documentLanguageEntity == null)
-            {
-                return NotFound();
-            }
-
-            return View(documentLanguageEntity);
-        }
-
         // GET: DocumentLanguages/Create
         public IActionResult Create()
         {
@@ -56,8 +39,18 @@ namespace OpenLibrary.Web.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(documentLanguageEntity);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
+                {
+                    if (ex.InnerException.Message.Contains("duplicate"))
+                    {
+                        ModelState.AddModelError(string.Empty, "There is already that language");
+                    }
+                }
             }
             return View(documentLanguageEntity);
         }
@@ -92,23 +85,20 @@ namespace OpenLibrary.Web.Controllers
 
             if (ModelState.IsValid)
             {
+              
+                    _context.Update(documentLanguageEntity);
                 try
                 {
-                    _context.Update(documentLanguageEntity);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (Exception ex)
                 {
-                    if (!DocumentLanguageEntityExists(documentLanguageEntity.Id))
+                    if (ex.InnerException.Message.Contains("duplicate"))
                     {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
+                        ModelState.AddModelError(string.Empty, "There is already that language");
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
             return View(documentLanguageEntity);
         }
@@ -128,15 +118,6 @@ namespace OpenLibrary.Web.Controllers
                 return NotFound();
             }
 
-            return View(documentLanguageEntity);
-        }
-
-        // POST: DocumentLanguages/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            DocumentLanguageEntity documentLanguageEntity = await _context.DocumentLanguages.FindAsync(id);
             _context.DocumentLanguages.Remove(documentLanguageEntity);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

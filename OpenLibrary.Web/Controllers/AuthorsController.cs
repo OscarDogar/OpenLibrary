@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using OpenLibrary.Web.Data;
 using OpenLibrary.Web.Data.Entities;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,42 +23,32 @@ namespace OpenLibrary.Web.Controllers
             return View(await _context.Authors.ToListAsync());
         }
 
-        // GET: Authors/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            AuthorEntity authorEntity = await _context.Authors
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (authorEntity == null)
-            {
-                return NotFound();
-            }
-
-            return View(authorEntity);
-        }
-
         // GET: Authors/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Authors/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] AuthorEntity authorEntity)
+        public async Task<IActionResult> Create(AuthorEntity authorEntity)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(authorEntity);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
+                {
+                    if (ex.InnerException.Message.Contains("duplicate"))
+                    {
+                        ModelState.AddModelError(string.Empty,"There is already an author with that name");
+                    }
+                }
             }
             return View(authorEntity);
         }
@@ -78,12 +69,9 @@ namespace OpenLibrary.Web.Controllers
             return View(authorEntity);
         }
 
-        // POST: Authors/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] AuthorEntity authorEntity)
+        public async Task<IActionResult> Edit(int id, AuthorEntity authorEntity)
         {
             if (id != authorEntity.Id)
             {
@@ -92,23 +80,20 @@ namespace OpenLibrary.Web.Controllers
 
             if (ModelState.IsValid)
             {
+
+                _context.Update(authorEntity);
                 try
                 {
-                    _context.Update(authorEntity);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (Exception ex)
                 {
-                    if (!AuthorEntityExists(authorEntity.Id))
+                    if (ex.InnerException.Message.Contains("duplicate"))
                     {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
+                        ModelState.AddModelError(string.Empty, "There is already an author with that name");
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
             return View(authorEntity);
         }
@@ -128,20 +113,10 @@ namespace OpenLibrary.Web.Controllers
                 return NotFound();
             }
 
-            return View(authorEntity);
-        }
-
-        // POST: Authors/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            AuthorEntity authorEntity = await _context.Authors.FindAsync(id);
             _context.Authors.Remove(authorEntity);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
         private bool AuthorEntityExists(int id)
         {
             return _context.Authors.Any(e => e.Id == id);

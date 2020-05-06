@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using OpenLibrary.Web.Data;
 using OpenLibrary.Web.Data.Entities;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,33 +23,12 @@ namespace OpenLibrary.Web.Controllers
             return View(await _context.TypeOfDocuments.ToListAsync());
         }
 
-        // GET: TypeOfDocuments/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            TypeOfDocumentEntity typeOfDocumentEntity = await _context.TypeOfDocuments
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (typeOfDocumentEntity == null)
-            {
-                return NotFound();
-            }
-
-            return View(typeOfDocumentEntity);
-        }
-
         // GET: TypeOfDocuments/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: TypeOfDocuments/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name")] TypeOfDocumentEntity typeOfDocumentEntity)
@@ -56,8 +36,18 @@ namespace OpenLibrary.Web.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(typeOfDocumentEntity);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
+                {
+                    if (ex.InnerException.Message.Contains("duplicate"))
+                    {
+                        ModelState.AddModelError(string.Empty, "There is already that type of document");
+                    }
+                }
             }
             return View(typeOfDocumentEntity);
         }
@@ -78,9 +68,6 @@ namespace OpenLibrary.Web.Controllers
             return View(typeOfDocumentEntity);
         }
 
-        // POST: TypeOfDocuments/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] TypeOfDocumentEntity typeOfDocumentEntity)
@@ -92,23 +79,20 @@ namespace OpenLibrary.Web.Controllers
 
             if (ModelState.IsValid)
             {
+               
+                    _context.Update(typeOfDocumentEntity);
                 try
                 {
-                    _context.Update(typeOfDocumentEntity);
                     await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (Exception ex)
                 {
-                    if (!TypeOfDocumentEntityExists(typeOfDocumentEntity.Id))
+                    if (ex.InnerException.Message.Contains("duplicate"))
                     {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
+                        ModelState.AddModelError(string.Empty, "There is already that type of document");
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
             return View(typeOfDocumentEntity);
         }
@@ -128,15 +112,6 @@ namespace OpenLibrary.Web.Controllers
                 return NotFound();
             }
 
-            return View(typeOfDocumentEntity);
-        }
-
-        // POST: TypeOfDocuments/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            TypeOfDocumentEntity typeOfDocumentEntity = await _context.TypeOfDocuments.FindAsync(id);
             _context.TypeOfDocuments.Remove(typeOfDocumentEntity);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

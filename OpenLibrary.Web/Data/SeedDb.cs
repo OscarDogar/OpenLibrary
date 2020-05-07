@@ -1,4 +1,6 @@
-﻿using OpenLibrary.Web.Data.Entities;
+﻿using OpenLibrary.Common.Enums;
+using OpenLibrary.Web.Data.Entities;
+using OpenLibrary.Web.Helpers;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,20 +10,64 @@ namespace OpenLibrary.Web.Data
     public class SeedDb
     {
         private readonly DataContext _context;
+        private readonly IUserHelper _userHelper;
 
-        public SeedDb(DataContext context)
+        public SeedDb(DataContext context, IUserHelper userHelper)
         {
             _context = context;
+            _userHelper = userHelper;
         }
+       
         public async Task SeedAsync()
         {
             await _context.Database.EnsureCreatedAsync();
+            await CheckRolesAsync();
+            await CheckUserAsync("1010", "Oscar", "D", "oscardoria14@gmail.com", "555555", "Calle Luna Calle Sol", UserType.Admin);
+            await CheckUserAsync("1010", "Sebastian", "L", "selopez@yopmail.com", "555555", "Calle Luna Calle Sol", UserType.BookAdmin);
+            await CheckUserAsync("1010", "Andres", "Carne", "andrescarne@yopmail.com", "555555", "Calle Luna Calle Sol", UserType.User);
             await CheckAuthorsAsync();
             await CheckGendersAsync();
             await CheckTypeOfDocumentAsync();
             await CheckDocumentLanguageAsync();
             await CheckDocumentsAsync();
         }
+        private async Task<UserEntity> CheckUserAsync(string document,
+                                                       string firstName,
+                                                       string lastName,
+                                                       string email,
+                                                       string phone,
+                                                       string address,
+                                                       UserType userType)
+        {
+            UserEntity user = await _userHelper.GetUserByEmailAsync(email);
+            if (user == null)
+            {
+                user = new UserEntity
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Email = email,
+                    UserName = email,
+                    PhoneNumber = phone,
+                    Address = address,
+                    DocumentId = document,
+                    UserType = userType
+                };
+
+                await _userHelper.AddUserAsync(user, "123456");
+                await _userHelper.AddUserToRoleAsync(user, userType.ToString());
+            }
+
+            return user;
+        }
+
+        private async Task CheckRolesAsync()
+        {
+            await _userHelper.CheckRoleAsync(UserType.Admin.ToString());
+            await _userHelper.CheckRoleAsync(UserType.BookAdmin.ToString());
+            await _userHelper.CheckRoleAsync(UserType.User.ToString());
+        }
+
         private async Task CheckAuthorsAsync()
         {
             if (!_context.Authors.Any())
@@ -115,6 +161,7 @@ namespace OpenLibrary.Web.Data
                     DocumentPath = $"~/Documents/OPI72-taller6.pdf",
                     Summary = "Plot Overview. One Hundred Years of Solitude is the history of the isolated town of Macondo and of the family who founds it, the Buendías. For years, the town has no contact with the outside world, except for gypsies who occasionally visit, peddling technologies like ice and telescopes",
                     PagesNumber = 422,
+                    User = _context.Users.FirstOrDefault(t => t.Email == "andrescarne@yopmail.com"),
                     Gender = _context.Genders.FirstOrDefault(t => t.Name == "Fantasy"),
                     Author = _context.Authors.FirstOrDefault(t => t.Name == "Gabriel Garcia Marquez"),
                     DocumentLanguage = _context.DocumentLanguages.FirstOrDefault(t => t.Name == "Spanish"),
@@ -128,6 +175,7 @@ namespace OpenLibrary.Web.Data
                     DocumentPath = $"~/Documents/OPI72-taller7.pdf",
                     Summary = "Summaries. A corrupt young man somehow keeps his youthful beauty, but a special painting gradually reveals his inner ugliness to all. In 1886, in Victorian London, the corrupt Lord Henry Wotton meets the pure Dorian Gray (Hurd Hatfield) posing for talented painter Basil Hallward (Lowell Gilmore)",
                     PagesNumber = 224,
+                    User = _context.Users.FirstOrDefault(t => t.Email == "andrescarne@yopmail.com"),
                     Gender = _context.Genders.FirstOrDefault(t => t.Name == "Gothic"),
                     Author = _context.Authors.FirstOrDefault(t => t.Name == "Oscar Wilde"),
                     DocumentLanguage = _context.DocumentLanguages.FirstOrDefault(t => t.Name == "English"),

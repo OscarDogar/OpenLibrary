@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OpenLibrary.Web.Data;
 using OpenLibrary.Web.Data.Entities;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace OpenLibrary.Web.Controllers
 {
+    [Authorize]
     public class DocumentsController : Controller
     {
         private readonly DataContext _context;
@@ -35,10 +37,11 @@ namespace OpenLibrary.Web.Controllers
                                                 .Include(g => g.TypeOfDocument)
                                                 .Include(g => g.Author)
                                                 .Include(g => g.DocumentLanguage)
+                                                .Include(g => g.User)
                                                 .ToListAsync());
         }
 
-        // GET: Documents/Create
+        [Authorize(Roles = "User")]
         public IActionResult Create()
         {
             var model = new DocumentViewModel
@@ -52,6 +55,7 @@ namespace OpenLibrary.Web.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "User")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(DocumentViewModel documentViewModel)
@@ -77,7 +81,7 @@ namespace OpenLibrary.Web.Controllers
             return View(documentViewModel);
         }
 
-        // GET: Documents/Edit/5
+        [Authorize(Roles = "BookAdmin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -99,9 +103,7 @@ namespace OpenLibrary.Web.Controllers
             return View(documentViewModel);
         }
 
-        // POST: Documents/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "BookAdmin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, DocumentViewModel documentViewModel)
@@ -141,7 +143,7 @@ namespace OpenLibrary.Web.Controllers
             return View(documentViewModel);
         }
 
-        // GET: Documents/Delete/5
+        [Authorize(Roles = "BookAdmin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

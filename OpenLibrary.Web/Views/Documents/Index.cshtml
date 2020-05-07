@@ -6,127 +6,169 @@
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
 <br />
+@if ((User.Identity.IsAuthenticated && User.IsInRole("User")))
+{
+    <p>
+        <a class="btn btn-primary" asp-action="Create"><i class="glyphicon glyphicon-plus"></i> Upload a New</a>
+    </p>
+}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Documents</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-hover table-responsive table-striped" id="MyTable">
+                        <thead>
+                           
+                                <tr>
 
-<p>
-    <a class="btn btn-primary" asp-action="Create"><i class="glyphicon glyphicon-plus"></i> Create New</a>
-</p>
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Documents</h3>
-            </div>
-            <div class="panel-body">
-                <table class="table table-hover table-responsive table-striped" id="MyTable">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Title)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DocumentPath)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Date)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Summary)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.PagesNumber)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Gender)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.TypeOfDocument)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Author)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.DocumentLanguage)
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Title)
-                            </td>
-                            <td>
-                                <center>
-                                    @if (!string.IsNullOrEmpty(item.DocumentPath))
+                                    <th>
+                                        <center>
+                                            @Html.DisplayNameFor(model => model.Title)
+                                        </center>
+                                    </th>
+                                    <th>
+                                        <center>
+                                            @Html.DisplayNameFor(model => model.DocumentPath)
+                                        </center>
+                                    </th>
+                                    <th>
+                                        <center>
+                                            @Html.DisplayNameFor(model => model.Date)
+                                        </center>
+                                    </th>
+                                    <th>
+                                        <center>
+                                            @Html.DisplayNameFor(model => model.Summary)
+                                        </center>
+                                    </th>
+                                    <th>
+                                        <center>
+                                            @Html.DisplayNameFor(model => model.PagesNumber)
+                                        </center>
+                                    </th>
+                                    <th>
+                                        <center>
+                                            @Html.DisplayNameFor(model => model.Gender)
+                                        </center>
+                                    </th>
+                                    <th>
+                                        <center>
+                                            @Html.DisplayNameFor(model => model.TypeOfDocument)
+                                        </center>
+                                    </th>
+                                    <th>
+                                        <center>
+                                            @Html.DisplayNameFor(model => model.Author)
+                                        </center>
+                                    </th>
+                                    <th>
+                                        <center>
+                                            @Html.DisplayNameFor(model => model.DocumentLanguage)
+                                        </center>
+                                    </th>
+                                    @if ((User.Identity.IsAuthenticated && User.IsInRole("BookAdmin")))
                                     {
-                                        <a href="@Url.Content(item.DocumentPath)"style="color:royalblue; text-align:center;" target="_blank">
-                                            <img src="~/images/justPdf.png" style="width:70px;height:70px;max-width: 70%; height: auto;" />
-                                            <br />See@*@Html.DisplayFor(modelItem => item.Title)*@
-                                        </a>
+                                    <th>
+                                        <center>
+                                            Uploaded By
+                                        </center>
+                                    </th>
+                                    <th>
+                                        <center>
+                                            Options
+                                        </center>
+                                    </th>
                                     }
-                                    else
-                                    {
-                                        <p>There is not any pdf here</p>
-                                    }
-                                </center>
-                            </td>
+                                </tr>
+                            
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+                                <td>
+                                    <center>
+                                        @if (!string.IsNullOrEmpty(item.DocumentPath))
+                                        {
+                                            <a href="@Url.Content(item.DocumentPath)" style="color:royalblue; text-align:center;" target="_blank">
+                                                <img src="~/images/justPdf.png" style="width:70px;height:70px;max-width: 70%; height: auto;" />
+                                                <br />See@*@Html.DisplayFor(modelItem => item.Title)*@
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <p>There is not any pdf here</p>
+                                        }
+                                    </center>
+                                </td>
 
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Date)
-                            </td>
-                            <td style="text-align:justify;">
-                                @Html.DisplayFor(modelItem => item.Summary)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PagesNumber)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Gender.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TypeOfDocument.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Author.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DocumentLanguage.Name)
-                            </td>
-                            <td>
-                                <a asp-action="Edit" style="margin:5px" class="btn btn-warning" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i></a>
-                                <button style="margin:5px" data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
-                            </td>
-                        </tr>
-                        }
-                    </tbody>
-                </table>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Date)
+                                </td>
+                                <td style="text-align:justify;">
+                                    @Html.DisplayFor(modelItem => item.Summary)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PagesNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Gender.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TypeOfDocument.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Author.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DocumentLanguage.Name)
+                                </td>
+                                @if ((User.Identity.IsAuthenticated && User.IsInRole("BookAdmin")))
+                                {
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.User.FullName)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Edit" style="margin:5px" class="btn btn-warning" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i></a>
+
+                                        <button style="margin:5px" data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
+                                    </td>
+                                }
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<partial name="_DeleteDialog" />
+    <partial name="_DeleteDialog" />
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#MyTable').DataTable();
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#MyTable').DataTable();
 
-            // Delete item
-            var item_to_delete;
+                // Delete item
+                var item_to_delete;
 
-            $('.deleteItem').click((e) => {
-                item_to_delete = e.currentTarget.dataset.id;
+                $('.deleteItem').click((e) => {
+                    item_to_delete = e.currentTarget.dataset.id;
+                });
+
+                $("#btnYesDelete").click(function () {
+                    window.location.href = '/Documents/Delete/' + item_to_delete;
+                });
             });
-
-            $("#btnYesDelete").click(function () {
-                window.location.href = '/Documents/Delete/' + item_to_delete;
-            });
-        });
-    </script>
-}
+        </script>
+    }

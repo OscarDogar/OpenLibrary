@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OpenLibrary.Web.Data;
 using OpenLibrary.Web.Data.Entities;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace OpenLibrary.Web.Controllers
 {
+    [Authorize(Roles = "User,BookAdmin")]
     public class TypeOfDocumentsController : Controller
     {
         private readonly DataContext _context;

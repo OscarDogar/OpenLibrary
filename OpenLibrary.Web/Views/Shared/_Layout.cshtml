@@ -30,14 +30,27 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Authors" asp-action="Index">Authors</a></li>
-                    <li><a asp-area="" asp-controller="Genders" asp-action="Index">Document Genre</a></li>
-                    <li><a asp-area="" asp-controller="TypeOfDocuments" asp-action="Index">Type Of Documents</a></li>
-                    <li><a asp-area="" asp-controller="DocumentLanguages" asp-action="Index">Document Languages</a></li>
-                    <li><a asp-area="" asp-controller="Documents" asp-action="Index">Upload Document</a></li>
-
+                    @if (User.Identity.IsAuthenticated && (User.IsInRole("BookAdmin") || User.IsInRole("User")))
+                    {
+                        <li><a asp-area="" asp-controller="Authors" asp-action="Index">Authors</a></li>
+                        <li><a asp-area="" asp-controller="Genders" asp-action="Index">Document Genre</a></li>
+                        <li><a asp-area="" asp-controller="TypeOfDocuments" asp-action="Index">Type Of Documents</a></li>
+                        <li><a asp-area="" asp-controller="DocumentLanguages" asp-action="Index">Document Languages</a></li>
+                        <li><a asp-area="" asp-controller="Documents" asp-action="Index">Upload Document</a></li>
+                    }
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a asp-area="" asp-controller="Account" asp-action="ChangeUser">@User.Identity.Name</a></li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+                    }
+                </ul>
+
             </div>
         </div>
     </nav>

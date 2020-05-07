@@ -30,9 +30,10 @@ namespace OpenLibrary.Web.Data.Entities
         public string Summary { get; set; }
 
         [Display(Name = "Pages Number")]
-        [MaxLength(80, ErrorMessage = "The {0} field can not have more than {1} characters.")]
         [Required(ErrorMessage = "The field {0} is mandatory.")]
         public int PagesNumber { get; set; }
+        
+        //public int Accepted { get; set; }
 
         [Display(Name = "Gender")]
         public GenderEntity Gender { get; set; }

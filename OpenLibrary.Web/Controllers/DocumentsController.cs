@@ -4,6 +4,7 @@ using OpenLibrary.Web.Data;
 using OpenLibrary.Web.Data.Entities;
 using OpenLibrary.Web.Helpers;
 using OpenLibrary.Web.Models;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,24 +15,41 @@ namespace OpenLibrary.Web.Controllers
         private readonly DataContext _context;
         private readonly IDocumentHelper _documentHelper;
         private readonly IConverterHelper _converterHelper;
+        private readonly ICombosHelper _combosHelper;
 
-        public DocumentsController(DataContext context, IDocumentHelper documentHelper, IConverterHelper converterHelper)
+        public DocumentsController(DataContext context,
+                                   IDocumentHelper documentHelper,
+                                   IConverterHelper converterHelper, 
+                                   ICombosHelper combosHelper)
         {
             _context = context;
             _documentHelper = documentHelper;
             _converterHelper = converterHelper;
+            _combosHelper = combosHelper;
         }
 
         // GET: Documents
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Documents.ToListAsync());
+            return View(await _context.Documents.Include(g => g.Gender)
+                                                .Include(g => g.TypeOfDocument)
+                                                .Include(g => g.Author)
+                                                .Include(g => g.DocumentLanguage)
+                                                .ToListAsync());
         }
 
         // GET: Documents/Create
         public IActionResult Create()
         {
-            return View();
+            var model = new DocumentViewModel
+            {
+                Genders = _combosHelper.GetComboGenders(),
+                Authors = _combosHelper.GetComboAuthors(),
+                TypeOfDocuments = _combosHelper.GetComboTypeOfDocuments(),
+                DocumentLanguages = _combosHelper.GetComboDocumentLanguages(),
+                Date = DateTime.Now
+            };
+            return View(model);
         }
 
         [HttpPost]
@@ -46,12 +64,16 @@ namespace OpenLibrary.Web.Controllers
                 {
                     path = await _documentHelper.UploadDocumentAsync(documentViewModel.DocumentFile);
                 }
-
-                DocumentEntity document = _converterHelper.ToDocumentEntity(documentViewModel, path, true);
+                DocumentEntity document = await _converterHelper.ToDocumentEntity(documentViewModel, path, true);
                 _context.Add(document);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            documentViewModel.Genders = _combosHelper.GetComboGenders();
+            documentViewModel.Authors = _combosHelper.GetComboAuthors();
+            documentViewModel.TypeOfDocuments = _combosHelper.GetComboTypeOfDocuments();
+            documentViewModel.DocumentLanguages = _combosHelper.GetComboDocumentLanguages();
+
             return View(documentViewModel);
         }
 
@@ -63,7 +85,12 @@ namespace OpenLibrary.Web.Controllers
                 return NotFound();
             }
 
-            DocumentEntity documentEntity = await _context.Documents.FindAsync(id);
+            DocumentEntity documentEntity = await _context.Documents.Include(d => d.Gender)
+                                                                    .Include(d => d.DocumentLanguage)
+                                                                    .Include(d => d.TypeOfDocument)
+                                                                    .Include(d => d.Author)
+                                                                    .Where(d => d.Id ==id )
+                                                                    .FirstOrDefaultAsync();
             if (documentEntity == null)
             {
                 return NotFound();
@@ -94,7 +121,7 @@ namespace OpenLibrary.Web.Controllers
                     {
                         path = await _documentHelper.UploadDocumentAsync(documentViewModel.DocumentFile);
                     }
-                    DocumentEntity document = _converterHelper.ToDocumentEntity(documentViewModel, path, false);
+                    DocumentEntity document = await _converterHelper.ToDocumentEntity(documentViewModel, path, false);
                     _context.Update(document);
                     await _context.SaveChangesAsync();
                 }

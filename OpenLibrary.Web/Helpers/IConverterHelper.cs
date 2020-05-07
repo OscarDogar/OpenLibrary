@@ -10,7 +10,7 @@ namespace OpenLibrary.Web.Helpers
 {
     public interface IConverterHelper
     {
-        DocumentEntity ToDocumentEntity(DocumentViewModel model, string path, bool isNew);
+        Task<DocumentEntity> ToDocumentEntity(DocumentViewModel model, string path, bool isNew);
 
         DocumentViewModel ToDocumentViewModel(DocumentEntity documentEntity);
     }

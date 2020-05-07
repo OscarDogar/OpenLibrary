@@ -35,39 +35,70 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.PagesNumber)
                             </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Gender)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TypeOfDocument)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Author)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DocumentLanguage)
+                            </th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Title)
-                                </td>
-                                <td>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
                                 <center>
-                                        @if (!string.IsNullOrEmpty(item.DocumentPath))
-                                        {
-                                            <a href="@Url.Content(item.DocumentPath)" style="color:royalblue; text-align:center;" target="_blank"><img src="~/images/justPdf.png" style="width:70px;height:70px;max-width: 70%; height: auto;" /><br />@Html.DisplayFor(modelItem => item.Title)</a>
-                                        }
+                                    @if (!string.IsNullOrEmpty(item.DocumentPath))
+                                    {
+                                        <a href="@Url.Content(item.DocumentPath)"style="color:royalblue; text-align:center;" target="_blank">
+                                            <img src="~/images/justPdf.png" style="width:70px;height:70px;max-width: 70%; height: auto;" />
+                                            <br />See@*@Html.DisplayFor(modelItem => item.Title)*@
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <p>There is not any pdf here</p>
+                                    }
                                 </center>
-                                </td>
+                            </td>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Date)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Summary)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PagesNumber)
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i></a>
-                                    <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
-                                </td>
-                            </tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Summary)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PagesNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Gender.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TypeOfDocument.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Author.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DocumentLanguage.Name)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" style="margin:5px" class="btn btn-warning" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i></a>
+                                <button style="margin:5px" data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>

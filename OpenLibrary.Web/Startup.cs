@@ -41,6 +41,7 @@ namespace OpenLibrary.Web
 
             services.AddScoped<IDocumentHelper, DocumentHelper>();
             services.AddScoped<IConverterHelper, ConverterHelper>();
+            services.AddScoped<ICombosHelper, CombosHelper>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

@@ -14,4 +14,8 @@
     <ProjectReference Include="..\OpenLibrary.Common\OpenLibrary.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\Users\" />
+  </ItemGroup>
+
 </Project>

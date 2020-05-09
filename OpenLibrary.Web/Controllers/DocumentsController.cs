@@ -71,7 +71,7 @@ namespace OpenLibrary.Web.Controllers
 
                 if (documentViewModel.DocumentFile != null)
                 {
-                    path = await _documentHelper.UploadDocumentAsync(documentViewModel.DocumentFile);
+                    path = await _documentHelper.UploadDocumentAsync(documentViewModel.DocumentFile,"document");
                 }
                 DocumentEntity document = await _converterHelper.ToDocumentEntity(documentViewModel, path, true);
                 _context.Add(document);
@@ -126,7 +126,7 @@ namespace OpenLibrary.Web.Controllers
 
                     if (documentViewModel.DocumentFile != null)
                     {
-                        path = await _documentHelper.UploadDocumentAsync(documentViewModel.DocumentFile);
+                        path = await _documentHelper.UploadDocumentAsync(documentViewModel.DocumentFile,"document");
                     }
                     DocumentEntity document = await _converterHelper.ToDocumentEntity(documentViewModel, path, false);
                     _context.Update(document);

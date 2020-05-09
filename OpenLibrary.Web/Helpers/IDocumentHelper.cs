@@ -5,6 +5,6 @@ namespace OpenLibrary.Web.Helpers
 {
     public interface IDocumentHelper
     {
-        Task<string> UploadDocumentAsync(IFormFile documentFile);
+        Task<string> UploadDocumentAsync(IFormFile documentFile,string tipo);
     }
 }

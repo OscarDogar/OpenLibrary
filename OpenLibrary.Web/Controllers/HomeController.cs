@@ -22,6 +22,12 @@ namespace OpenLibrary.Web.Controllers
             return View();
         }
 
+        [Route("error/404")]
+        public IActionResult Error404()
+        {
+            return View();
+        }
+
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";

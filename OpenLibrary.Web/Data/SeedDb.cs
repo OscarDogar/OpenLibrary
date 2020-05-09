@@ -23,13 +23,16 @@ namespace OpenLibrary.Web.Data
             await _context.Database.EnsureCreatedAsync();
             await CheckRolesAsync();
             await CheckUserAsync("1010", "Oscar", "D", "oscardoria14@gmail.com", "555555", "Calle Luna Calle Sol", UserType.Admin);
-            await CheckUserAsync("1010", "Sebastian", "L", "selopez@yopmail.com", "555555", "Calle Luna Calle Sol", UserType.BookAdmin);
-            await CheckUserAsync("1010", "Andres", "Carne", "andrescarne@yopmail.com", "555555", "Calle Luna Calle Sol", UserType.User);
+            await CheckUserAsync("1020", "Sebastian", "L", "selopez@yopmail.com", "555555", "Calle Luna Calle Sol", UserType.BookAdmin);
+            await CheckUserAsync("1030", "Andres", "Carne", "andrescarne@yopmail.com", "555555", "Calle Luna Calle Sol", UserType.User);
+            await CheckUserAsync("1040", "Papel", "Bond", "nosequeponer@yopmail.com", "007", "Calle Luna Calle Sol", UserType.User);
+            await CheckUserAsync("1050", "Felipe", "Melo", "user1@yopmail.com", "555555", "Calle Luna Calle Sol", UserType.User);
             await CheckAuthorsAsync();
             await CheckGendersAsync();
             await CheckTypeOfDocumentAsync();
             await CheckDocumentLanguageAsync();
             await CheckDocumentsAsync();
+            await CheckReviewsAsync();
         }
         private async Task<UserEntity> CheckUserAsync(string document,
                                                        string firstName,
@@ -67,6 +70,24 @@ namespace OpenLibrary.Web.Data
             await _userHelper.CheckRoleAsync(UserType.BookAdmin.ToString());
             await _userHelper.CheckRoleAsync(UserType.User.ToString());
         }
+
+        private async Task CheckReviewsAsync()
+        {
+            if (!_context.Reviews.Any())
+            {
+                _context.Reviews.Add(new ReviewEntity { 
+                    
+                    Comment = "This is a very good piece of art, well done",
+                    Favorite = true,
+                    Rating = 4,
+                    User = _context.Users.FirstOrDefault(t => t.Email == "andrescarne@yopmail.com"),
+                    Document = _context.Documents.FirstOrDefault(t => t.Title == "100 years of solitude"),
+                });
+
+                await _context.SaveChangesAsync();
+            }
+        }
+
 
         private async Task CheckAuthorsAsync()
         {

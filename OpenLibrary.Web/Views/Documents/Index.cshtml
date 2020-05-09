@@ -22,55 +22,55 @@
                     <table class="table table-hover table-responsive table-striped" id="MyTable">
                         <thead>
                            
-                                <tr>
+                            <tr>
 
-                                    <th>
-                                        <center>
-                                            @Html.DisplayNameFor(model => model.Title)
-                                        </center>
-                                    </th>
-                                    <th>
-                                        <center>
-                                            @Html.DisplayNameFor(model => model.DocumentPath)
-                                        </center>
-                                    </th>
-                                    <th>
-                                        <center>
-                                            @Html.DisplayNameFor(model => model.Date)
-                                        </center>
-                                    </th>
-                                    <th>
-                                        <center>
-                                            @Html.DisplayNameFor(model => model.Summary)
-                                        </center>
-                                    </th>
-                                    <th>
-                                        <center>
-                                            @Html.DisplayNameFor(model => model.PagesNumber)
-                                        </center>
-                                    </th>
-                                    <th>
-                                        <center>
-                                            @Html.DisplayNameFor(model => model.Gender)
-                                        </center>
-                                    </th>
-                                    <th>
-                                        <center>
-                                            @Html.DisplayNameFor(model => model.TypeOfDocument)
-                                        </center>
-                                    </th>
-                                    <th>
-                                        <center>
-                                            @Html.DisplayNameFor(model => model.Author)
-                                        </center>
-                                    </th>
-                                    <th>
-                                        <center>
-                                            @Html.DisplayNameFor(model => model.DocumentLanguage)
-                                        </center>
-                                    </th>
-                                    @if ((User.Identity.IsAuthenticated && User.IsInRole("BookAdmin")))
-                                    {
+                                <th>
+                                    <center>
+                                        @Html.DisplayNameFor(model => model.Title)
+                                    </center>
+                                </th>
+                                <th>
+                                    <center>
+                                        @Html.DisplayNameFor(model => model.DocumentPath)
+                                    </center>
+                                </th>
+                                <th>
+                                    <center>
+                                        @Html.DisplayNameFor(model => model.Date)
+                                    </center>
+                                </th>
+                                <th>
+                                    <center>
+                                        @Html.DisplayNameFor(model => model.Summary)
+                                    </center>
+                                </th>
+                                <th>
+                                    <center>
+                                        @Html.DisplayNameFor(model => model.PagesNumber)
+                                    </center>
+                                </th>
+                                <th>
+                                    <center>
+                                        @Html.DisplayNameFor(model => model.Gender)
+                                    </center>
+                                </th>
+                                <th>
+                                    <center>
+                                        @Html.DisplayNameFor(model => model.TypeOfDocument)
+                                    </center>
+                                </th>
+                                <th>
+                                    <center>
+                                        @Html.DisplayNameFor(model => model.Author)
+                                    </center>
+                                </th>
+                                <th>
+                                    <center>
+                                        @Html.DisplayNameFor(model => model.DocumentLanguage)
+                                    </center>
+                                </th>
+                                @if ((User.Identity.IsAuthenticated && User.IsInRole("BookAdmin")))
+                                {
                                     <th>
                                         <center>
                                             Uploaded By
@@ -81,8 +81,16 @@
                                             Options
                                         </center>
                                     </th>
-                                    }
-                                </tr>
+                                }
+                                @if ((User.Identity.IsAuthenticated && User.IsInRole("User")))
+                                {
+                                    <th>
+                                        <center>
+                                            Options
+                                        </center>
+                                    </th>
+                                }
+                            </tr>
                             
                         </thead>
                         <tbody>
@@ -138,6 +146,14 @@
                                         <a asp-action="Edit" style="margin:5px" class="btn btn-warning" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i></a>
 
                                         <button style="margin:5px" data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
+                                    </td>
+                                }
+                                @if ((User.Identity.IsAuthenticated && User.IsInRole("User")))
+                                {
+                                    <td>
+                                        <center>
+                                            <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">View Reviews <i class="glyphicon glyphicon-align-justify"></i></a>
+                                        </center>
                                     </td>
                                 }
                             </tr>

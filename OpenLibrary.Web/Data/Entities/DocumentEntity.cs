@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace OpenLibrary.Web.Data.Entities
@@ -48,5 +49,7 @@ namespace OpenLibrary.Web.Data.Entities
 
         [Display(Name = "Type Of Document")]
         public TypeOfDocumentEntity TypeOfDocument { get; set; }
+
+        public ICollection<ReviewEntity> Reviews { get; set; }
     }
 }

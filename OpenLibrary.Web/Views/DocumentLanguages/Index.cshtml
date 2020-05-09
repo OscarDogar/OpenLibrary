@@ -35,7 +35,10 @@
                                 </td>
                                 <td>
                                     <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i></a>
-                                    <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
+                                    @if ((User.Identity.IsAuthenticated && User.IsInRole("BookAdmin")))
+                                    {
+                                        <button data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
+                                    }
                                 </td>
                             </tr>
                         }

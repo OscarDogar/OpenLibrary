@@ -40,6 +40,11 @@ namespace OpenLibrary.Web.Controllers
                                                 .Include(g => g.User)
                                                 .ToListAsync());
         }
+        [Authorize(Roles = "User")]
+        public async Task<IActionResult> Details(int? id)
+        {
+            return View(await _context.Reviews.Include(tt => tt.User).Include(tt => tt.Document).Where(td => td.Document.Id == id).ToListAsync());
+        }
 
         [Authorize(Roles = "User")]
         public IActionResult Create()

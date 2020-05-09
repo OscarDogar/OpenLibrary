@@ -12,6 +12,8 @@ namespace OpenLibrary.Web.Data
 
         public DbSet<AuthorEntity> Authors { get; set; }
 
+        public DbSet<ReviewEntity> Reviews { get; set; }
+
         public DbSet<GenderEntity> Genders { get; set; }
 
         public DbSet<TypeOfDocumentEntity> TypeOfDocuments { get; set; }

@@ -32,7 +32,9 @@ namespace OpenLibrary.Web.Data.Entities
         public UserType UserType { get; set; }
 
         public ICollection<DocumentEntity> Documents { get; set; }
-        
+
+        public ICollection<ReviewEntity> Reviews { get; set; }
+
         [Display(Name = "Nombre")]
         public string FullName => $"{FirstName} {LastName}";
 

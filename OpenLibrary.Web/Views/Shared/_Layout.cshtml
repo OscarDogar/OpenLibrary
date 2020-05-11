@@ -38,6 +38,10 @@
                         <li><a asp-area="" asp-controller="DocumentLanguages" asp-action="Index">Document Languages</a></li>
                         <li><a asp-area="" asp-controller="Documents" asp-action="Index">View Documents</a></li>
                     }
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <li><a asp-area="" asp-controller="Account" asp-action="Index">Users</a></li>
+                    }
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (User.Identity.IsAuthenticated)

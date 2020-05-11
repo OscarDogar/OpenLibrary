@@ -18,16 +18,19 @@ namespace OpenLibrary.Web.Controllers
         private readonly IDocumentHelper _documentHelper;
         private readonly IConverterHelper _converterHelper;
         private readonly ICombosHelper _combosHelper;
+        private readonly IUserHelper _userHelper;
 
         public DocumentsController(DataContext context,
                                    IDocumentHelper documentHelper,
                                    IConverterHelper converterHelper, 
-                                   ICombosHelper combosHelper)
+                                   ICombosHelper combosHelper,
+                                   IUserHelper userHelper)
         {
             _context = context;
             _documentHelper = documentHelper;
             _converterHelper = converterHelper;
             _combosHelper = combosHelper;
+            _userHelper = userHelper;
         }
 
         // GET: Documents
@@ -43,8 +46,51 @@ namespace OpenLibrary.Web.Controllers
         [Authorize(Roles = "User")]
         public async Task<IActionResult> Details(int? id)
         {
-            return View(await _context.Reviews.Include(tt => tt.User).Include(tt => tt.Document).Where(td => td.Document.Id == id).ToListAsync());
+            return View(await _context.Documents.Include(tt => tt.User).Include(tt => tt.Reviews).FirstOrDefaultAsync(td => td.Id == id));
         }
+
+        [Authorize(Roles = "User")]
+        public async Task<IActionResult> AddReview(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var documentEntity = await _context.Documents.FindAsync(id);
+            var user = await _userHelper.GetUserAsync(User.Identity.Name);
+            if (documentEntity == null || user == null)
+            {
+                return NotFound();
+            }
+
+            var model = new ReviewViewModel
+            {
+                User = user,
+                Document = documentEntity,
+                DocumentId = documentEntity.Id
+            };
+
+            return View(model);
+        }
+
+        [Authorize(Roles = "User")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddReview(ReviewViewModel model)
+        {
+            model.User = _context.Users.FirstOrDefault(t => t.Email == User.Identity.Name);
+            if (ModelState.IsValid)
+            {
+                var reviewEntity = await _converterHelper.ToReviewEntityAsync(model, true);
+                _context.Reviews.Add(reviewEntity);
+                await _context.SaveChangesAsync();
+                return RedirectToAction($"{nameof(Details)}/{model.DocumentId}");
+            }
+
+            return View(model);
+        }
+
 
         [Authorize(Roles = "User")]
         public IActionResult Create()

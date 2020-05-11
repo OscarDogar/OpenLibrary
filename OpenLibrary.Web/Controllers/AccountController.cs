@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using OpenLibrary.Common.Enums;
+using OpenLibrary.Web.Data;
 using OpenLibrary.Web.Data.Entities;
 using OpenLibrary.Web.Helpers;
 using OpenLibrary.Web.Models;
@@ -15,11 +18,13 @@ namespace OpenLibrary.Web.Controllers
     {
         private readonly IUserHelper _userHelper;
         private readonly IDocumentHelper _imageHelper;
+        private readonly DataContext _context;
 
-        public AccountController(IUserHelper userHelper, IDocumentHelper imageHelper)
+        public AccountController(IUserHelper userHelper, IDocumentHelper imageHelper,DataContext context)
         {
             _userHelper = userHelper;
             _imageHelper = imageHelper;
+            _context = context;
         }
 
         public IActionResult NotAuthorized()
@@ -36,6 +41,17 @@ namespace OpenLibrary.Web.Controllers
 
             return View();
         }
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.Users
+                .Where(u => u.UserType == UserType.User)
+                .OrderBy(u => u.FirstName)
+                .ThenBy(u => u.LastName)
+                .ToListAsync());
+        }
+
         public IActionResult Register()
         {
 

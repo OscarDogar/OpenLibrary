@@ -13,12 +13,41 @@ namespace OpenLibrary.Web.Helpers
     {
         private readonly DataContext _context;
         private readonly ICombosHelper _combosHelper;
+        private readonly IUserHelper _userHelper;
 
-        public ConverterHelper(DataContext context,ICombosHelper combosHelper)
+        public ConverterHelper(DataContext context,ICombosHelper combosHelper,IUserHelper userHelper)
         {
             _context = context;
             _combosHelper = combosHelper;
+            _userHelper = userHelper;
         }
+
+        public async Task<ReviewEntity> ToReviewEntityAsync(ReviewViewModel model, bool isNew)
+        {
+            return new ReviewEntity
+            {
+                Id = isNew ? 0 : model.Id,
+                Comment = model.Comment,
+                Favorite = model.Favorite,
+                Rating = model.Rating,
+                User = model.User,
+                Document = await _context.Documents.FindAsync(model.DocumentId)
+            };
+        }
+
+        public ReviewViewModel ToReviewViewModel(ReviewEntity reviewEntity)
+        {
+            return new ReviewViewModel
+            {
+                Id = reviewEntity.Id,
+                Comment = reviewEntity.Comment,
+                Favorite = reviewEntity.Favorite,
+                User = reviewEntity.User,
+                Document = reviewEntity.Document,
+                DocumentId = reviewEntity.Document.Id
+            };
+        }
+
         public async Task<DocumentEntity> ToDocumentEntity(DocumentViewModel model, string path, bool isNew)
         {
             return new DocumentEntity

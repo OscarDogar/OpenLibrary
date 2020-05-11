@@ -1,12 +1,14 @@
-﻿@model IEnumerable<OpenLibrary.Web.Data.Entities.ReviewEntity>
+﻿@model OpenLibrary.Web.Data.Entities.DocumentEntity
 @{
     ViewData["Title"] = "Index";
 }
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
 
 <br />
-
+<h4>Name of the document: @Model.Title</h4>
 <a asp-action="Index" class="btn btn-success"><i class="glyphicon glyphicon-arrow-left"></i> Back to Documents</a>
+<a asp-action="AddReview" asp-route-id="@Model.Id" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Add a review</a>
+
 <div class="row">
 
     <div class="col-md-12">
@@ -24,18 +26,18 @@
                                 Name
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Rating)
+                                Rating
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Comment)
+                                Comment
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Favorite)
+                                Favorite
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model)
+                        @foreach (var item in Model.Reviews)
                         {
                             <tr>
                                 <td>
@@ -60,7 +62,7 @@
                                             Did not think
                                         </p>
                                     }
-                                  
+
                                 </td>
                             </tr>
                         }

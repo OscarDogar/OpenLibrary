@@ -13,5 +13,10 @@ namespace OpenLibrary.Web.Helpers
         Task<DocumentEntity> ToDocumentEntity(DocumentViewModel model, string path, bool isNew);
 
         DocumentViewModel ToDocumentViewModel(DocumentEntity documentEntity);
+
+        Task<ReviewEntity> ToReviewEntityAsync(ReviewViewModel model, bool isNew);
+
+        ReviewViewModel ToReviewViewModel(ReviewEntity reviewEntity);
+
     }
 }

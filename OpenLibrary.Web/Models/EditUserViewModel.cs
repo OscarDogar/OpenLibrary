@@ -36,5 +36,7 @@ namespace Soccer.Web.Models
 
         [Display(Name = "Picture")]
         public string PicturePath { get; set; }
+
+
     }
 }

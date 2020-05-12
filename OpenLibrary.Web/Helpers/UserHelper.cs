@@ -29,6 +29,7 @@ namespace OpenLibrary.Web.Helpers
         }
         public async Task<SignInResult> LoginAsync(LoginViewModel model)
         {
+        
             return await _signInManager.PasswordSignInAsync(
                 model.Username,
                 model.Password,
@@ -61,6 +62,7 @@ namespace OpenLibrary.Web.Helpers
                 UserType = userType
             };
 
+
             IdentityResult result = await _userManager.CreateAsync(userEntity, model.Password);
             if (result != IdentityResult.Success)
             {
@@ -89,6 +91,7 @@ namespace OpenLibrary.Web.Helpers
             await _userManager.AddToRoleAsync(user, roleName);
         }
 
+
         public async Task CheckRoleAsync(string roleName)
         {
             bool roleExists = await _roleManager.RoleExistsAsync(roleName);
@@ -114,6 +117,11 @@ namespace OpenLibrary.Web.Helpers
         public async Task<bool> IsUserInRoleAsync(UserEntity user, string roleName)
         {
             return await _userManager.IsInRoleAsync(user, roleName);
+        }
+
+        public async Task RemoveUserToRoleAsync(UserEntity user, string roleName)
+        {
+            await _userManager.RemoveFromRoleAsync(user, roleName);
         }
     }
 }

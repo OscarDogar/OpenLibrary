@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OpenLibrary.Common.Enums;
@@ -19,12 +20,14 @@ namespace OpenLibrary.Web.Controllers
         private readonly IUserHelper _userHelper;
         private readonly IDocumentHelper _imageHelper;
         private readonly DataContext _context;
+        private readonly RoleManager<IdentityRole> _roleManage;
 
-        public AccountController(IUserHelper userHelper, IDocumentHelper imageHelper,DataContext context)
+        public AccountController(IUserHelper userHelper, IDocumentHelper imageHelper,DataContext context, RoleManager<IdentityRole> roleManager)
         {
             _userHelper = userHelper;
             _imageHelper = imageHelper;
             _context = context;
+            _roleManage = roleManager;
         }
 
         public IActionResult NotAuthorized()
@@ -42,13 +45,60 @@ namespace OpenLibrary.Web.Controllers
             return View();
         }
 
+
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Details(string id)
+        {
+            if (id == null)
+            {
+                return await Index();
+            }
+
+            var userEntity = await _context.Users.FindAsync(id);
+
+            if (userEntity == null)
+            {
+                return NotFound();
+            }
+
+
+            var model = new ChangeRolViewModel
+            {
+                Name=userEntity.FullName,
+                Rol = userEntity.UserType,
+                Email=userEntity.Email
+            };
+
+            return View(model);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Details(ChangeRolViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+                UserEntity user = await _userHelper.GetUserAsync(model.Email);
+                await _userHelper.RemoveUserToRoleAsync(user,user.UserType.ToString());
+                user.UserType = model.Rol;
+                await _userHelper.AddUserToRoleAsync(user,model.Rol.ToString());
+                await _userHelper.UpdateUserAsync(user);
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(model);
+        }
+
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Users
-                .Where(u => u.UserType == UserType.User)
+                .Where(u => u.UserType != UserType.Admin)
                 .OrderBy(u => u.FirstName)
                 .ThenBy(u => u.LastName)
+                .ThenBy(u => u.UserType)
                 .ToListAsync());
         }
 

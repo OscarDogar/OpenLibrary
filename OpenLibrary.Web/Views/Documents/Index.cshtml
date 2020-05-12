@@ -6,7 +6,13 @@
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
 <br />
+
+<div class="text-danger">@TempData["Sent"]</div>
+<br />
+
 @if ((User.Identity.IsAuthenticated && User.IsInRole("User")))
+
+
 {
     <p>
         <a class="btn btn-primary" asp-action="Create"><i class="glyphicon glyphicon-plus"></i> Upload a New</a>

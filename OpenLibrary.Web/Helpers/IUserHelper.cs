@@ -9,6 +9,8 @@ namespace OpenLibrary.Web.Helpers
 {
     public interface IUserHelper
     {
+        Task<SignInResult> ValidatePasswordAsync(UserEntity user, string password);
+       
         Task<UserEntity> GetUserAsync(string email);
 
         Task<UserEntity> GetUserAsync(Guid userId);

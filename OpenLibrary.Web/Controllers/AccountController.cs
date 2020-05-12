@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using OpenLibrary.Common.Enums;
 using OpenLibrary.Web.Data;
 using OpenLibrary.Web.Data.Entities;
@@ -10,7 +12,10 @@ using OpenLibrary.Web.Models;
 using Soccer.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace OpenLibrary.Web.Controllers
@@ -20,14 +25,14 @@ namespace OpenLibrary.Web.Controllers
         private readonly IUserHelper _userHelper;
         private readonly IDocumentHelper _imageHelper;
         private readonly DataContext _context;
-        private readonly RoleManager<IdentityRole> _roleManage;
+        private readonly IConfiguration _configuration;
 
-        public AccountController(IUserHelper userHelper, IDocumentHelper imageHelper,DataContext context, RoleManager<IdentityRole> roleManager)
+        public AccountController(IUserHelper userHelper, IDocumentHelper imageHelper,DataContext context, IConfiguration configuration)
         {
             _userHelper = userHelper;
             _imageHelper = imageHelper;
             _context = context;
-            _roleManage = roleManager;
+            _configuration = configuration;
         }
 
         public IActionResult NotAuthorized()
@@ -43,6 +48,47 @@ namespace OpenLibrary.Web.Controllers
             }
 
             return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> CreateToken([FromBody] LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userHelper.GetUserAsync(model.Username);
+                if (user != null)
+                {
+                    var result = await _userHelper.ValidatePasswordAsync(user, model.Password);
+
+                    if (result.Succeeded)
+                    {
+                        var claims = new[]
+                        {
+                    new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                };
+
+                        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Tokens:Key"]));
+                        var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+                        var token = new JwtSecurityToken(
+                            _configuration["Tokens:Issuer"],
+                            _configuration["Tokens:Audience"],
+                            claims,
+                            expires: DateTime.UtcNow.AddDays(15),
+                            signingCredentials: credentials);
+                        var results = new
+                        {
+                            token = new JwtSecurityTokenHandler().WriteToken(token),
+                            expiration = token.ValidTo
+                        };
+
+                        return Created(string.Empty, results);
+                    }
+                }
+            }
+
+            return BadRequest();
         }
 
 

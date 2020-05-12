@@ -156,6 +156,7 @@ namespace OpenLibrary.Web.Controllers
                 DocumentEntity document = await _converterHelper.ToDocumentEntity(documentViewModel, path, true);
                 _context.Add(document);
                 await _context.SaveChangesAsync();
+                TempData["Sent"] = "Your document has been sent and it will be reviewed soon.";
                 return RedirectToAction(nameof(Index));
             }
             documentViewModel.Genders = _combosHelper.GetComboGenders();

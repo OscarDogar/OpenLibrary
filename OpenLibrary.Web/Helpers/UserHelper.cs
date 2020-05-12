@@ -27,6 +27,17 @@ namespace OpenLibrary.Web.Helpers
             _signInManager = signInManager;
             _dataContext = dataContext;
         }
+
+        public async Task<IdentityResult> ConfirmEmailAsync(UserEntity user, string token)
+        {
+            return await _userManager.ConfirmEmailAsync(user, token);
+        }
+
+        public async Task<string> GenerateEmailConfirmationTokenAsync(UserEntity user)
+        {
+            return await _userManager.GenerateEmailConfirmationTokenAsync(user);
+        }
+
         public async Task<SignInResult> LoginAsync(LoginViewModel model)
         {
         

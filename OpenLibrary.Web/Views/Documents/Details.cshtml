@@ -7,8 +7,24 @@
 <br />
 <h4>Name of the document: @Model.Title</h4>
 <a asp-action="Index" class="btn btn-success"><i class="glyphicon glyphicon-arrow-left"></i> Back to Documents</a>
-<a asp-action="AddReview" asp-route-id="@Model.Id" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Add a review</a>
-
+@{
+    var c = 0;
+    foreach (var item in Model.Reviews)
+    {
+        if (item.User.Email == User.Identity.Name && item.Document == Model)
+        {
+            c = 1;
+        }
+    }
+    if (c == 0)
+    {
+        <a asp-action="AddReview" asp-route-id="@Model.Id" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Add a review</a>
+    }
+    if (c == 1)
+    {
+        <b>you have already comment this document</b>
+    }
+}
 <div class="row">
 
     <div class="col-md-12">
@@ -33,6 +49,11 @@
                             </th>
                             <th>
                                 Favorite
+                            </th>
+                            <th>
+                                <center>
+                                    Options
+                                </center>
                             </th>
                         </tr>
                     </thead>
@@ -64,6 +85,21 @@
                                     }
 
                                 </td>
+                                <td>
+                                    @if (item.User.Email == User.Identity.Name && item.Document == Model && User.IsInRole("User"))
+                                    {
+                                        <center>
+                                            <a asp-action="EditReview" asp-route-id="@item.Id" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
+                                        </center>
+                                    }
+                                    @if ((User.Identity.IsAuthenticated && User.IsInRole("BookAdmin")))
+                                    {
+                                        <center>
+                                            <button style="margin:5px" data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
+                                           </center>
+                                    }
+                                </td>
+
                             </tr>
                         }
                     </tbody>
@@ -72,7 +108,7 @@
         </div>
     </div>
 </div>
-
+<partial name="_DeleteDialog" />
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -86,7 +122,7 @@
                 item_to_delete = e.currentTarget.dataset.id;
             });
             $("#btnYesDelete").click(function () {//this is for ID
-                window.location.href = '/TripExpenseType/Delete/' + item_to_delete;
+                window.location.href = '/Documents/DeleteReview/' + item_to_delete;
             });
         });
     </script>

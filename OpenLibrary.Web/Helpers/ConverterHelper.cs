@@ -43,6 +43,7 @@ namespace OpenLibrary.Web.Helpers
                 Comment = reviewEntity.Comment,
                 Favorite = reviewEntity.Favorite,
                 User = reviewEntity.User,
+                Rating = reviewEntity.Rating,
                 Document = reviewEntity.Document,
                 DocumentId = reviewEntity.Document.Id
             };

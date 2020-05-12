@@ -154,7 +154,7 @@
                                         {
                                             <td>
                                                 <center>
-                                                    <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">View Reviews <i class="glyphicon glyphicon-align-justify"></i></a>
+                                                    <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id"><i class="glyphicon glyphicon-align-justify"></i></a>
                                                 </center>
                                             </td>
                                         }
@@ -214,16 +214,18 @@
                                                 @Html.DisplayFor(modelItem => item.User.FullName)
                                             </td>
                                             <td>
-                                                <a asp-action="Edit" style="margin:5px" class="btn btn-warning" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i></a>
-
-                                                <button style="margin:5px" data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
+                                                <center>
+                                                    <a asp-action="Edit" style="margin:5px" class="btn btn-warning" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i></a>
+                                                    <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id"><i class="glyphicon glyphicon-align-justify"></i></a>
+                                                    <button style="margin:5px" data-id="@item.Id" class="btn btn-danger deleteItem" data-toggle="modal" data-target="#deleteDialog"><i class="glyphicon glyphicon-trash"></i></button>
+                                                </center>
                                             </td>
                                         }
                                         @if ((User.Identity.IsAuthenticated && User.IsInRole("User")))
                                         {
                                             <td>
                                                 <center>
-                                                    <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id">View Reviews <i class="glyphicon glyphicon-align-justify"></i></a>
+                                                    <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id"><i class="glyphicon glyphicon-align-justify"></i></a>
                                                 </center>
                                             </td>
                                         }

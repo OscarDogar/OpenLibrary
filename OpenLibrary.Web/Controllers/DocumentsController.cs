@@ -43,7 +43,7 @@ namespace OpenLibrary.Web.Controllers
                                                 .Include(g => g.User)
                                                 .ToListAsync());
         }
-        [Authorize(Roles = "User")]
+        [Authorize(Roles = "User,BookAdmin")]
         public async Task<IActionResult> Details(int? id)
         {
             return View(await _context.Documents.Include(tt => tt.Reviews).ThenInclude(u => u.User).FirstOrDefaultAsync(td => td.Id == id));
@@ -91,6 +91,40 @@ namespace OpenLibrary.Web.Controllers
             return View(model);
         }
 
+        public async Task<IActionResult> EditReview(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            ReviewEntity reviewEntity = await _context.Reviews
+                .Include(g => g.Document)
+                .Include(u => u.User)
+                .FirstOrDefaultAsync(g => g.Id == id);
+            if (reviewEntity == null)
+            {
+                return NotFound();
+            }
+
+            ReviewViewModel model = _converterHelper.ToReviewViewModel(reviewEntity);
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditReview(ReviewViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                ReviewEntity groupEntity = await _converterHelper.ToReviewEntityAsync(model, false);
+                _context.Update(groupEntity);
+                await _context.SaveChangesAsync();
+                return RedirectToAction($"{nameof(Details)}/{model.DocumentId}");
+            }
+
+            return View(model);
+        }
 
         [Authorize(Roles = "User")]
         public IActionResult Create()
@@ -212,6 +246,28 @@ namespace OpenLibrary.Web.Controllers
             _context.Documents.Remove(documentEntity);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        [Authorize(Roles = "BookAdmin")]
+        public async Task<IActionResult> DeleteReview(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            ReviewEntity reviewEntity = await _context.Reviews
+                .Include(g => g.Document)
+                .Include(u => u.User)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (reviewEntity == null)
+            {
+                return NotFound();
+            }
+
+            _context.Reviews.Remove(reviewEntity);
+            await _context.SaveChangesAsync();
+            return RedirectToAction($"{nameof(Details)}/{reviewEntity.Document.Id}");
         }
 
         private bool DocumentEntityExists(int id)

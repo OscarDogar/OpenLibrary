@@ -34,7 +34,8 @@ namespace OpenLibrary.Web.Data.Entities
         [Required(ErrorMessage = "The field {0} is mandatory.")]
         public int PagesNumber { get; set; }
 
-        //public int Accepted { get; set; }
+        [Display(Name = "Accepted ?")]
+        public bool Accepted { get; set; }
 
         public UserEntity User { get; set; }
 

@@ -182,6 +182,7 @@ namespace OpenLibrary.Web.Data
                     DocumentPath = $"~/Documents/OPI72-taller6.pdf",
                     Summary = "Plot Overview. One Hundred Years of Solitude is the history of the isolated town of Macondo and of the family who founds it, the Buendías. For years, the town has no contact with the outside world, except for gypsies who occasionally visit, peddling technologies like ice and telescopes",
                     PagesNumber = 422,
+                    Accepted = true,
                     User = _context.Users.FirstOrDefault(t => t.Email == "andrescarne@yopmail.com"),
                     Gender = _context.Genders.FirstOrDefault(t => t.Name == "Fantasy"),
                     Author = _context.Authors.FirstOrDefault(t => t.Name == "Gabriel Garcia Marquez"),

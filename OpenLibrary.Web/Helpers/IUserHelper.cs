@@ -17,6 +17,10 @@ namespace OpenLibrary.Web.Helpers
        
         Task<UserEntity> GetUserAsync(string email);
 
+        Task<string> GeneratePasswordResetTokenAsync(UserEntity user);
+
+        Task<IdentityResult> ResetPasswordAsync(UserEntity user, string token, string password);
+
         Task<UserEntity> GetUserAsync(Guid userId);
 
         Task<IdentityResult> AddUserAsync(UserEntity user, string password);

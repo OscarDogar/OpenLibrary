@@ -16,13 +16,13 @@
             c = 1;
         }
     }
-    if (c == 0)
+    if (c == 0 && User.IsInRole("User"))
     {
         <a asp-action="AddReview" asp-route-id="@Model.Id" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Add a review</a>
     }
     if (c == 1)
     {
-        <b>you have already comment this document</b>
+        <b>You have already comment this document</b>
     }
 }
 <div class="row">

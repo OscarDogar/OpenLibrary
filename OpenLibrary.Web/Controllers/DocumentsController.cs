@@ -245,8 +245,19 @@ namespace OpenLibrary.Web.Controllers
                 return NotFound();
             }
 
-            _context.Documents.Remove(documentEntity);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Documents.Remove(documentEntity);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException.Message.Contains("conflicted"))
+                {
+                    ModelState.AddModelError(string.Empty, "There are reviews in this document, if you want to delete it you have to delete de reviews");
+                }
+                TempData["Error"] = "There are reviews in this document, if you want to delete it you have to delete de reviews.";
+            }
             return RedirectToAction(nameof(Index));
         }
 

@@ -4,6 +4,7 @@ using OpenLibrary.Prism.ViewModels;
 using OpenLibrary.Prism.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using OpenLibrary.Common.Services;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace OpenLibrary.Prism
@@ -29,6 +30,7 @@ namespace OpenLibrary.Prism
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.Register<IApiService, ApiService>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
         }
     }

@@ -43,22 +43,17 @@ namespace OpenLibrary.Web.Controllers.API
                  return BadRequest(ModelState);
              }
 
-            List<UserEntity> userEntity = await _context.Users
-
-              .Include(d => d.Documents)
-              .ThenInclude(a => a.Author)
-              .Include(d => d.Documents)
-              .ThenInclude(t => t.TypeOfDocument)
-              .Include(d => d.Documents)
-              .ThenInclude(l => l.DocumentLanguage)
-              .Include(d => d.Documents)
-              .ThenInclude(g => g.Gender)
-              .Include(d => d.Documents)
-              .ThenInclude(r => r.Reviews)
-              .Where(u=> u.UserType==UserType.User)
+            List<DocumentEntity> documentEntities = await _context.Documents
+              .Include(d => d.User)
+              .Include(a => a.Author)
+              .Include(t => t.TypeOfDocument)
+              .Include(l => l.DocumentLanguage)
+              .Include(g => g.Gender)
+              .Include(r => r.Reviews)
+              .Where(u => u.User.UserType == UserType.User)
               .ToListAsync();
 
-            if (userEntity == null)
+            if (documentEntities == null)
             {
                 return BadRequest(new Response
                 {
@@ -68,7 +63,7 @@ namespace OpenLibrary.Web.Controllers.API
 
             }
 
-            return Ok(_converterHelper.ToUserResponse(userEntity));
+            return Ok(_converterHelper.ToDocumentResponse2(documentEntities));
         }
 
         [HttpGet]

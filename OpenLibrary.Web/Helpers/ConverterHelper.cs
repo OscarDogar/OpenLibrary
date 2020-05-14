@@ -48,50 +48,40 @@ namespace OpenLibrary.Web.Helpers
             return list;
         }
 
-        public UserResponse ToUserResponse(UserEntity userEntity)
+        public SearchResponse ToDocumentResponse2(DocumentEntity documentEntity)
         {
-            return new UserResponse
+            return new SearchResponse
             {
 
-                DocumentId = userEntity.DocumentId,
-                FirstName = userEntity.FirstName,
-                LastName = userEntity.LastName,
-                Address = userEntity.Address,
-                PicturePath=userEntity.PicturePath,
-                UserType = userEntity.UserType,
-                PhoneNumber = userEntity.PhoneNumber,
-                Id = userEntity.Id,
-                Email = userEntity.Email,
-                Documents = userEntity.Documents?.Select(g => new SearchResponse
-                {
-                    Id = g.Id,
-                    Title=g.Title,
-                    DocumentPath = g.DocumentPath,
-                    Date = g.Date,
-                    Summary = g.Summary,
-                    PagesNumber= g.PagesNumber,
-                    Accepted= g.Accepted,
-                    Gender = ToGenderResponse(g?.Gender),
-                    Author = ToAuthorResponse(g?.Author),
-                    DocumentLanguage = ToLanguageResponse(g?.DocumentLanguage),
-                    TypeOfDocument = ToTypeResponse(g?.TypeOfDocument),
-                    Reviews = g.Reviews?.Select(gd => new ReviewResponse
+                    Id = documentEntity.Id,
+                    Title= documentEntity.Title,
+                    DocumentPath = documentEntity.DocumentPath,
+                    Date = documentEntity.Date,
+                    Summary = documentEntity.Summary,
+                    PagesNumber= documentEntity.PagesNumber,
+                    Accepted= documentEntity.Accepted,
+                    Gender = ToGenderResponse(documentEntity?.Gender),
+                    Author = ToAuthorResponse(documentEntity?.Author),
+                    DocumentLanguage = ToLanguageResponse(documentEntity?.DocumentLanguage),
+                    TypeOfDocument = ToTypeResponse(documentEntity?.TypeOfDocument),
+                    User = ToUserResponse(documentEntity?.User),
+                    Reviews = documentEntity.Reviews?.Select(gd => new ReviewResponse
                     {
                         Id = gd.Id,
                         Comment = gd.Comment,
                         Rating = gd.Rating,
                         Favorite = gd.Favorite,
                     }).ToList(),
-                }).ToList()
+                
             };
         }
 
-        public List<UserResponse> ToUserResponse(List<UserEntity> userEntities)
+        public List<SearchResponse> ToDocumentResponse2(List<DocumentEntity> documentEntities)
         {
-            List<UserResponse> list = new List<UserResponse>();
-            foreach (UserEntity userEntity in userEntities)
+            List<SearchResponse> list = new List<SearchResponse>();
+            foreach (DocumentEntity documentEntity in documentEntities)
             {
-                list.Add(ToUserResponse(userEntity));
+                list.Add(ToDocumentResponse2(documentEntity));
             }
 
             return list;
@@ -124,6 +114,27 @@ namespace OpenLibrary.Web.Helpers
             {
                 Id = documentEntity.Id,
                 Title=documentEntity.Title
+            };
+        }
+
+        public UserResponse ToUserResponse(UserEntity userEntity)
+        {
+            if (userEntity == null)
+            {
+                return null;
+            }
+
+            return new UserResponse
+            {
+                DocumentId = userEntity.DocumentId,
+                FirstName = userEntity.FirstName,
+                LastName = userEntity.LastName,
+                Address = userEntity.Address,
+                PicturePath = userEntity.PicturePath,
+                UserType = userEntity.UserType,
+                PhoneNumber = userEntity.PhoneNumber,
+                Id = userEntity.Id,
+                Email = userEntity.Email
             };
         }
 

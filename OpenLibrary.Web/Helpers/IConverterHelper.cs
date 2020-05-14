@@ -11,9 +11,10 @@ namespace OpenLibrary.Web.Helpers
 {
     public interface IConverterHelper
     {
-        UserResponse ToUserResponse(UserEntity userEntity);
+        SearchResponse ToDocumentResponse2(DocumentEntity documentEntity);
    
-        List<UserResponse> ToUserResponse(List<UserEntity> userEntities);
+        List<SearchResponse> ToDocumentResponse2(List<DocumentEntity> documentEntities);
+
         ReviewResponse ToReviewResponse(ReviewEntity reviewEntity);
 
         List<ReviewResponse> ToReviewResponse(List<ReviewEntity> reviewEntities);

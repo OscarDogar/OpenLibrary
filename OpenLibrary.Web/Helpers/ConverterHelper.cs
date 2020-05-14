@@ -1,4 +1,5 @@
 ﻿using Microsoft.CodeAnalysis;
+using OpenLibrary.Common.Models;
 using OpenLibrary.Web.Data;
 using OpenLibrary.Web.Data.Entities;
 using OpenLibrary.Web.Models;
@@ -20,6 +21,166 @@ namespace OpenLibrary.Web.Helpers
             _context = context;
             _combosHelper = combosHelper;
             _userHelper = userHelper;
+        }
+
+        public ReviewResponse ToReviewResponse(ReviewEntity reviewEntity)
+        {
+            return new ReviewResponse
+            {
+                Comment = reviewEntity.Comment,
+                Favorite = reviewEntity.Favorite,
+                Id = reviewEntity.Id,
+                Rating= reviewEntity.Rating,
+                User= ToUser2Response(reviewEntity.User),
+                Document = ToDocumentResponse(reviewEntity.Document)
+
+            };
+        }
+
+        public List<ReviewResponse> ToReviewResponse(List<ReviewEntity> reviewEntities)
+        {
+            List<ReviewResponse> list = new List<ReviewResponse>();
+            foreach (ReviewEntity reviewEntity in reviewEntities)
+            {
+                list.Add(ToReviewResponse(reviewEntity));
+            }
+
+            return list;
+        }
+
+        public UserResponse ToUserResponse(UserEntity userEntity)
+        {
+            return new UserResponse
+            {
+
+                DocumentId = userEntity.DocumentId,
+                FirstName = userEntity.FirstName,
+                LastName = userEntity.LastName,
+                Address = userEntity.Address,
+                PicturePath=userEntity.PicturePath,
+                UserType = userEntity.UserType,
+                PhoneNumber = userEntity.PhoneNumber,
+                Id = userEntity.Id,
+                Email = userEntity.Email,
+                Documents = userEntity.Documents?.Select(g => new SearchResponse
+                {
+                    Id = g.Id,
+                    Title=g.Title,
+                    DocumentPath = g.DocumentPath,
+                    Date = g.Date,
+                    Summary = g.Summary,
+                    PagesNumber= g.PagesNumber,
+                    Accepted= g.Accepted,
+                    Gender = ToGenderResponse(g?.Gender),
+                    Author = ToAuthorResponse(g?.Author),
+                    DocumentLanguage = ToLanguageResponse(g?.DocumentLanguage),
+                    TypeOfDocument = ToTypeResponse(g?.TypeOfDocument),
+                    Reviews = g.Reviews?.Select(gd => new ReviewResponse
+                    {
+                        Id = gd.Id,
+                        Comment = gd.Comment,
+                        Rating = gd.Rating,
+                        Favorite = gd.Favorite,
+                    }).ToList(),
+                }).ToList()
+            };
+        }
+
+        public List<UserResponse> ToUserResponse(List<UserEntity> userEntities)
+        {
+            List<UserResponse> list = new List<UserResponse>();
+            foreach (UserEntity userEntity in userEntities)
+            {
+                list.Add(ToUserResponse(userEntity));
+            }
+
+            return list;
+        }
+
+        public UserResponse ToUser2Response(UserEntity userEntity)
+        {
+            if (userEntity == null)
+            {
+                return null;
+            }
+
+            return new UserResponse
+            {
+                Id = userEntity.Id,
+                Email= userEntity.Email,
+                FirstName=userEntity.FirstName,
+                LastName=userEntity.LastName
+            };
+        }
+
+        public SearchResponse ToDocumentResponse(DocumentEntity documentEntity)
+        {
+            if (documentEntity == null)
+            {
+                return null;
+            }
+
+            return new SearchResponse
+            {
+                Id = documentEntity.Id,
+                Title=documentEntity.Title
+            };
+        }
+
+        public TypeOfDocumentResponse ToTypeResponse(TypeOfDocumentEntity typeOfDocumentEntity)
+        {
+            if (typeOfDocumentEntity == null)
+            {
+                return null;
+            }
+
+            return new TypeOfDocumentResponse
+            {
+                Id = typeOfDocumentEntity.Id,
+                Name = typeOfDocumentEntity.Name
+            };
+        }
+
+        public DocumentLanguageResponse ToLanguageResponse(DocumentLanguageEntity documentLanguageEntity)
+        {
+            if (documentLanguageEntity == null)
+            {
+                return null;
+            }
+
+            return new DocumentLanguageResponse
+            {
+                Id = documentLanguageEntity.Id,
+                Name = documentLanguageEntity.Name
+            };
+        }
+
+        public AuthorResponse ToAuthorResponse(AuthorEntity authorEntity)
+        {
+            if (authorEntity == null)
+            {
+                return null;
+            }
+
+            return new AuthorResponse
+            {
+                Id = authorEntity.Id,
+                Name = authorEntity.Name
+            };
+        }
+
+        public GenderResponse ToGenderResponse(GenderEntity genderEntity)
+        {
+            if (genderEntity == null)
+            {
+                return null;
+            }
+
+            return new GenderResponse
+            {
+                Id = genderEntity.Id,
+                Name = genderEntity.Name
+            };
         }
 
         public async Task<ReviewEntity> ToReviewEntityAsync(ReviewViewModel model, bool isNew)

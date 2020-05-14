@@ -154,6 +154,7 @@ namespace OpenLibrary.Web.Controllers
                     path = await _documentHelper.UploadDocumentAsync(documentViewModel.DocumentFile,"document");
                 }
                 DocumentEntity document = await _converterHelper.ToDocumentEntity(documentViewModel, path, true);
+                document.User = _context.Users.FirstOrDefault(u=> u.Email==User.Identity.Name);
                 _context.Add(document);
                 await _context.SaveChangesAsync();
                 TempData["Sent"] = "Your document has been sent and it will be reviewed soon.";

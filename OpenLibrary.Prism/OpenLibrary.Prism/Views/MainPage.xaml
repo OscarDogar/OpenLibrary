@@ -2,9 +2,85 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OpenLibrary.Prism.Views.MainPage"
-             Title="{Binding Titles}">
+             Title="{Binding Title}">
+    
 
     <StackLayout Padding="5">
+        <Grid BackgroundColor="Yellow">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0"
+                       Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="39"/>
+                <RowDefinition Height="39"/>
+                <RowDefinition Height="39"/>
+                <RowDefinition Height="39"/>
+            </Grid.RowDefinitions>
+            
+            <Label Grid.Row="0"
+                       Grid.Column="0"
+                               Text="Type"
+                               VerticalOptions="Center"/>
+            <Picker Grid.Row="0"
+                       Grid.Column="1"
+                                BackgroundColor="White"
+                                ItemDisplayBinding="{Binding Name}"
+                                ItemsSource="{Binding Types}"
+                                SelectedItem="{Binding Type}"
+                                Title="Type"></Picker>
+
+            <Label Grid.Row="1"
+                       Grid.Column="0"
+                               Text="Gender"
+                               VerticalOptions="Center"/>
+            <Picker Grid.Row="1"
+                       Grid.Column="1"
+                                BackgroundColor="White"
+                                ItemDisplayBinding="{Binding Name}"
+                                ItemsSource="{Binding Genders}"
+                                SelectedItem="{Binding Gender}"
+                                Title="Gender"></Picker>
+
+            <Label Grid.Row="2"
+                       Grid.Column="0"
+                               Text="Language"
+                               VerticalOptions="Center"/>
+            <Picker Grid.Row="2"
+                       Grid.Column="1"
+                                BackgroundColor="White"
+                                ItemDisplayBinding="{Binding Name}"
+                                ItemsSource="{Binding Languages}"
+                                SelectedItem="{Binding Language}"
+                                Title="Language"></Picker>
+
+            <Label Grid.Row="3"
+                       Grid.Column="0"
+ 
+                               Text="Author"
+                               VerticalOptions="Center"/>
+            <Entry Grid.Row="3"
+                       Grid.Column="1"
+                               Placeholder="Author"
+                               Text="{Binding Author}"/>
+
+        </Grid>
+            <Button Grid.Row="0"
+                       Grid.Column="1"
+                Text="Search"
+                    Command="{Binding SearchCommand}"></Button>
+        </Grid>
         <CollectionView ItemsSource="{Binding UserDoc}">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"/>
@@ -17,22 +93,22 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Image Grid.Column="0" 
-                               Source="ic_more_vert"/>
+                               Source="file"/>
                         <StackLayout Grid.Column="1"
                                      VerticalOptions="Center">
                             <Label Text="{Binding Title}" 
                                    FontAttributes="Bold"
                                    FontSize="Medium"
                                    LineBreakMode="TailTruncation" />
-                            <Label Text="{Binding Gender}"
+                            <Label Text="{Binding Gender.Name}"
                                    LineBreakMode="TailTruncation"
                                    FontAttributes="Italic" 
                                    VerticalOptions="End" />
-                            <Label Text="{Binding Type}"
+                            <Label Text="{Binding TypeOfDocument.Name}"
                                    LineBreakMode="TailTruncation"
                                    FontAttributes="Italic" 
                                    VerticalOptions="End" />
-                            <Label Text="{Binding Author}"
+                            <Label Text="{Binding Author.Name}"
                                    LineBreakMode="TailTruncation"
                                    FontAttributes="Italic" 
                                    VerticalOptions="End" />

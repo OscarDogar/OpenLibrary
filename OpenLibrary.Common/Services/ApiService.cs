@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using OpenLibrary.Common.Models;
+using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -51,6 +52,17 @@ namespace OpenLibrary.Common.Services
                 };
             }
         }
+
+        public async Task<bool> CheckConnectionAsync(string url)
+        {
+            if (!CrossConnectivity.Current.IsConnected)
+            {
+                return false;
+            }
+
+            return await CrossConnectivity.Current.IsRemoteReachable(url);
+        }
+
     }
 
 }

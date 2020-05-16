@@ -21,7 +21,7 @@ namespace OpenLibrary.Prism.ViewModels
 
         private async void SelectMenuAsync()
         {
-            await _navigationService.NavigateAsync($"/SoccerMasterDetailPage/NavigationPage/{PageName}");
+            await _navigationService.NavigateAsync($"/OpenLibraryMasterDetailPage/NavigationPage/{PageName}");
         }
     }
 

@@ -1,5 +1,6 @@
 ﻿using OpenLibrary.Common.Models;
 using OpenLibrary.Common.Services;
+using OpenLibrary.Prism.Helpers;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -28,6 +29,8 @@ namespace OpenLibrary.Prism.ViewModels
         private string _author;
         private string _titleOfDocument;
         private bool _isRunning;
+        private bool _isEnabled;
+
 
 
         public MainPageViewModel(
@@ -48,6 +51,11 @@ namespace OpenLibrary.Prism.ViewModels
         {
             get => _isRunning;
             set => SetProperty(ref _isRunning, value);
+        }
+        public bool IsEnabled
+        {
+            get => _isEnabled;
+            set => SetProperty(ref _isEnabled, value);
         }
 
         public string Author
@@ -74,7 +82,7 @@ namespace OpenLibrary.Prism.ViewModels
             set => SetProperty(ref _Doc2, value);
         }
 
-        public ObservableCollection<DocumentLanguageResponse> Languages
+        public ObservableCollection<DocumentLanguageResponse> LanguageDocument
         {
             get => _laguage;
             set => SetProperty(ref _laguage, value);
@@ -164,7 +172,7 @@ namespace OpenLibrary.Prism.ViewModels
             if (list.Count == 0)
             {
                 IsRunning = false;
-                await App.Current.MainPage.DisplayAlert("Error", "It was not found", "Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ItWasNotFound , Languages.Accept);
             }
             else
             {
@@ -177,21 +185,23 @@ namespace OpenLibrary.Prism.ViewModels
         private async void LoadDocumentsAsync()
         {
             IsRunning = true;
+            IsEnabled = false;
             string url = App.Current.Resources["UrlAPI"].ToString();
-            Response response = await _apiService.GetListAsync<SearchResponse>(
-                url,
-                "/api",
-                "/Search");
+            Response response = await _apiService.GetListAsync<SearchResponse>(url,"/api","/Search");
 
-            IsRunning = false;
             if (!response.IsSuccess)
             {
+                IsRunning = true;
+                IsEnabled = false;
                 await App.Current.MainPage.DisplayAlert(
-                    "Error",
+                    Languages.Error,
                     response.Message,
-                    "Accept");
+                    Languages.Accept);
                 return;
             }
+            IsRunning = false;
+            IsEnabled = true;
+
             UserDoc = (List<SearchResponse>)response.Result;
 
             List<SearchResponse> list = new List<SearchResponse>();
@@ -214,7 +224,7 @@ namespace OpenLibrary.Prism.ViewModels
             bool connection = await _apiService.CheckConnectionAsync(url);
             if (!connection)
             {
-                await App.Current.MainPage.DisplayAlert("Error", "Conexion error", "Accept");
+               await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
                 return;
             }
 
@@ -222,7 +232,7 @@ namespace OpenLibrary.Prism.ViewModels
 
             if (!response.IsSuccess)
             {
-                await App.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
                 return;
             }
             List<DocumentLanguageResponse> list = (List<DocumentLanguageResponse>)response.Result;
@@ -230,7 +240,7 @@ namespace OpenLibrary.Prism.ViewModels
             {
                 Name = "No Filter"
             });
-            Languages = new ObservableCollection<DocumentLanguageResponse>(list.OrderBy(t => t.Id));
+            LanguageDocument = new ObservableCollection<DocumentLanguageResponse>(list.OrderBy(t => t.Id));
         }
 
         private async void LoadTypesAsync()
@@ -239,7 +249,7 @@ namespace OpenLibrary.Prism.ViewModels
             bool connection = await _apiService.CheckConnectionAsync(url);
             if (!connection)
             {
-                await App.Current.MainPage.DisplayAlert("Error", "Conexion error", "Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
                 return;
             }
 
@@ -247,7 +257,7 @@ namespace OpenLibrary.Prism.ViewModels
 
             if (!response.IsSuccess)
             {
-                await App.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
                 return;
             }
             List<TypeOfDocumentResponse> list = (List<TypeOfDocumentResponse>)response.Result;
@@ -265,7 +275,7 @@ namespace OpenLibrary.Prism.ViewModels
             bool connection = await _apiService.CheckConnectionAsync(url);
             if (!connection)
             {
-                await App.Current.MainPage.DisplayAlert("Error", "Conexion error", "Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
                 return;
             }
 
@@ -273,7 +283,7 @@ namespace OpenLibrary.Prism.ViewModels
 
             if (!response.IsSuccess)
             {
-                await App.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
                 return;
             }
             List<GenderResponse> list = (List<GenderResponse>)response.Result;

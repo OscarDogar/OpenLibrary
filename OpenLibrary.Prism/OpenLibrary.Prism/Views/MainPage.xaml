@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OpenLibrary.Prism.Views.MainPage"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
              BackgroundColor="{StaticResource ColorBackground}"
+             xmlns:i18n="clr-namespace:OpenLibrary.Prism.Helpers"
              Title="{Binding Title}">
 
     <AbsoluteLayout>
@@ -33,66 +35,64 @@
                         <RowDefinition Height="39"/>
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Row="0"
-                           Grid.Column="0"
-                                   Text="Type"
-                                   VerticalOptions="Center"/>
+
                     <Picker Grid.Row="0"
-                           Grid.Column="1"
-                                    BackgroundColor="White"
-                                    ItemDisplayBinding="{Binding Name}"
-                                    ItemsSource="{Binding Types}"
-                                    SelectedItem="{Binding Type}"
-                                    Title="Type"></Picker>
+                            Grid.Column="0"
+                            Margin="5,0,5,0"
+                            BackgroundColor="Azure"
+                            ItemDisplayBinding="{Binding Name}"
+                            ItemsSource="{Binding Types}"
+                            SelectedItem="{Binding Type}"
+                            Title="{i18n:Translate SelectType}"></Picker>
 
-                    <Label Grid.Row="1"
-                           Grid.Column="0"
-                                   Text="Gender"
-                                   VerticalOptions="Center"/>
+
                     <Picker Grid.Row="1"
-                           Grid.Column="1"
-                                    BackgroundColor="White"
-                                    ItemDisplayBinding="{Binding Name}"
-                                    ItemsSource="{Binding Genders}"
-                                    SelectedItem="{Binding Gender}"
-                                    Title="Gender"></Picker>
+                            Grid.Column="0"
+                            Margin="5,0,5,0"
+                            BackgroundColor="Azure"
+                            ItemDisplayBinding="{Binding Name}"
+                            ItemsSource="{Binding Genders}"
+                            SelectedItem="{Binding Gender}"
+                            Title="{i18n:Translate SelectGender}"></Picker>
 
-                    <Label Grid.Row="2"
-                           Grid.Column="0"
-                                   Text="Language"
-                                   VerticalOptions="Center"/>
+
                     <Picker Grid.Row="2"
-                           Grid.Column="1"
-                                    BackgroundColor="White"
-                                    ItemDisplayBinding="{Binding Name}"
-                                    ItemsSource="{Binding Languages}"
-                                    SelectedItem="{Binding Language}"
-                                    Title="Language"></Picker>
+                            Grid.Column="0"
+                            Margin="5,0,5,0"
+                            BackgroundColor="Azure"
+                            ItemDisplayBinding="{Binding Name}"
+                            ItemsSource="{Binding LanguageDocument}"
+                            SelectedItem="{Binding Language}"
+                            Title="{i18n:Translate SelectLanguage}"></Picker>
 
-                    <Label Grid.Row="3"
-                           Grid.Column="0"
- 
-                                   Text="Author"
-                                   VerticalOptions="Center"/>
-                    <Entry Grid.Row="3"
-                           Grid.Column="1"
-                                   Placeholder="Author"
+                    <inputLayout:SfTextInputLayout Grid.Row="3"
+                                                   Grid.Column="0"  
+                                                   ContainerType="Outlined"
+                                                   OutlineCornerRadius="8"
+                                                   Hint="{i18n:Translate Author}"
+                                                   Margin="5,0,5,0"
+                                                   ContainerBackgroundColor="Azure">
+                        <Entry 
+                                   Placeholder="{i18n:Translate WriteAutor}"
                                    Text="{Binding Author}"/>
-                    <Label Grid.Row="4"
-                           Grid.Column="0"
- 
-                                   Text="Title"
-                                   VerticalOptions="Center"/>
-                    <Entry Grid.Row="4"
-                           Grid.Column="1"
-                                   Placeholder="Title"
+                    </inputLayout:SfTextInputLayout>
+                    <inputLayout:SfTextInputLayout Grid.Row="4"
+                                                   Grid.Column="0"  
+                                                   ContainerType="Outlined"
+                                                   OutlineCornerRadius="8"
+                                                   Hint="{i18n:Translate Title}"
+                                                   Margin="5,15,5,0"
+                                                   ContainerBackgroundColor="Azure">
+                    <Entry 
+                                   Placeholder="{i18n:Translate WriteTitle}"
                                    Text="{Binding TitleOfDocument}"/>
-
+                    </inputLayout:SfTextInputLayout>
                 </Grid>
                 <Button Grid.Row="0"
                         Grid.Column="1"
-                        Text="Search"
-                        Margin="2,60"
+                        Text="{i18n:Translate Search}"
+                        Margin="2,60,10,70"
+                        IsEnabled="{Binding IsEnabled}"
                         CornerRadius="10"
                         Command="{Binding SearchCommand}"></Button>
             </Grid>
@@ -108,8 +108,7 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Image Grid.Column="0"
-                                   Margin="-10"
-                                   Source="file"
+                                   Source="BigDocument"
                                    WidthRequest="100"/>
                             <StackLayout Grid.Column="1"
                                          Margin="5"
@@ -120,18 +119,18 @@
                                        FontSize="Medium"
                                        LineBreakMode="TailTruncation" />
                                 <StackLayout Orientation="Horizontal">
-                                    <Label Text="Genero:"
+                                    <Label Text="{i18n:Translate Gender}"
                                        LineBreakMode="TailTruncation"
                                        FontAttributes="Bold"
                                        VerticalOptions="End" />
-                             
-                                <Label Text="{Binding Gender.Name}"
+
+                                    <Label Text="{Binding Gender.Name}"
                                        LineBreakMode="TailTruncation"
                                        FontAttributes="Italic" 
                                        VerticalOptions="End" />
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal">
-                                    <Label Text="Type Of Document:"
+                                    <Label Text="{i18n:Translate TypeOfDocument}"
                                        LineBreakMode="TailTruncation"
                                        FontAttributes="Bold"
                                        VerticalOptions="End" />
@@ -141,7 +140,7 @@
                                        VerticalOptions="End" />
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal">
-                                    <Label Text="Language:"
+                                    <Label Text="{i18n:Translate Language}"
                                        LineBreakMode="TailTruncation"
                                        FontAttributes="Bold"
                                        VerticalOptions="End" />
@@ -151,11 +150,11 @@
                                        VerticalOptions="End" />
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal">
-                                    <Label Text="Author:"
+                                    <Label Text="{i18n:Translate Author}"
                                        LineBreakMode="TailTruncation"
                                        FontAttributes="Bold"
                                        VerticalOptions="End" />
-                                <Label Text="{Binding Author.Name}"
+                                    <Label Text="{Binding Author.Name}"
                                        LineBreakMode="TailTruncation"
                                        FontAttributes="Italic" 
                                        VerticalOptions="End" />
@@ -173,7 +172,7 @@
                 	                   HorizontalOptions="Center"
                 	                   TextColor="White"
                 	                   IsVisible="{Binding IsRunning}"
-                	                   Title="Loading..."
+                	                   Title="{i18n:Translate Loading}"
                 	                   VerticalOptions="Center"
                 	                   ViewBoxWidth="80"
                 	                   ViewBoxHeight="80" />

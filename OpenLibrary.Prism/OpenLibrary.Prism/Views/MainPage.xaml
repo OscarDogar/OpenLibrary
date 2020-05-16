@@ -2,120 +2,181 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OpenLibrary.Prism.Views.MainPage"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             BackgroundColor="{StaticResource ColorBackground}"
              Title="{Binding Title}">
-    
 
-    <StackLayout Padding="5">
-        <Grid BackgroundColor="Yellow">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
+    <AbsoluteLayout>
+        <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
+                     AbsoluteLayout.LayoutFlags="All" 
+                     Padding="5">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0"
-                       Grid.Column="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0"
+                           Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="39"/>
-                <RowDefinition Height="39"/>
-                <RowDefinition Height="39"/>
-                <RowDefinition Height="39"/>
-            </Grid.RowDefinitions>
-            
-            <Label Grid.Row="0"
-                       Grid.Column="0"
-                               Text="Type"
-                               VerticalOptions="Center"/>
-            <Picker Grid.Row="0"
-                       Grid.Column="1"
-                                BackgroundColor="White"
-                                ItemDisplayBinding="{Binding Name}"
-                                ItemsSource="{Binding Types}"
-                                SelectedItem="{Binding Type}"
-                                Title="Type"></Picker>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="39"/>
+                        <RowDefinition Height="39"/>
+                        <RowDefinition Height="39"/>
+                        <RowDefinition Height="39"/>
+                    </Grid.RowDefinitions>
 
-            <Label Grid.Row="1"
-                       Grid.Column="0"
-                               Text="Gender"
-                               VerticalOptions="Center"/>
-            <Picker Grid.Row="1"
-                       Grid.Column="1"
-                                BackgroundColor="White"
-                                ItemDisplayBinding="{Binding Name}"
-                                ItemsSource="{Binding Genders}"
-                                SelectedItem="{Binding Gender}"
-                                Title="Gender"></Picker>
+                    <Label Grid.Row="0"
+                           Grid.Column="0"
+                                   Text="Type"
+                                   VerticalOptions="Center"/>
+                    <Picker Grid.Row="0"
+                           Grid.Column="1"
+                                    BackgroundColor="White"
+                                    ItemDisplayBinding="{Binding Name}"
+                                    ItemsSource="{Binding Types}"
+                                    SelectedItem="{Binding Type}"
+                                    Title="Type"></Picker>
 
-            <Label Grid.Row="2"
-                       Grid.Column="0"
-                               Text="Language"
-                               VerticalOptions="Center"/>
-            <Picker Grid.Row="2"
-                       Grid.Column="1"
-                                BackgroundColor="White"
-                                ItemDisplayBinding="{Binding Name}"
-                                ItemsSource="{Binding Languages}"
-                                SelectedItem="{Binding Language}"
-                                Title="Language"></Picker>
+                    <Label Grid.Row="1"
+                           Grid.Column="0"
+                                   Text="Gender"
+                                   VerticalOptions="Center"/>
+                    <Picker Grid.Row="1"
+                           Grid.Column="1"
+                                    BackgroundColor="White"
+                                    ItemDisplayBinding="{Binding Name}"
+                                    ItemsSource="{Binding Genders}"
+                                    SelectedItem="{Binding Gender}"
+                                    Title="Gender"></Picker>
 
-            <Label Grid.Row="3"
-                       Grid.Column="0"
+                    <Label Grid.Row="2"
+                           Grid.Column="0"
+                                   Text="Language"
+                                   VerticalOptions="Center"/>
+                    <Picker Grid.Row="2"
+                           Grid.Column="1"
+                                    BackgroundColor="White"
+                                    ItemDisplayBinding="{Binding Name}"
+                                    ItemsSource="{Binding Languages}"
+                                    SelectedItem="{Binding Language}"
+                                    Title="Language"></Picker>
+
+                    <Label Grid.Row="3"
+                           Grid.Column="0"
  
-                               Text="Author"
-                               VerticalOptions="Center"/>
-            <Entry Grid.Row="3"
-                       Grid.Column="1"
-                               Placeholder="Author"
-                               Text="{Binding Author}"/>
+                                   Text="Author"
+                                   VerticalOptions="Center"/>
+                    <Entry Grid.Row="3"
+                           Grid.Column="1"
+                                   Placeholder="Author"
+                                   Text="{Binding Author}"/>
+                    <Label Grid.Row="4"
+                           Grid.Column="0"
+ 
+                                   Text="Title"
+                                   VerticalOptions="Center"/>
+                    <Entry Grid.Row="4"
+                           Grid.Column="1"
+                                   Placeholder="Title"
+                                   Text="{Binding TitleOfDocument}"/>
 
-        </Grid>
-            <Button Grid.Row="0"
-                       Grid.Column="1"
-                Text="Search"
-                    Command="{Binding SearchCommand}"></Button>
-        </Grid>
-        <CollectionView ItemsSource="{Binding UserDoc}">
-            <CollectionView.ItemsLayout>
-                <GridItemsLayout Orientation="Vertical"/>
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" 
-                               Source="file"/>
-                        <StackLayout Grid.Column="1"
-                                     VerticalOptions="Center">
-                            <Label Text="{Binding Title}" 
-                                   FontAttributes="Bold"
-                                   FontSize="Medium"
-                                   LineBreakMode="TailTruncation" />
-                            <Label Text="{Binding Gender.Name}"
-                                   LineBreakMode="TailTruncation"
-                                   FontAttributes="Italic" 
-                                   VerticalOptions="End" />
-                            <Label Text="{Binding TypeOfDocument.Name}"
-                                   LineBreakMode="TailTruncation"
-                                   FontAttributes="Italic" 
-                                   VerticalOptions="End" />
-                            <Label Text="{Binding Author.Name}"
-                                   LineBreakMode="TailTruncation"
-                                   FontAttributes="Italic" 
-                                   VerticalOptions="End" />
-                        </StackLayout>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </StackLayout>
+                </Grid>
+                <Button Grid.Row="0"
+                        Grid.Column="1"
+                        Text="Search"
+                        Margin="2,60"
+                        CornerRadius="10"
+                        Command="{Binding SearchCommand}"></Button>
+            </Grid>
+            <CollectionView ItemsSource="{Binding UserDoc}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0"
+                                   Margin="-10"
+                                   Source="file"
+                                   WidthRequest="100"/>
+                            <StackLayout Grid.Column="1"
+                                         Margin="5"
+                                         VerticalOptions="Fill">
+                                <Label Text="{Binding Title}" 
+                                       TextColor="DarkBlue"
+                                       FontAttributes="Bold"
+                                       FontSize="Medium"
+                                       LineBreakMode="TailTruncation" />
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Genero:"
+                                       LineBreakMode="TailTruncation"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="End" />
+                             
+                                <Label Text="{Binding Gender.Name}"
+                                       LineBreakMode="TailTruncation"
+                                       FontAttributes="Italic" 
+                                       VerticalOptions="End" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Type Of Document:"
+                                       LineBreakMode="TailTruncation"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="End" />
+                                    <Label Text="{Binding TypeOfDocument.Name}"
+                                       LineBreakMode="TailTruncation"
+                                       FontAttributes="Italic" 
+                                       VerticalOptions="End" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Language:"
+                                       LineBreakMode="TailTruncation"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="End" />
+                                    <Label Text="{Binding DocumentLanguage.Name}"
+                                       LineBreakMode="TailTruncation"
+                                       FontAttributes="Italic" 
+                                       VerticalOptions="End" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Author:"
+                                       LineBreakMode="TailTruncation"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="End" />
+                                <Label Text="{Binding Author.Name}"
+                                       LineBreakMode="TailTruncation"
+                                       FontAttributes="Italic" 
+                                       VerticalOptions="End" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+        <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
+                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                	                   AbsoluteLayout.LayoutFlags="All"
+                	                   BackgroundColor="{StaticResource ColorPrimary}"
+                	                   HorizontalOptions="Center"
+                	                   TextColor="White"
+                	                   IsVisible="{Binding IsRunning}"
+                	                   Title="Loading..."
+                	                   VerticalOptions="Center"
+                	                   ViewBoxWidth="80"
+                	                   ViewBoxHeight="80" />
+
+    </AbsoluteLayout>
 </ContentPage>

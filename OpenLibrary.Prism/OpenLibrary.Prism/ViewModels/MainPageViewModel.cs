@@ -26,6 +26,9 @@ namespace OpenLibrary.Prism.ViewModels
         private TypeOfDocumentResponse _types;
         private DelegateCommand _searchCommand;
         private string _author;
+        private string _titleOfDocument;
+        private bool _isRunning;
+
 
         public MainPageViewModel(
             INavigationService navigationService,
@@ -36,15 +39,27 @@ namespace OpenLibrary.Prism.ViewModels
             LoadLanguagesAsync();
             LoadGendersAsync();
             LoadTypesAsync();
-            LoadTournamentsAsync();
+            LoadDocumentsAsync();
         }
 
         public DelegateCommand SearchCommand => _searchCommand ?? (_searchCommand = new DelegateCommand(SearchAsync));
+
+        public bool IsRunning
+        {
+            get => _isRunning;
+            set => SetProperty(ref _isRunning, value);
+        }
 
         public string Author
         {
             get => _author;
             set => SetProperty(ref _author, value);
+        }
+
+        public string TitleOfDocument
+        {
+            get => _titleOfDocument;
+            set => SetProperty(ref _titleOfDocument, value);
         }
 
         public List<SearchResponse> UserDoc
@@ -97,53 +112,78 @@ namespace OpenLibrary.Prism.ViewModels
 
         private async void SearchAsync()
         {
+            IsRunning = true;
             UserDoc = UserDoc2;
             List<SearchResponse> list = UserDoc;
-
+            
             if (Type != null)
             {
-
-                list = list.Where(u => u.TypeOfDocument.Id == Type.Id).ToList();
+                if (Type.Id != 0)
+                {
+                    list = list.Where(u => u.TypeOfDocument.Id == Type.Id).ToList();
+                }
             }
 
             if (Gender != null)
             {
-                list = list.Where(u => u.Gender.Id== Gender.Id).ToList();
-
+                if (Gender.Id != 0)
+                {
+                    list = list.Where(u => u.Gender.Id == Gender.Id).ToList();
+                }
             }
 
             if (Language != null)
             {
-                list = list.Where(u => u.DocumentLanguage.Id == Language.Id).ToList();
+                if (Language.Id != 0)
+                {
+                    list = list.Where(u => u.DocumentLanguage.Id == Language.Id).ToList();
+                }
             }
 
             if (!string.IsNullOrEmpty(Author))
             {
-               
-                list = list.Where(u => u.Author.Name.Equals(Author)).ToList();
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (list[i].Author.Name.ToLower().Contains(Author.ToLower()))
+                    {
+                        list = list.Where(u => u.Author.Name.Equals(list[i].Author.Name)).ToList();
+                    }
+                }
+            }
+            if (!string.IsNullOrEmpty(TitleOfDocument))
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (list[i].Title.ToLower().Contains(TitleOfDocument.ToLower()))
+                    {
+                        list = list.Where(u => u.Title.Equals(list[i].Title)).ToList();
+                    }
+                }
             }
 
             if (list.Count == 0)
             {
+                IsRunning = false;
                 await App.Current.MainPage.DisplayAlert("Error", "It was not found", "Accept");
-
             }
             else
             {
+                IsRunning = false;
                 UserDoc = list;
             }
 
-
         }
 
-        private async void LoadTournamentsAsync()
+        private async void LoadDocumentsAsync()
         {
+            IsRunning = true;
             string url = App.Current.Resources["UrlAPI"].ToString();
             Response response = await _apiService.GetListAsync<SearchResponse>(
                 url,
                 "/api",
                 "/Search");
 
+            IsRunning = false;
             if (!response.IsSuccess)
             {
                 await App.Current.MainPage.DisplayAlert(
@@ -152,7 +192,6 @@ namespace OpenLibrary.Prism.ViewModels
                     "Accept");
                 return;
             }
-
             UserDoc = (List<SearchResponse>)response.Result;
 
             List<SearchResponse> list = new List<SearchResponse>();
@@ -164,7 +203,7 @@ namespace OpenLibrary.Prism.ViewModels
                     list.Add(li);
                 }
             }
-
+            
             UserDoc = list;
             UserDoc2 = UserDoc;
         }
@@ -186,9 +225,12 @@ namespace OpenLibrary.Prism.ViewModels
                 await App.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
                 return;
             }
-
             List<DocumentLanguageResponse> list = (List<DocumentLanguageResponse>)response.Result;
-            Languages = new ObservableCollection<DocumentLanguageResponse>(list.OrderBy(t => t.Name));
+            list.Insert(0, new DocumentLanguageResponse
+            {
+                Name = "No Filter"
+            });
+            Languages = new ObservableCollection<DocumentLanguageResponse>(list.OrderBy(t => t.Id));
         }
 
         private async void LoadTypesAsync()
@@ -208,9 +250,13 @@ namespace OpenLibrary.Prism.ViewModels
                 await App.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
                 return;
             }
-
             List<TypeOfDocumentResponse> list = (List<TypeOfDocumentResponse>)response.Result;
-            Types = new ObservableCollection<TypeOfDocumentResponse>(list.OrderBy(t => t.Name));
+            list.Insert(0, new TypeOfDocumentResponse
+            {
+                Name = "No Filter"
+            });
+
+            Types = new ObservableCollection<TypeOfDocumentResponse>(list.OrderBy(t => t.Id));
         }
 
         private async void LoadGendersAsync()
@@ -230,9 +276,12 @@ namespace OpenLibrary.Prism.ViewModels
                 await App.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
                 return;
             }
-
             List<GenderResponse> list = (List<GenderResponse>)response.Result;
-            Genders = new ObservableCollection<GenderResponse>(list.OrderBy(t => t.Name));
+            list.Insert(0, new GenderResponse
+            {
+                Name = "No Filter"
+            });
+            Genders = new ObservableCollection<GenderResponse>(list.OrderBy(t => t.Id));
         }
     }
 

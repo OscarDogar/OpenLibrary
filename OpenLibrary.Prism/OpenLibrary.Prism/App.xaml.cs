@@ -5,6 +5,7 @@ using OpenLibrary.Prism.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using OpenLibrary.Common.Services;
+using Syncfusion.Licensing;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace OpenLibrary.Prism
@@ -22,6 +23,8 @@ namespace OpenLibrary.Prism
 
         protected override async void OnInitialized()
         {
+            SyncfusionLicenseProvider.RegisterLicense("MjU4MTgxQDMxMzgyZTMxMmUzMFlLdTJqTUcxTDVxU1BoVlhKemNvRmZOYStRVnR5dzBidE9CRy9tbHB0WUk9");
+
             InitializeComponent();
 
             await NavigationService.NavigateAsync("NavigationPage/MainPage");

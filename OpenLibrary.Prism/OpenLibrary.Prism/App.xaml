@@ -10,6 +10,35 @@
             <!-- Parameters -->
             <x:String x:Key="UrlAPI">https://openlibraryweb.azurewebsites.net/</x:String>
 
+            <!-- Colors -->
+            <Color x:Key="ColorBackground">#85E7F2</Color>
+            <Color x:Key="ColorPrimary">#7F25D9</Color>
+            <Color x:Key="ColorBack">#537EFF</Color>
+            <Color x:Key="ColorSecondary">#8D27F2</Color>
+            <Color x:Key="ColorDanger">#FFFFFF</Color>
+            <Color x:Key="ColorAccent">#0645FF</Color>
+            <Color x:Key="ColorFont">#191919</Color>
+            <Color x:Key="ColorFontInverse">#FFFFFF</Color>
+
+            <!-- Styles -->
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource ColorAccent}" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="TextColor" Value="{StaticResource ColorFontInverse}" />
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource ColorFont}" />
+            </Style>
+
+            <Style x:Key="SecondaryButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource ColorSecondary}" />
+            </Style>
+
+            <Style x:Key="DangerButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource ColorDanger}" />
+            </Style>
+
         </ResourceDictionary>
 
 

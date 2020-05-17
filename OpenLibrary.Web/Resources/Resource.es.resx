@@ -121,6 +121,36 @@
     <value>Error</value>
   </data>
   <data name="Serverproblem" xml:space="preserve">
-    <value>Problema con il server!</value>
+    <value>¡Problema con el servidor!</value>
+  </data>
+  <data name="UserAlreadyExists" xml:space="preserve">
+    <value>El usuario ya existe.</value>
+  </data>
+  <data name="ConfirmEmail" xml:space="preserve">
+    <value>Confirmar correo electrónico</value>
+  </data>
+  <data name="ConfirmEmailSubject" xml:space="preserve">
+    <value>Para permitir al usuario, haga clic en este enlace :</value>
+  </data>
+  <data name="ConfirmEmailMessage" xml:space="preserve">
+    <value>Se envió un correo electrónico de confirmación. ¡Confirme su cuenta e inicie sesión en la aplicación!</value>
+  </data>
+  <data name="UserDoesntExists" xml:space="preserve">
+    <value>El usuario no existe</value>
+  </data>
+  <data name="RecoverPassword" xml:space="preserve">
+    <value>Recuperar contraseña</value>
+  </data>
+  <data name="RecoverPasswordSubject" xml:space="preserve">
+    <value>Para restablecer la contraseña, haga clic en este enlace :</value>
+  </data>
+  <data name="RecoverPasswordMessage" xml:space="preserve">
+    <value>Se envió un email con instrucciones sobre cómo cambiar la contraseña.</value>
+  </data>
+  <data name="IncorrectCurrentPassword" xml:space="preserve">
+    <value>Contraseña actual incorrecta</value>
+  </data>
+  <data name="PasswordChangedSuccess" xml:space="preserve">
+    <value>La contraseña se cambió correctamente.</value>
   </data>
 </root>

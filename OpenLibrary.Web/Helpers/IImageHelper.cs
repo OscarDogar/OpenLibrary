@@ -10,5 +10,6 @@ namespace OpenLibrary.Web.Helpers
     {
         Task<string> UploadImageAsync(IFormFile imageFile, string folder);
         string UploadImage(byte[] pictureArray, string folder);
+
     }
 }

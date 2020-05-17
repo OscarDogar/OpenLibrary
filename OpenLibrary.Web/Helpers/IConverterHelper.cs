@@ -23,6 +23,8 @@ namespace OpenLibrary.Web.Helpers
 
         DocumentViewModel ToDocumentViewModel(DocumentEntity documentEntity);
 
+        UserResponse ToUserResponse(UserEntity userEntity);
+
         Task<ReviewEntity> ToReviewEntityAsync(ReviewViewModel model, bool isNew);
 
         ReviewViewModel ToReviewViewModel(ReviewEntity reviewEntity);

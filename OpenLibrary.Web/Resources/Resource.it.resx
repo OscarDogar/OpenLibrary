@@ -121,6 +121,36 @@
     <value>Error</value>
   </data>
   <data name="Serverproblem" xml:space="preserve">
-    <value>Problem with the server</value>
+    <value>Problema con il server!</value>
+  </data>
+  <data name="UserAlreadyExists" xml:space="preserve">
+    <value>L'utente esiste già.</value>
+  </data>
+  <data name="ConfirmEmail" xml:space="preserve">
+    <value>Conferma posta elettronica</value>
+  </data>
+  <data name="ConfirmEmailSubject" xml:space="preserve">
+    <value>Fai clic su questo link:</value>
+  </data>
+  <data name="ConfirmEmailMessage" xml:space="preserve">
+    <value>La tua richiesta è stata registrata e un'email di conferma è stata inviata al tuo indirizzo email.</value>
+  </data>
+  <data name="UserDoesntExists" xml:space="preserve">
+    <value>utente non esiste.</value>
+  </data>
+  <data name="RecoverPassword" xml:space="preserve">
+    <value>Recupera password</value>
+  </data>
+  <data name="RecoverPasswordSubject" xml:space="preserve">
+    <value>Per reimpostare la password clicca in questo link :!</value>
+  </data>
+  <data name="RecoverPasswordMessage" xml:space="preserve">
+    <value>Una e-mail con la password generata ti è stata inviata!</value>
+  </data>
+  <data name="IncorrectCurrentPassword" xml:space="preserve">
+    <value>Password corrente errata</value>
+  </data>
+  <data name="PasswordChangedSuccess" xml:space="preserve">
+    <value>Modifica password completata.</value>
   </data>
 </root>

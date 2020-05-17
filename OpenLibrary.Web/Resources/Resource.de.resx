@@ -121,6 +121,36 @@
     <value>Error</value>
   </data>
   <data name="Serverproblem" xml:space="preserve">
-    <value>Problema com o servidor!</value>
+    <value>Problem mit dem Server!</value>
+  </data>
+  <data name="UserAlreadyExists" xml:space="preserve">
+    <value>Der Benutzer ist bereits vorhanden.</value>
+  </data>
+  <data name="ConfirmEmail" xml:space="preserve">
+    <value>E-Mail bestätigen</value>
+  </data>
+  <data name="ConfirmEmailSubject" xml:space="preserve">
+    <value>Um den Benutzer zuzulassen, klicken Sie bitte auf diesen Link:</value>
+  </data>
+  <data name="ConfirmEmailMessage" xml:space="preserve">
+    <value>Eine Bestätigungs-E-Mail wurde gesendet. Bitte bestätigen Sie Ihr Konto und melden Sie sich in der App an.</value>
+  </data>
+  <data name="UserDoesntExists" xml:space="preserve">
+    <value>Der angegebene Benutzer existiert nicht</value>
+  </data>
+  <data name="RecoverPassword" xml:space="preserve">
+    <value>Kennwort wiederherstellen</value>
+  </data>
+  <data name="RecoverPasswordSubject" xml:space="preserve">
+    <value>Um das Passwort zurückzusetzen, klicken Sie auf diesen Link:</value>
+  </data>
+  <data name="RecoverPasswordMessage" xml:space="preserve">
+    <value>Eine E-Mail mit Anweisungen zum Ändern des Passworts wurde gesendet.!</value>
+  </data>
+  <data name="IncorrectCurrentPassword" xml:space="preserve">
+    <value>Aktuelles Kennwort ist falsch</value>
+  </data>
+  <data name="PasswordChangedSuccess" xml:space="preserve">
+    <value>Das Kennwort wurde erfolgreich geändert.</value>
   </data>
 </root>

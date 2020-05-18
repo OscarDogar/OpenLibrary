@@ -6,7 +6,7 @@
              x:Class="OpenLibrary.Prism.Views.RegisterPage"
              BackgroundColor="{StaticResource ColorBackground}"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
-              xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:i18n="clr-namespace:OpenLibrary.Prism.Helpers"
@@ -30,6 +30,9 @@
                         <ffimageloading:CachedImage.Transformations>
                             <fftransformations:CircleTransformation />
                         </ffimageloading:CachedImage.Transformations>
+                        <ffimageloading:CachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
+                        </ffimageloading:CachedImage.GestureRecognizers>
                     </ffimageloading:CachedImage>
 
                     <StackLayout>
@@ -124,7 +127,7 @@
                     IsEnabled="{Binding IsEnabled}"
                     Text="{i18n:Translate Register}"/>
         </StackLayout>
-        <busyindicator:SfBusyIndicator AnimationType="SingleCircle" 
+        <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
                                        AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
                 	                   AbsoluteLayout.LayoutFlags="All"
                 	                   BackgroundColor="{StaticResource ColorPrimary}"

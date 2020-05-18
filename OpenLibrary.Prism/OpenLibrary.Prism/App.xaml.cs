@@ -35,6 +35,7 @@ namespace OpenLibrary.Prism
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.Register<IApiService, ApiService>();
+            containerRegistry.Register<IFilesHelper, FilesHelper>();
             containerRegistry.Register<IRegexHelper, RegexHelper>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<OpenLibraryMasterDetailPage, OpenLibraryMasterDetailPageViewModel>();
@@ -42,6 +43,7 @@ namespace OpenLibrary.Prism
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<MyUploadedDocumentsPage, MyUploadedDocumentsPageViewModel>();
             containerRegistry.RegisterForNavigation<RegisterPage, RegisterPageViewModel>();
+            containerRegistry.RegisterForNavigation<RememberPasswordPage, RememberPasswordPageViewModel>();
         }
     }
 }

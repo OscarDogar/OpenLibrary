@@ -267,4 +267,25 @@
   <data name="PasswordConfirmPlaceHolder" xml:space="preserve">
     <value>Ingrese la contraseña confirmar</value>
   </data>
+  <data name="PictureSource" xml:space="preserve">
+    <value>¿De dónde quieres tomar la foto?</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="FromCamera" xml:space="preserve">
+    <value>De la cámara</value>
+  </data>
+  <data name="FromGallery" xml:space="preserve">
+    <value>De la galería</value>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>Prueba</value>
+  </data>
+  <data name="PasswordRecover" xml:space="preserve">
+    <value>Recuperar la clave</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>¿Ha olvidado la contraseña?</value>
+  </data>
 </root>

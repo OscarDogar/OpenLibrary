@@ -11,11 +11,23 @@ namespace OpenLibrary.Prism.Helpers
         {
             CultureInfo ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
             Resource.Culture = ci;
-            Culture = ci.Name;
+            Culture = ci.ToString();
             DependencyService.Get<ILocalize>().SetLocale(ci);
         }
 
         public static string Culture { get; set; }
+
+        public static string PasswordRecover => Resource.PasswordRecover;
+
+        public static string ForgotPassword => Resource.ForgotPassword;
+
+        public static string PictureSource => Resource.PictureSource;
+
+        public static string Cancel => Resource.Cancel;
+
+        public static string FromCamera => Resource.FromCamera;
+
+        public static string FromGallery => Resource.FromGallery;
 
         public static string Ok => Resource.Ok;
 

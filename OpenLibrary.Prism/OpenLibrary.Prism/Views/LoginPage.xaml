@@ -46,6 +46,16 @@
                        Text="{Binding Password}"/>
                 </inputLayout:SfTextInputLayout>
             </StackLayout>
+                <Label FontAttributes="Bold"
+                       Margin="10"
+                       HorizontalOptions="Center" 
+                       Text="{i18n:Translate ForgotPassword}"
+                       TextColor="{StaticResource ColorAccent}">   
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
             </StackLayout>
             <StackLayout Margin="10" VerticalOptions="EndAndExpand">
                 <Button Command="{Binding LoginCommand}" 

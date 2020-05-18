@@ -106,6 +106,15 @@ namespace OpenLibrary.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Connection Error.
         /// </summary>
         public static string ConnectionError {
@@ -210,6 +219,33 @@ namespace OpenLibrary.Prism.Resources {
         public static string FirstNamePlaceHolder {
             get {
                 return ResourceManager.GetString("FirstNamePlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forgot your password?.
+        /// </summary>
+        public static string ForgotPassword {
+            get {
+                return ResourceManager.GetString("ForgotPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From Camera.
+        /// </summary>
+        public static string FromCamera {
+            get {
+                return ResourceManager.GetString("FromCamera", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From Gallery .
+        /// </summary>
+        public static string FromGallery {
+            get {
+                return ResourceManager.GetString("FromGallery", resourceCulture);
             }
         }
         
@@ -403,6 +439,15 @@ namespace OpenLibrary.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password Recover.
+        /// </summary>
+        public static string PasswordRecover {
+            get {
+                return ResourceManager.GetString("PasswordRecover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phone.
         /// </summary>
         public static string Phone {
@@ -426,6 +471,15 @@ namespace OpenLibrary.Prism.Resources {
         public static string PhonePlaceHolder {
             get {
                 return ResourceManager.GetString("PhonePlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Where do you want to take the picture?.
+        /// </summary>
+        public static string PictureSource {
+            get {
+                return ResourceManager.GetString("PictureSource", resourceCulture);
             }
         }
         
@@ -471,6 +525,15 @@ namespace OpenLibrary.Prism.Resources {
         public static string SelectType {
             get {
                 return ResourceManager.GetString("SelectType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test.
+        /// </summary>
+        public static string Test {
+            get {
+                return ResourceManager.GetString("Test", resourceCulture);
             }
         }
         

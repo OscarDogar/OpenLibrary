@@ -3,13 +3,39 @@
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   xmlns:prism="http://prismlibrary.com"
                   prism:ViewModelLocator.AutowireViewModel="True"
+                  xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+                  xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
                   x:Class="OpenLibrary.Prism.Views.OpenLibraryMasterDetailPage">
 
     <MasterDetailPage.Master>
         <ContentPage Title="Menu">
             <StackLayout Padding="20">
-                <Image HeightRequest="120"
-                       Source="OpenLibrary"/>
+                <RelativeLayout>
+                    <Image x:Name="Logo" Margin="30,2"
+                           RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=X,Factor=1,Constant=60}"
+                           HeightRequest="140"
+                           Source="OpenLibrary"/>
+                    <ffimageloading:CachedImage x:Name="Picture" 
+                                                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Logo,Property=Y,Factor=1,Constant=60}"
+                                                Aspect="AspectFill"
+                                                Source="{Binding User.PictureFullPath}" 
+                                                CacheDuration= "50"
+                                                HeightRequest="100"
+                                                Margin="5"
+                                                RetryCount= "3"
+                                                RetryDelay= "600"
+                                                WidthRequest="100">
+                        <ffimageloading:CachedImage.Transformations>
+                            <fftransformations:CircleTransformation />
+                        </ffimageloading:CachedImage.Transformations>
+                    </ffimageloading:CachedImage>
+                    <Label RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Picture,Property=Y,Factor=1,Constant=110}"
+                           FontAttributes="Bold"
+                           FontSize="Large"
+                           Text="{Binding User.FullName}"
+                           TextColor="Black"/>
+                </RelativeLayout>
+
                 <ListView BackgroundColor="Transparent"
                 	      ItemsSource="{Binding Menus}"
                 	      HasUnevenRows="True"

@@ -180,4 +180,34 @@
   <data name="MyUploadedDocuments" xml:space="preserve">
     <value>Hochgeladene Dokumente</value>
   </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-Mail</value>
+  </data>
+  <data name="EmailPlaceHolder" xml:space="preserve">
+    <value>E-Mail-Adresse eingeben</value>
+  </data>
+  <data name="EmailError" xml:space="preserve">
+    <value>Sie müssen Ihre E-Mail-Adresse eingeben.</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Kennwort:</value>
+  </data>
+  <data name="PasswordPlaceHolder" xml:space="preserve">
+    <value>Kennwort eingeben</value>
+  </data>
+  <data name="PasswordError" xml:space="preserve">
+    <value>Geben Sie ein Kennwort ein.</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>REGISTRIEREN</value>
+  </data>
+  <data name="LoginError" xml:space="preserve">
+    <value>Benutzer oder Passwort falsch</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Abmelden</value>
+  </data>
+  <data name="PasswordLengthError" xml:space="preserve">
+    <value>Das Passwort muss 6 Zeichen haben</value>
+  </data>
 </root>

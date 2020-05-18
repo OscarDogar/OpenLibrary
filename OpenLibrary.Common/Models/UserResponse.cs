@@ -21,6 +21,11 @@ namespace OpenLibrary.Common.Models
 
         public string PicturePath { get; set; }
 
+        public string PictureFullPath => string.IsNullOrEmpty(PicturePath)
+        ? "https://openlibraryweb.azurewebsites.net//images/noimage.png"
+        : $"https://openlibraryweb.azurewebsites.net{PicturePath.Substring(1)}";
+
+
         public UserType UserType { get; set; }
 
         public string PhoneNumber { get; set; }

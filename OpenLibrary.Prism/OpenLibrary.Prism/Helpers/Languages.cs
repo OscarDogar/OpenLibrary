@@ -17,6 +17,26 @@ namespace OpenLibrary.Prism.Helpers
 
         public static string Culture { get; set; }
         
+        public static string PasswordLengthError => Resource.PasswordLengthError;
+
+        public static string Email => Resource.Email;
+
+        public static string Logout => Resource.Logout;
+
+        public static string LoginError => Resource.LoginError;
+
+        public static string EmailPlaceHolder => Resource.EmailPlaceHolder;
+
+        public static string EmailError => Resource.EmailError;
+
+        public static string Password => Resource.Password;
+
+        public static string PasswordError => Resource.PasswordError;
+
+        public static string PasswordPlaceHolder => Resource.PasswordPlaceHolder;
+
+        public static string Register => Resource.Register;
+
         public static string MyUploadedDocuments => Resource.MyUploadedDocuments;
 
         public static string Documents => Resource.Documents;

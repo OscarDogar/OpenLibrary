@@ -1,4 +1,6 @@
-﻿using OpenLibrary.Common.Models;
+﻿using Newtonsoft.Json;
+using OpenLibrary.Common.Helpers;
+using OpenLibrary.Common.Models;
 using OpenLibrary.Prism.Helpers;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -13,11 +15,25 @@ namespace OpenLibrary.Prism.ViewModels
     public class OpenLibraryMasterDetailPageViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
-
+        private UserResponse _user;
         public OpenLibraryMasterDetailPageViewModel(INavigationService navigationService) : base(navigationService)
         {
             _navigationService = navigationService;
+            LoadUser();
             LoadMenus();
+        }
+        public UserResponse User
+        {
+            get => _user;
+            set => SetProperty(ref _user, value);
+        }
+
+        private void LoadUser()
+        {
+            if (Settings.IsLogin)
+            {
+                User = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
+            }
         }
 
         public ObservableCollection<MenuItemViewModel> Menus { get; set; }
@@ -48,7 +64,7 @@ namespace OpenLibrary.Prism.ViewModels
                 {
                     Icon = "login",
                     PageName = "LoginPage",
-                    Title = Languages.Login
+                   Title = Settings.IsLogin ? Languages.Logout : Languages.Login
                 }
             };
 

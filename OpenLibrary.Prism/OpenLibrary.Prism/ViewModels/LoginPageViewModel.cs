@@ -3,6 +3,7 @@ using OpenLibrary.Common.Helpers;
 using OpenLibrary.Common.Models;
 using OpenLibrary.Common.Services;
 using OpenLibrary.Prism.Helpers;
+using OpenLibrary.Prism.Views;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -52,6 +53,10 @@ namespace OpenLibrary.Prism.ViewModels
         {
             get => _password;
             set => SetProperty(ref _password, value);
+        }
+        private async void RegisterAsync()
+        {
+            await _navigationService.NavigateAsync(nameof(RegisterPage));
         }
 
         private async void LoginAsync()
@@ -122,10 +127,6 @@ namespace OpenLibrary.Prism.ViewModels
             await _navigationService.NavigateAsync("/OpenLibraryMasterDetailPage/NavigationPage/MainPage");
             Password = string.Empty;
 
-        }
-
-        private void RegisterAsync()
-        {
         }
     }
 }

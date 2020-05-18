@@ -29,6 +29,8 @@ namespace OpenLibrary.Common.Models
         [StringLength(20, MinimumLength = 6)]
         public string Password { get; set; }
 
+        public string PasswordConfirm { get; set; }
+
         public byte[] PictureArray { get; set; }
 
         [Required]

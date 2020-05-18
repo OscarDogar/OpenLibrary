@@ -210,4 +210,61 @@
   <data name="PasswordLengthError" xml:space="preserve">
     <value>A palavra-passe deve conter pelo menos 6 caracteres</value>
   </data>
+  <data name="Document" xml:space="preserve">
+    <value>Documento</value>
+  </data>
+  <data name="DocumentPlaceHolder" xml:space="preserve">
+    <value>Digite o número do seu documento ...!</value>
+  </data>
+  <data name="DocumentError" xml:space="preserve">
+    <value>Você deve inserir um documento.</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="FirstNamePlaceHolder" xml:space="preserve">
+    <value>Insira seu nome</value>
+  </data>
+  <data name="FirstNameError" xml:space="preserve">
+    <value>- Digite um nome</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Sobrenome</value>
+  </data>
+  <data name="LastNamePlaceHolder" xml:space="preserve">
+    <value>Insira seu sobrenome</value>
+  </data>
+  <data name="LastNameError" xml:space="preserve">
+    <value>- Digite um sobrenome</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Endereço</value>
+  </data>
+  <data name="AddressPlaceHolder" xml:space="preserve">
+    <value>Insira o seu endereço...</value>
+  </data>
+  <data name="AddressError" xml:space="preserve">
+    <value>Você deve digitar um endereço</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Telefone</value>
+  </data>
+  <data name="PhoneError" xml:space="preserve">
+    <value>Introduza o seu número de telefone</value>
+  </data>
+  <data name="PhonePlaceHolder" xml:space="preserve">
+    <value>Você deve digitar um número de telefone.</value>
+  </data>
+  <data name="PasswordConfirm" xml:space="preserve">
+    <value>Confirmar palavra-passe</value>
+  </data>
+  <data name="PasswordConfirmError1" xml:space="preserve">
+    <value>Tem de introduzir uma palavra-passe</value>
+  </data>
+  <data name="PasswordConfirmError2" xml:space="preserve">
+    <value>A nova senha e senha de confirmação não coincidem.</value>
+  </data>
+  <data name="PasswordConfirmPlaceHolder" xml:space="preserve">
+    <value>Digite a senha confirmar ...!</value>
+  </data>
 </root>

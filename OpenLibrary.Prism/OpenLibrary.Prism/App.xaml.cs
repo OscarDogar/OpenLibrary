@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using OpenLibrary.Common.Services;
 using Syncfusion.Licensing;
+using OpenLibrary.Common.Helpers;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace OpenLibrary.Prism
@@ -34,11 +35,13 @@ namespace OpenLibrary.Prism
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.Register<IApiService, ApiService>();
+            containerRegistry.Register<IRegexHelper, RegexHelper>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<OpenLibraryMasterDetailPage, OpenLibraryMasterDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<ModifyUserPage, ModifyUserPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<MyUploadedDocumentsPage, MyUploadedDocumentsPageViewModel>();
+            containerRegistry.RegisterForNavigation<RegisterPage, RegisterPageViewModel>();
         }
     }
 }

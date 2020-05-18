@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
 using OpenLibrary.Common.Helpers;
 using OpenLibrary.Common.Models;
+using OpenLibrary.Common.Services;
 using OpenLibrary.Prism.Helpers;
+using OpenLibrary.Prism.Views;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -15,13 +17,20 @@ namespace OpenLibrary.Prism.ViewModels
     public class OpenLibraryMasterDetailPageViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
+        private readonly IApiService _apiService;
+        private DelegateCommand _modifyUserCommand;
+        private static OpenLibraryMasterDetailPageViewModel _instance;
         private UserResponse _user;
-        public OpenLibraryMasterDetailPageViewModel(INavigationService navigationService) : base(navigationService)
+        public OpenLibraryMasterDetailPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
         {
+            _instance = this;
             _navigationService = navigationService;
+            _apiService = apiService;
             LoadUser();
             LoadMenus();
         }
+        public DelegateCommand ModifyUserCommand => _modifyUserCommand ?? (_modifyUserCommand = new DelegateCommand(ModifyUserAsync));
+
         public UserResponse User
         {
             get => _user;
@@ -37,6 +46,33 @@ namespace OpenLibrary.Prism.ViewModels
         }
 
         public ObservableCollection<MenuItemViewModel> Menus { get; set; }
+        public static OpenLibraryMasterDetailPageViewModel GetInstance()
+        {
+            return _instance;
+        }
+
+        public async void ReloadUser()
+        {
+            string url = App.Current.Resources["UrlAPI"].ToString();
+            bool connection = await _apiService.CheckConnectionAsync(url);
+            if (!connection)
+            {
+                return;
+            }
+
+            UserResponse user = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
+            TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
+            EmailRequest emailRequest = new EmailRequest
+            {
+                CultureInfo = Languages.Culture,
+                Email = user.Email
+            };
+
+            Response response = await _apiService.GetUserByEmail(url, "api", "/Account/GetUserByEmail", "bearer", token.Token, emailRequest);
+            UserResponse userResponse = (UserResponse)response.Result;
+            Settings.User = JsonConvert.SerializeObject(userResponse);
+            LoadUser();
+        }
 
         private void LoadMenus()
         {
@@ -52,13 +88,15 @@ namespace OpenLibrary.Prism.ViewModels
                 {
                     Icon = "user",
                     PageName = "ModifyUserPage",
-                    Title = Languages.ModifyUser
+                    Title = Languages.ModifyUser,
+                    IsLoginRequired = true
                 },
                 new Menu
                 {
                     Icon = "Document",
                     PageName = "MyUploadedDocumentsPage",
-                    Title = Languages.MyUploadedDocuments
+                    Title = Languages.MyUploadedDocuments,
+                    IsLoginRequired = true
                 },
                 new Menu
                 {
@@ -73,9 +111,15 @@ namespace OpenLibrary.Prism.ViewModels
                 {
                     Icon = m.Icon,
                     PageName = m.PageName,
-                    Title = m.Title
+                    Title = m.Title,
+                    IsLoginRequired = m.IsLoginRequired
                 }).ToList());
         }
+        private async void ModifyUserAsync()
+        {
+            await _navigationService.NavigateAsync($"/OpenLibraryMasterDetailPage/NavigationPage/{nameof(ModifyUserPage)}");
+        }
+
     }
 
 }

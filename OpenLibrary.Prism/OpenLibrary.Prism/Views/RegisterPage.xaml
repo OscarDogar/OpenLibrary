@@ -19,7 +19,7 @@
 
             <ScrollView>
                 
-                <StackLayout>
+                <StackLayout Margin="8,2">
                     <ffimageloading:CachedImage Aspect="AspectFit"
                                                 Source="{Binding Image}" 
                                                 CacheDuration= "50"
@@ -39,6 +39,7 @@
                         <inputLayout:SfTextInputLayout ContainerType="Outlined"
                                                    OutlineCornerRadius="8"
                                                    ReserveSpaceForAssistiveLabels="False"
+                                                   ContainerBackgroundColor="{StaticResource ContainerBackgroundColor}"
                                                    Hint="{i18n:Translate Document}">
                             <Entry Keyboard="Numeric"
                                Placeholder="{i18n:Translate DocumentPlaceHolder}"
@@ -50,6 +51,7 @@
                         <inputLayout:SfTextInputLayout ContainerType="Outlined"
                                                    OutlineCornerRadius="8"
                                                    ReserveSpaceForAssistiveLabels="False"
+                                                   ContainerBackgroundColor="{StaticResource ContainerBackgroundColor}"
                                                    Hint="{i18n:Translate FirstName}">
                             <Entry Placeholder="{i18n:Translate FirstNamePlaceHolder}"
                                Text="{Binding User.FirstName}"/>
@@ -59,6 +61,7 @@
                     <StackLayout>
                         <inputLayout:SfTextInputLayout ContainerType="Outlined"
                                                    OutlineCornerRadius="8"
+                                                   ContainerBackgroundColor="{StaticResource ContainerBackgroundColor}"
                                                    ReserveSpaceForAssistiveLabels="False"
                                                    Hint="{i18n:Translate LastName}">
                             <Entry Placeholder="{i18n:Translate LastNamePlaceHolder}"
@@ -69,6 +72,7 @@
                     <StackLayout>
                         <inputLayout:SfTextInputLayout ContainerType="Outlined"
                                                    OutlineCornerRadius="8"
+                                                   ContainerBackgroundColor="{StaticResource ContainerBackgroundColor}"
                                                    ReserveSpaceForAssistiveLabels="False"
                                                    Hint="{i18n:Translate Address}">
                             <Entry Placeholder="{i18n:Translate AddressPlaceHolder}"
@@ -79,6 +83,7 @@
                     <StackLayout>
                         <inputLayout:SfTextInputLayout ContainerType="Outlined"
                                                    OutlineCornerRadius="8"
+                                                   ContainerBackgroundColor="{StaticResource ContainerBackgroundColor}"
                                                    ReserveSpaceForAssistiveLabels="False"
                                                    Hint="{i18n:Translate Email}">
                             <Entry Keyboard="Email"
@@ -90,6 +95,7 @@
                     <StackLayout>
                         <inputLayout:SfTextInputLayout ContainerType="Outlined"
                                                    OutlineCornerRadius="8"
+                                                   ContainerBackgroundColor="{StaticResource ContainerBackgroundColor}"
                                                    ReserveSpaceForAssistiveLabels="False"
                                                    Hint="{i18n:Translate Phone}">
                             <Entry Keyboard="Telephone"
@@ -101,6 +107,7 @@
                     <StackLayout>
                         <inputLayout:SfTextInputLayout ContainerType="Outlined"
                                                    OutlineCornerRadius="8"
+                                                   ContainerBackgroundColor="{StaticResource ContainerBackgroundColor}"
                                                    ReserveSpaceForAssistiveLabels="False"
                                                    EnablePasswordVisibilityToggle="true"
                                                    Hint="{i18n:Translate Password}">
@@ -113,6 +120,7 @@
                     <StackLayout>
                         <inputLayout:SfTextInputLayout ContainerType="Outlined"
                                                    OutlineCornerRadius="8"
+                                                   ContainerBackgroundColor="{StaticResource ContainerBackgroundColor}"
                                                    ReserveSpaceForAssistiveLabels="False"
                                                    Hint="{i18n:Translate PasswordConfirm}"
                                                    EnablePasswordVisibilityToggle="true">
@@ -124,8 +132,10 @@
                 </StackLayout>
             </ScrollView>
             <Button Command="{Binding RegisterCommand}"
+                    Margin="8,0"
                     IsEnabled="{Binding IsEnabled}"
-                    Text="{i18n:Translate Register}"/>
+                    Text="{i18n:Translate Register}"
+                    CornerRadius="8"/>
         </StackLayout>
         <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
                                        AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"

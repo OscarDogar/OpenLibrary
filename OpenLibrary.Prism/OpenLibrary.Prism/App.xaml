@@ -13,6 +13,7 @@
 
             <!-- Colors -->
             <Color x:Key="ColorBackground">#85E7F2</Color>
+            <Color x:Key="ContainerBackgroundColor">Azure</Color>
             <Color x:Key="ColorPrimary">#7F25D9</Color>
             <Color x:Key="ColorBack">#537EFF</Color>
             <Color x:Key="ColorSecondary">#8D27F2</Color>

@@ -224,7 +224,7 @@ namespace OpenLibrary.Prism.ViewModels
             bool connection = await _apiService.CheckConnectionAsync(url);
             if (!connection)
             {
-               await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
+               await App.Current.MainPage.DisplayAlert(Languages.ConnectionError, Languages.ErrorLanguages, Languages.Accept);
                 return;
             }
 
@@ -249,7 +249,7 @@ namespace OpenLibrary.Prism.ViewModels
             bool connection = await _apiService.CheckConnectionAsync(url);
             if (!connection)
             {
-                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
+                await App.Current.MainPage.DisplayAlert(Languages.ConnectionError, Languages.ErrorTypeOfDocument , Languages.Accept);
                 return;
             }
 
@@ -275,7 +275,7 @@ namespace OpenLibrary.Prism.ViewModels
             bool connection = await _apiService.CheckConnectionAsync(url);
             if (!connection)
             {
-                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
+                await App.Current.MainPage.DisplayAlert(Languages.ConnectionError, Languages.ErrorGender, Languages.Accept);
                 return;
             }
 

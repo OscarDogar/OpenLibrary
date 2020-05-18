@@ -28,7 +28,15 @@ namespace OpenLibrary.Prism.ViewModels
                 Settings.User = null;
                 Settings.Token = null;
             }
-            await _navigationService.NavigateAsync($"/OpenLibraryMasterDetailPage/NavigationPage/{PageName}");
+            if (IsLoginRequired && !Settings.IsLogin)
+            {
+                await _navigationService.NavigateAsync($"/OpenLibraryMasterDetailPage/NavigationPage/LoginPage");
+            }
+            else
+            {
+                await _navigationService.NavigateAsync($"/OpenLibraryMasterDetailPage/NavigationPage/{PageName}");
+            }
+
         }
     }
 

@@ -23,6 +23,7 @@
                     <inputLayout:SfTextInputLayout ContainerType="Outlined"
                                                    OutlineCornerRadius="8"
                                                    ReserveSpaceForAssistiveLabels="False"
+                                                   ContainerBackgroundColor="{StaticResource ContainerBackgroundColor}"
                                                    Hint="{i18n:Translate Email}">
                         <Entry Grid.Column="1"
                        Grid.Row="0"
@@ -35,6 +36,7 @@
             <StackLayout >
                 <inputLayout:SfTextInputLayout ContainerType="Outlined"
                                                OutlineCornerRadius="8"
+                                               ContainerBackgroundColor="{StaticResource ContainerBackgroundColor}"
                                                Hint="{i18n:Translate Password}" 
                                                ReserveSpaceForAssistiveLabels="False"
                                                EnablePasswordVisibilityToggle="true">

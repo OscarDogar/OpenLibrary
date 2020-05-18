@@ -17,7 +17,41 @@ namespace OpenLibrary.Prism.Helpers
 
         public static string Culture { get; set; }
 
+        public static string ErrorLanguages => Resource.ErrorLanguages;
+
+        public static string ErrorTypeOfDocument => Resource.ErrorTypeOfDocument;
+
+        public static string ErrorGender => Resource.ErrorGender;
+
+        public static string ErrorConnection => Resource.ErrorConnection;
+
+        public static string ConfirmNewPassword => Resource.ConfirmNewPassword;
+
+        public static string ConfirmNewPasswordError => Resource.ConfirmNewPasswordError;
+
+        public static string ConfirmNewPasswordError2 => Resource.ConfirmNewPasswordError2;
+
+        public static string ConfirmNewPasswordPlaceHolder => Resource.ConfirmNewPasswordPlaceHolder;
+
+        public static string CurrentPassword => Resource.CurrentPassword;
+
+        public static string CurrentPasswordError => Resource.CurrentPasswordError;
+
+        public static string CurrentPasswordPlaceHolder => Resource.CurrentPasswordPlaceHolder;
+
+        public static string NewPassword => Resource.NewPassword;
+
+        public static string NewPasswordError => Resource.NewPasswordError;
+
+        public static string NewPasswordPlaceHolder => Resource.NewPasswordPlaceHolder;
+
+        public static string UserUpdated => Resource.UserUpdated;
+
         public static string PasswordRecover => Resource.PasswordRecover;
+
+        public static string Save => Resource.Save;
+
+        public static string ChangePassword => Resource.ChangePassword;
 
         public static string ForgotPassword => Resource.ForgotPassword;
 

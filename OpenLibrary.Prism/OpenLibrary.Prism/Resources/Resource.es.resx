@@ -288,4 +288,55 @@
   <data name="ForgotPassword" xml:space="preserve">
     <value>¿Ha olvidado la contraseña?</value>
   </data>
+  <data name="Save" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Cambiar clave</value>
+  </data>
+  <data name="UserUpdated" xml:space="preserve">
+    <value>El usuario se actualizó correctamente</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Confirmar nueva contraseña</value>
+  </data>
+  <data name="ConfirmNewPasswordError" xml:space="preserve">
+    <value>Debes ingresar una nueva contraseña</value>
+  </data>
+  <data name="ConfirmNewPasswordError2" xml:space="preserve">
+    <value>La confirmación y la nueva contraseña no coinciden</value>
+  </data>
+  <data name="ConfirmNewPasswordPlaceHolder" xml:space="preserve">
+    <value>Escriba la confirmación de su contraseña</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Contraseña actual</value>
+  </data>
+  <data name="CurrentPasswordError" xml:space="preserve">
+    <value>Debe introducir su contraseña actual.</value>
+  </data>
+  <data name="CurrentPasswordPlaceHolder" xml:space="preserve">
+    <value>Escriba la contraseña actual.</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Contraseña nueva</value>
+  </data>
+  <data name="NewPasswordError" xml:space="preserve">
+    <value>Debe especificar una nueva contraseña</value>
+  </data>
+  <data name="NewPasswordPlaceHolder" xml:space="preserve">
+    <value>Escribe la nueva contraseña</value>
+  </data>
+  <data name="ErrorConnection" xml:space="preserve">
+    <value>Conexión de error </value>
+  </data>
+  <data name="ErrorLanguages" xml:space="preserve">
+    <value>Error al obtener los idiomas!</value>
+  </data>
+  <data name="ErrorTypeOfDocument" xml:space="preserve">
+    <value>Error al obtener el tipo de documentos!</value>
+  </data>
+  <data name="ErrorGender" xml:space="preserve">
+    <value>Error al obtener el género!</value>
+  </data>
 </root>

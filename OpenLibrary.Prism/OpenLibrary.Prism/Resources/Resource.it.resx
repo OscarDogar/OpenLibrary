@@ -288,4 +288,55 @@
   <data name="ForgotPassword" xml:space="preserve">
     <value>Password dimenticata?</value>
   </data>
+  <data name="Save" xml:space="preserve">
+    <value>Salva</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Cambia password</value>
+  </data>
+  <data name="UserUpdated" xml:space="preserve">
+    <value>Il post è stato aggiornato con successo</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Conferma nuova password</value>
+  </data>
+  <data name="ConfirmNewPasswordError" xml:space="preserve">
+    <value>Devi inserire una nuova password</value>
+  </data>
+  <data name="ConfirmNewPasswordError2" xml:space="preserve">
+    <value>La conferma e la nuova password non corrispondono!</value>
+  </data>
+  <data name="ConfirmNewPasswordPlaceHolder" xml:space="preserve">
+    <value>Inserisci la password di conferma</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Password corrente</value>
+  </data>
+  <data name="CurrentPasswordError" xml:space="preserve">
+    <value>È necessario immettere la password utente corrente</value>
+  </data>
+  <data name="CurrentPasswordPlaceHolder" xml:space="preserve">
+    <value>Immettere la password corrente.</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>&amp;Nuova password:</value>
+  </data>
+  <data name="NewPasswordError" xml:space="preserve">
+    <value>'Immettere una nuova password.';</value>
+  </data>
+  <data name="NewPasswordPlaceHolder" xml:space="preserve">
+    <value>Immetti la nuova password</value>
+  </data>
+  <data name="ErrorConnection" xml:space="preserve">
+    <value>Connessione errore !</value>
+  </data>
+  <data name="ErrorLanguages" xml:space="preserve">
+    <value>Errore nell'ottenere le lingue!</value>
+  </data>
+  <data name="ErrorTypeOfDocument" xml:space="preserve">
+    <value>Errore durante il recupero del tipo di documenti!</value>
+  </data>
+  <data name="ErrorGender" xml:space="preserve">
+    <value>Errore a ottenere il genere!</value>
+  </data>
 </root>

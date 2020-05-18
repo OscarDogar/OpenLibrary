@@ -288,4 +288,55 @@
   <data name="ForgotPassword" xml:space="preserve">
     <value>Esqueceu sua senha?</value>
   </data>
+  <data name="Save" xml:space="preserve">
+    <value>Salvar</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Alterar Senha</value>
+  </data>
+  <data name="UserUpdated" xml:space="preserve">
+    <value>O usuário foi atualizado com sucesso</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Confirmar nova senha</value>
+  </data>
+  <data name="ConfirmNewPasswordError" xml:space="preserve">
+    <value>Você deve digitar uma nova senha</value>
+  </data>
+  <data name="ConfirmNewPasswordError2" xml:space="preserve">
+    <value>A confirmação e a nova senha não batem!</value>
+  </data>
+  <data name="ConfirmNewPasswordPlaceHolder" xml:space="preserve">
+    <value>Inserir confirmação de senha&amp;#x0D;</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Senha atual</value>
+  </data>
+  <data name="CurrentPasswordError" xml:space="preserve">
+    <value>Você deve inserir sua senha atual.</value>
+  </data>
+  <data name="CurrentPasswordPlaceHolder" xml:space="preserve">
+    <value>Insira sua senha atual.</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Nova senha:</value>
+  </data>
+  <data name="NewPasswordError" xml:space="preserve">
+    <value>'Você deve inserir uma nova senha';</value>
+  </data>
+  <data name="NewPasswordPlaceHolder" xml:space="preserve">
+    <value>Inserir a nova senha</value>
+  </data>
+  <data name="ErrorConnection" xml:space="preserve">
+    <value>Conexão de erro!</value>
+  </data>
+  <data name="ErrorLanguages" xml:space="preserve">
+    <value>Erro ao obter os idiomas!</value>
+  </data>
+  <data name="ErrorTypeOfDocument" xml:space="preserve">
+    <value>Erro ao obter o tipo de documentos!</value>
+  </data>
+  <data name="ErrorGender" xml:space="preserve">
+    <value>Erro de obter o gênero!</value>
+  </data>
 </root>

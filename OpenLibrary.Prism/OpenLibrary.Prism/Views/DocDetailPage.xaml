@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="OpenLibrary.Prism.Views.DocDetailPage"
+             BackgroundColor="{StaticResource ColorBackground}"
+             xmlns:i18n="clr-namespace:OpenLibrary.Prism.Helpers"
+             Title="{Binding Title}">
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            
+                <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Column="0" Margin="0,40">
+                    <Image 
+               Source="BigDocument"
+               WidthRequest="100"/>
+                </StackLayout>
+
+                <StackLayout Grid.Column="1"
+                                         Margin="5"
+                                         VerticalOptions="Fill">
+                    <Label Text="{Binding Doc.Title}" 
+                                       TextColor="DarkBlue"
+                                       FontAttributes="Bold"
+                                       FontSize="Medium"
+                                       LineBreakMode="TailTruncation" />
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{i18n:Translate Gender}"
+                                       LineBreakMode="TailTruncation"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="End" />
+
+                        <Label Text="{Binding Doc.Gender.Name}"
+                                       LineBreakMode="TailTruncation"
+                                       FontAttributes="Italic" 
+                                       VerticalOptions="End" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{i18n:Translate TypeOfDocument}"
+                                       LineBreakMode="TailTruncation"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="End" />
+                        <Label Text="{Binding Doc.TypeOfDocument.Name}"
+                                       LineBreakMode="TailTruncation"
+                                       FontAttributes="Italic" 
+                                       VerticalOptions="End" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{i18n:Translate Language}"
+                                       LineBreakMode="TailTruncation"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="End" />
+                        <Label Text="{Binding Doc.DocumentLanguage.Name}"
+                                       LineBreakMode="TailTruncation"
+                                       FontAttributes="Italic" 
+                                       VerticalOptions="End" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{i18n:Translate Author}"
+                                       LineBreakMode="TailTruncation"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="End" />
+                        <Label Text="{Binding Doc.Author.Name}"
+                                       LineBreakMode="TailTruncation"
+                                       FontAttributes="Italic" 
+                                       VerticalOptions="End" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{i18n:Translate PagesNumber}"
+                                       LineBreakMode="TailTruncation"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="End" />
+                        <Label Text="{Binding Doc.PagesNumber}"
+                                       LineBreakMode="TailTruncation"
+                                       FontAttributes="Italic" 
+                                       VerticalOptions="End" />
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+
+            <StackLayout Grid.Row="1">
+                <Button Text="{i18n:Translate Viewpdf}" Command="{Binding OpenDocCommand}"></Button>
+            </StackLayout>
+            <StackLayout Grid.Row="2">
+        <Editor Text="{Binding Doc.Summary}"
+        IsReadOnly="true" />
+    </StackLayout>
+            <StackLayout Grid.Row="3" Margin="20,5" >
+                <Button Text="{i18n:Translate MakeComment}"></Button>
+            </StackLayout>
+
+        </Grid>
+    </ScrollView>
+</ContentPage>

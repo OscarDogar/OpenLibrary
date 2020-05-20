@@ -14,6 +14,9 @@ namespace OpenLibrary.Common.Models
 
         public string DocumentPath { get; set; }
 
+        public string DocumentFullPath => string.IsNullOrEmpty(DocumentPath)
+            ? "https://openlibraryweb.azurewebsites.net/images/noimage.png"
+            : $"https://openlibraryweb.azurewebsites.net{DocumentPath.Substring(1)}";
 
         public DateTime Date { get; set; }
 

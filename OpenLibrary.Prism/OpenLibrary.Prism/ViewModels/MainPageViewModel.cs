@@ -1,4 +1,5 @@
-﻿using OpenLibrary.Common.Models;
+﻿using OpenLibrary.Common.Helpers;
+using OpenLibrary.Common.Models;
 using OpenLibrary.Common.Services;
 using OpenLibrary.Prism.Helpers;
 using Prism.Commands;
@@ -17,8 +18,8 @@ namespace OpenLibrary.Prism.ViewModels
     public class MainPageViewModel : ViewModelBase
     {
         private readonly IApiService _apiService;
-        private List<SearchResponse> _Doc;
-        private List<SearchResponse> _Doc2;
+        private List<DocumentItemViewModel> _Doc;
+        private List<DocumentItemViewModel> _Doc2;
         private ObservableCollection<DocumentLanguageResponse> _laguage;
         private DocumentLanguageResponse _laguages;
         private ObservableCollection<GenderResponse> _gender;
@@ -30,6 +31,7 @@ namespace OpenLibrary.Prism.ViewModels
         private string _titleOfDocument;
         private bool _isRunning;
         private bool _isEnabled;
+        private readonly INavigationService _navigationService;
 
 
 
@@ -37,6 +39,7 @@ namespace OpenLibrary.Prism.ViewModels
             INavigationService navigationService,
             IApiService apiService) : base(navigationService)
         {
+            _navigationService = navigationService;
             _apiService = apiService;
             Title = "Open Library";
             LoadLanguagesAsync();
@@ -70,13 +73,13 @@ namespace OpenLibrary.Prism.ViewModels
             set => SetProperty(ref _titleOfDocument, value);
         }
 
-        public List<SearchResponse> UserDoc
+        public List<DocumentItemViewModel> UserDoc
         {
             get => _Doc;
             set => SetProperty(ref _Doc, value);
         }
 
-        public List<SearchResponse> UserDoc2
+        public List<DocumentItemViewModel> UserDoc2
         {
             get => _Doc2;
             set => SetProperty(ref _Doc2, value);
@@ -122,7 +125,7 @@ namespace OpenLibrary.Prism.ViewModels
         {
             IsRunning = true;
             UserDoc = UserDoc2;
-            List<SearchResponse> list = UserDoc;
+            List<DocumentItemViewModel> list = UserDoc;
             
             if (Type != null)
             {
@@ -184,7 +187,9 @@ namespace OpenLibrary.Prism.ViewModels
 
         private async void LoadDocumentsAsync()
         {
-            IsRunning = true;
+          try
+            {
+                IsRunning = true;
             IsEnabled = false;
             string url = App.Current.Resources["UrlAPI"].ToString();
             Response response = await _apiService.GetListAsync<SearchResponse>(url,"/api","/Search");
@@ -202,20 +207,44 @@ namespace OpenLibrary.Prism.ViewModels
             IsRunning = false;
             IsEnabled = true;
 
-            UserDoc = (List<SearchResponse>)response.Result;
+            List<SearchResponse> userDoc = (List<SearchResponse>)response.Result;
+
 
             List<SearchResponse> list = new List<SearchResponse>();
-           
-            foreach(SearchResponse li in UserDoc)
-            {
-                if (li.Accepted==true)
-                {
-                    list.Add(li);
-                }
-            }
             
-            UserDoc = list;
-            UserDoc2 = UserDoc;
+             foreach(SearchResponse li in userDoc)
+             {
+                 if (li.Accepted==true)
+                 {
+                     list.Add(li);
+                 }
+             }
+             
+            UserDoc = list.Select(t => new DocumentItemViewModel(_navigationService)
+            {
+                Id = t.Id,
+                Title = t.Title,
+                DocumentPath = t.DocumentPath,
+                Date = t.Date,
+                User = t.User,
+                Summary = t.Summary,
+                PagesNumber = t.PagesNumber,
+                Accepted = t.Accepted,
+                Gender = t.Gender,
+                Author = t.Author,
+                DocumentLanguage = t.DocumentLanguage,
+                TypeOfDocument = t.TypeOfDocument,
+                Reviews = t.Reviews
+            }).ToList();
+                UserDoc2 = UserDoc;
+          }
+            catch (Exception)
+            {
+                Settings.User = string.Empty;
+                Settings.Token = string.Empty;
+                Settings.IsLogin = false;
+                Settings.DocDetail = string.Empty;
+            }
         }
 
         private async void LoadLanguagesAsync()

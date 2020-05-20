@@ -17,6 +17,20 @@ namespace OpenLibrary.Prism.Helpers
 
         public static string Culture { get; set; }
 
+        public static string Detail => Resource.Detail;
+
+        public static string Rating => Resource.Rating;
+
+        public static string Comment => Resource.Comment;
+
+        public static string Comments => Resource.Comments;
+
+        public static string MakeComment => Resource.MakeComment;
+
+        public static string Viewpdf => Resource.Viewpdf;
+
+        public static string PagesNumber => Resource.PagesNumber;
+
         public static string ErrorLanguages => Resource.ErrorLanguages;
 
         public static string ErrorTypeOfDocument => Resource.ErrorTypeOfDocument;

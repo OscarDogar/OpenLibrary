@@ -45,6 +45,9 @@ namespace OpenLibrary.Prism
             containerRegistry.RegisterForNavigation<RegisterPage, RegisterPageViewModel>();
             containerRegistry.RegisterForNavigation<RememberPasswordPage, RememberPasswordPageViewModel>();
             containerRegistry.RegisterForNavigation<ChangePasswordPage, ChangePasswordPageViewModel>();
+            containerRegistry.RegisterForNavigation<DocDetailTabbedPage, DocDetailTabbedPageViewModel>();
+            containerRegistry.RegisterForNavigation<DocDetailPage, DocDetailPageViewModel>();
+            containerRegistry.RegisterForNavigation<ReviewPage, ReviewPageViewModel>();
         }
     }
 }

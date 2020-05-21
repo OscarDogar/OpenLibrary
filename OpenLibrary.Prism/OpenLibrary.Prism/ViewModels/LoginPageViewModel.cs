@@ -29,6 +29,7 @@ namespace OpenLibrary.Prism.ViewModels
         {
             Title = Languages.Login;
             IsEnabled = true;
+            _isRunning = false;
             _navigationService = navigationService;
             _apiService = apiService;
         }

@@ -40,6 +40,7 @@ namespace OpenLibrary.Prism.ViewModels
             _regexHelper = regexHelper;
             _apiService = apiService;
             _filesHelper = filesHelper;
+            _isRunning = false;
             Title = Languages.Register;
             Image = App.Current.Resources["UrlNoImage"].ToString();
             IsEnabled = true;

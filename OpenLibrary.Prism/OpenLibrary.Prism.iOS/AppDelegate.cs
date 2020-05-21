@@ -21,7 +21,10 @@ namespace OpenLibrary.Prism.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+
             global::Xamarin.Forms.Forms.Init();
+            Syncfusion.SfPdfViewer.XForms.iOS.SfPdfDocumentViewRenderer.Init();
+            Syncfusion.SfRangeSlider.XForms.iOS.SfRangeSliderRenderer.Init();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             LoadApplication(new App(new iOSInitializer()));
 

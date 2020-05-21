@@ -174,11 +174,10 @@
                 	                   BackgroundColor="{StaticResource ColorPrimary}"
                 	                   HorizontalOptions="Center"
                 	                   TextColor="White"
-                	                   IsVisible="{Binding IsRunning}"
+                	                   IsBusy="{Binding IsRunning}"
                 	                   Title="{i18n:Translate Loading}"
                 	                   VerticalOptions="Center"
                 	                   ViewBoxWidth="80"
                 	                   ViewBoxHeight="80" />
-
     </AbsoluteLayout>
 </ContentPage>

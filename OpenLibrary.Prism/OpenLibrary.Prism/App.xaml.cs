@@ -24,7 +24,7 @@ namespace OpenLibrary.Prism
 
         protected override async void OnInitialized()
         {
-            SyncfusionLicenseProvider.RegisterLicense("MjU4MTgxQDMxMzgyZTMxMmUzMFlLdTJqTUcxTDVxU1BoVlhKemNvRmZOYStRVnR5dzBidE9CRy9tbHB0WUk9");
+            SyncfusionLicenseProvider.RegisterLicense("MjYwMzIwQDMxMzgyZTMxMmUzMEJnRXEvMWhDc0FPcUFEd3dwR0JnbU5FUGdZR2c4WGM1L0U3NTdaQnVseE09");
 
             InitializeComponent();
 
@@ -48,6 +48,7 @@ namespace OpenLibrary.Prism
             containerRegistry.RegisterForNavigation<DocDetailTabbedPage, DocDetailTabbedPageViewModel>();
             containerRegistry.RegisterForNavigation<DocDetailPage, DocDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<ReviewPage, ReviewPageViewModel>();
+            containerRegistry.RegisterForNavigation<PDFPage, PDFPageViewModel>();
         }
     }
 }

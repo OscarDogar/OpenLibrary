@@ -39,6 +39,7 @@ namespace OpenLibrary.Prism.ViewModels
             _filesHelper = filesHelper;
             Title = Languages.ModifyUser;
             IsEnabled = true;
+            _isRunning = false;
             User = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
             Image = User.PictureFullPath;
         }

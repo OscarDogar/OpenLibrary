@@ -109,7 +109,7 @@
                 	                   BackgroundColor="{StaticResource ColorPrimary}"
                 	                   HorizontalOptions="Center"
                 	                   TextColor="{StaticResource ColorFontInverse}"
-                	                   IsVisible="{Binding IsRunning}"
+                	                   IsBusy="{Binding IsRunning}"
                 	                   Title="{i18n:Translate Loading}"
                 	                   VerticalOptions="Center"
                 	                   ViewBoxWidth="80"

@@ -23,6 +23,7 @@ namespace OpenLibrary.Prism.ViewModels
             _navigationService = navigationService;
             _apiService = apiService;
             IsEnabled = true;
+            _isRunning = false;
             Title = Languages.ChangePassword;
         }
 

@@ -24,6 +24,7 @@ namespace OpenLibrary.Prism.ViewModels
             _navigationService = navigationService;
             _apiService = apiService;
             _regexHelper = regexHelper;
+            _isRunning = false;
             Title = Languages.PasswordRecover;
             IsEnabled = true;
         }

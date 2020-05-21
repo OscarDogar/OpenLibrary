@@ -34,7 +34,6 @@ namespace OpenLibrary.Prism.ViewModels
         private readonly INavigationService _navigationService;
 
 
-
         public MainPageViewModel(
             INavigationService navigationService,
             IApiService apiService) : base(navigationService)
@@ -42,6 +41,7 @@ namespace OpenLibrary.Prism.ViewModels
             _navigationService = navigationService;
             _apiService = apiService;
             Title = "Open Library";
+            _isRunning = true;
             LoadLanguagesAsync();
             LoadGendersAsync();
             LoadTypesAsync();
@@ -49,6 +49,7 @@ namespace OpenLibrary.Prism.ViewModels
         }
 
         public DelegateCommand SearchCommand => _searchCommand ?? (_searchCommand = new DelegateCommand(SearchAsync));
+
 
         public bool IsRunning
         {
@@ -189,7 +190,7 @@ namespace OpenLibrary.Prism.ViewModels
         {
           try
             {
-                IsRunning = true;
+               IsRunning = true;
             IsEnabled = false;
             string url = App.Current.Resources["UrlAPI"].ToString();
             Response response = await _apiService.GetListAsync<SearchResponse>(url,"/api","/Search");
@@ -237,6 +238,7 @@ namespace OpenLibrary.Prism.ViewModels
                 Reviews = t.Reviews
             }).ToList();
                 UserDoc2 = UserDoc;
+
           }
             catch (Exception)
             {
@@ -245,6 +247,7 @@ namespace OpenLibrary.Prism.ViewModels
                 Settings.IsLogin = false;
                 Settings.DocDetail = string.Empty;
             }
+            IsRunning = false;
         }
 
         private async void LoadLanguagesAsync()

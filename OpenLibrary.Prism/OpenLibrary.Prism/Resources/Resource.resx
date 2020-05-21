@@ -360,4 +360,10 @@
   <data name="Viewpdf" xml:space="preserve">
     <value>View PDF</value>
   </data>
+  <data name="DocA" xml:space="preserve">
+    <value>Accepted</value>
+  </data>
+  <data name="DocP" xml:space="preserve">
+    <value>In process</value>
+  </data>
 </root>

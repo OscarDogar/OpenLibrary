@@ -94,7 +94,14 @@ namespace OpenLibrary.Prism.ViewModels
                 new Menu
                 {
                     Icon = "Document",
-                    PageName = "MyUploadedDocumentsPage",
+                    PageName = "MyDocTabbedPage",
+                    Title = Languages.MyUploadedDocuments,
+                    IsLoginRequired = true
+                },
+                  new Menu
+                {
+                    Icon = "Document",
+                    PageName = "MyDocTabbedPage",
                     Title = Languages.MyUploadedDocuments,
                     IsLoginRequired = true
                 },

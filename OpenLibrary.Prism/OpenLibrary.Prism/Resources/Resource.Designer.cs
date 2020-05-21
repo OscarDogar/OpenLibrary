@@ -223,6 +223,24 @@ namespace OpenLibrary.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accepted.
+        /// </summary>
+        public static string DocA {
+            get {
+                return ResourceManager.GetString("DocA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In process.
+        /// </summary>
+        public static string DocP {
+            get {
+                return ResourceManager.GetString("DocP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Document.
         /// </summary>
         public static string Document {

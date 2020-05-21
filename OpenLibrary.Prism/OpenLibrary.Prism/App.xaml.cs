@@ -49,6 +49,9 @@ namespace OpenLibrary.Prism
             containerRegistry.RegisterForNavigation<DocDetailPage, DocDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<ReviewPage, ReviewPageViewModel>();
             containerRegistry.RegisterForNavigation<PDFPage, PDFPageViewModel>();
+            containerRegistry.RegisterForNavigation<MyDocTabbedPage, MyDocTabbedPageViewModel>();
+            containerRegistry.RegisterForNavigation<AcepDocPage, AcepDocPageViewModel>();
+            containerRegistry.RegisterForNavigation<ProcDocPage, ProcDocPageViewModel>();
         }
     }
 }

@@ -17,6 +17,10 @@ namespace OpenLibrary.Prism.Helpers
 
         public static string Culture { get; set; }
 
+        public static string DocP => Resource.DocP;
+
+        public static string DocA => Resource.DocA;
+
         public static string Detail => Resource.Detail;
 
         public static string Rating => Resource.Rating;

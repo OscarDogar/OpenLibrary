@@ -4,8 +4,11 @@
              xmlns:prism="http://prismlibrary.com"
              xmlns:i18n="clr-namespace:OpenLibrary.Prism.Helpers"
              prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             BackgroundColor="{StaticResource ColorBackground}"
              x:Class="OpenLibrary.Prism.Views.ProcDocPage"
-    Title="{Binding Title}">
+             Title="{Binding Title}">
+    <AbsoluteLayout>
     <CollectionView ItemsSource="{Binding UserDoc}">
         <CollectionView.ItemsLayout>
             <GridItemsLayout Orientation="Vertical"/>
@@ -77,4 +80,16 @@
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
+        <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
+                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                	                   AbsoluteLayout.LayoutFlags="All"
+                	                   BackgroundColor="{StaticResource ColorPrimary}"
+                	                   HorizontalOptions="Center"
+                	                   TextColor="White"
+                	                   IsBusy="{Binding IsRunning}"
+                	                   Title="{i18n:Translate Loading}"
+                	                   VerticalOptions="Center"
+                	                   ViewBoxWidth="80"
+                	                   ViewBoxHeight="80" />
+    </AbsoluteLayout>
 </ContentPage>

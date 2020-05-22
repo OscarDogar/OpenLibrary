@@ -339,4 +339,67 @@
   <data name="ErrorGender" xml:space="preserve">
     <value>Fehler beim Abrufen des Geschlechts!</value>
   </data>
+  <data name="PagesNumber" xml:space="preserve">
+    <value>Seitenanzahl</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Kommentar</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Kommentare</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>Detailbereich</value>
+  </data>
+  <data name="MakeComment" xml:space="preserve">
+    <value>Einzelansprache</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Bewertung:</value>
+  </data>
+  <data name="Viewpdf" xml:space="preserve">
+    <value>PDF anzeigen</value>
+  </data>
+  <data name="DocA" xml:space="preserve">
+    <value>Akzeptiert</value>
+  </data>
+  <data name="DocP" xml:space="preserve">
+    <value>In Bearbeitung</value>
+  </data>
+  <data name="MyComment" xml:space="preserve">
+    <value>Meine Kommentare</value>
+  </data>
+  <data name="MyFavorite" xml:space="preserve">
+    <value>Eigene Favoriten</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Bearbeiten</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="MakeAComment" xml:space="preserve">
+    <value>Einzelansprache</value>
+  </data>
+  <data name="EditComment" xml:space="preserve">
+    <value>Kommentar bearbeiten</value>
+  </data>
+  <data name="YouEnterAComment" xml:space="preserve">
+    <value>Sie müssen einen Kommentartext eingeben.</value>
+  </data>
+  <data name="ValidNumberValue" xml:space="preserve">
+    <value>Sie müssen einen Wert zwischen 0 und 5 eingeben!</value>
+  </data>
+  <data name="Favorite" xml:space="preserve">
+    <value>Favorit</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Aktualisieren</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Erstellen</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>Mehr</value>
+  </data>
 </root>

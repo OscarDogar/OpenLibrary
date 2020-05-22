@@ -4,8 +4,11 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="OpenLibrary.Prism.Views.MyCommentPage"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             BackgroundColor="{StaticResource ColorBackground}"
              xmlns:i18n="clr-namespace:OpenLibrary.Prism.Helpers"
              Title="{Binding Title}">
+    <AbsoluteLayout>
     <ScrollView>
     <CollectionView ItemsSource="{Binding Comment}">
         <CollectionView.ItemsLayout>
@@ -42,10 +45,10 @@
                                        VerticalOptions="End" />
                             </StackLayout>
                             <StackLayout Grid.Column="2">
-                                <Button Text="Edit" HeightRequest="43" Command="{Binding SelectRevCommand}"></Button>
+                                    <Button Text="{i18n:Translate Edit}" CornerRadius="8" HeightRequest="43" Command="{Binding SelectRevCommand}"></Button>
                             </StackLayout>
                             <StackLayout Grid.Column="3">
-                                <Button  Text="Delete" HeightRequest="43"></Button>
+                                    <Button  Text="{i18n:Translate Delete}" CornerRadius="8" HeightRequest="43"></Button>
                             </StackLayout>
                         </Grid>
                         <StackLayout Margin="10,0" Orientation="Horizontal" Grid.Row="1">
@@ -56,11 +59,23 @@
                         </StackLayout>
                         <StackLayout Margin="10,0" Grid.Row="2">
                             <Editor Text="{Binding Comment}"
-        IsReadOnly="true" />
+                            IsReadOnly="true" />
                         </StackLayout>
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
         </ScrollView>
+        <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
+                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                	                   AbsoluteLayout.LayoutFlags="All"
+                	                   BackgroundColor="{StaticResource ColorPrimary}"
+                	                   HorizontalOptions="Center"
+                	                   TextColor="White"
+                	                   IsBusy="{Binding IsRunning}"
+                	                   Title="{i18n:Translate Loading}"
+                	                   VerticalOptions="Center"
+                	                   ViewBoxWidth="80"
+                	                   ViewBoxHeight="80" />
+    </AbsoluteLayout>
 </ContentPage>

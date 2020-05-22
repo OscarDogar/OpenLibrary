@@ -20,16 +20,16 @@ namespace OpenLibrary.Prism.ViewModels
         private DelegateCommand _makeCommand;
         private bool _isRunning;
         private bool _isEnabled;
+        private bool _isVisible;
         private SearchResponse _doc;
         public DocDetailPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
         {
             Title = Languages.Detail;
             _navigationService = navigationService;
             _apiService = apiService;
+            IsVisible = Settings.IsLogin;
             LoadDetailpage();
             LoadDocumentsAsync();
-
-
         }
         
         public DelegateCommand OpenDocCommand => _openDocCommand ?? (_openDocCommand = new DelegateCommand(OpenDocAsync));
@@ -45,6 +45,12 @@ namespace OpenLibrary.Prism.ViewModels
         {
             get => _isRunning;
             set => SetProperty(ref _isRunning, value);
+        }
+
+        public bool IsVisible
+        {
+            get => _isVisible;
+            set => SetProperty(ref _isVisible, value);
         }
 
         public bool IsEnabled

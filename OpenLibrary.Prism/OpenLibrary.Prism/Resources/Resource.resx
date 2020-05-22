@@ -372,4 +372,34 @@
   <data name="MyFavorite" xml:space="preserve">
     <value>My favorites</value>
   </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="MakeAComment" xml:space="preserve">
+    <value>Make a Comment</value>
+  </data>
+  <data name="EditComment" xml:space="preserve">
+    <value>Edit Comment</value>
+  </data>
+  <data name="YouEnterAComment" xml:space="preserve">
+    <value>You must enter a Comment</value>
+  </data>
+  <data name="ValidNumberValue" xml:space="preserve">
+    <value>You must enter a value between 0 and 5</value>
+  </data>
+  <data name="Favorite" xml:space="preserve">
+    <value>Favorite</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>More</value>
+  </data>
 </root>

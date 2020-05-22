@@ -339,4 +339,67 @@
   <data name="ErrorGender" xml:space="preserve">
     <value>Error al obtener el género!</value>
   </data>
+  <data name="PagesNumber" xml:space="preserve">
+    <value>Número de páginas</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comentario</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Comentarios</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>Detalle</value>
+  </data>
+  <data name="MakeComment" xml:space="preserve">
+    <value>Hacer un Comentario</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Clasificación:</value>
+  </data>
+  <data name="Viewpdf" xml:space="preserve">
+    <value>Ver PDF</value>
+  </data>
+  <data name="DocA" xml:space="preserve">
+    <value>Aceptado</value>
+  </data>
+  <data name="DocP" xml:space="preserve">
+    <value>En proceso</value>
+  </data>
+  <data name="MyComment" xml:space="preserve">
+    <value>Mis comentarios</value>
+  </data>
+  <data name="MyFavorite" xml:space="preserve">
+    <value>Mis favoritos</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="MakeAComment" xml:space="preserve">
+    <value>Hacer un Comentario</value>
+  </data>
+  <data name="EditComment" xml:space="preserve">
+    <value>Editar comentario</value>
+  </data>
+  <data name="YouEnterAComment" xml:space="preserve">
+    <value>Debe ingresar un comentario</value>
+  </data>
+  <data name="ValidNumberValue" xml:space="preserve">
+    <value>Debe ingresar un valor entre 0 y 5</value>
+  </data>
+  <data name="Favorite" xml:space="preserve">
+    <value>Favorito</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Crear</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>Más</value>
+  </data>
 </root>

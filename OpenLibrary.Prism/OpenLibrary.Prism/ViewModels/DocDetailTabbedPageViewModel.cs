@@ -1,16 +1,13 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using OpenLibrary.Prism.Helpers;
+using Prism.Navigation;
 
 namespace OpenLibrary.Prism.ViewModels
 {
-    public class DocDetailTabbedPageViewModel : BindableBase
+    public class DocDetailTabbedPageViewModel : ViewModelBase
     {
-        public DocDetailTabbedPageViewModel()
+        public DocDetailTabbedPageViewModel(INavigationService navigationService) : base(navigationService)
         {
-
+            Title = Languages.More;
         }
     }
 }

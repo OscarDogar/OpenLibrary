@@ -4,11 +4,7 @@ using OpenLibrary.Common.Models;
 using OpenLibrary.Common.Services;
 using OpenLibrary.Prism.Helpers;
 using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace OpenLibrary.Prism.ViewModels
@@ -17,27 +13,28 @@ namespace OpenLibrary.Prism.ViewModels
     {
         private ReviewResponse _revi;
         private string _type;
-        private bool isCreate;
-        public EditReviewPageViewModel(
-            INavigationService navigationService,
-            IApiService apiService) : base(navigationService)
+        private readonly bool isCreate;
+        private DelegateCommand _validCommand;
+        public EditReviewPageViewModel(INavigationService navigationService,
+                                       IApiService apiService) : base(navigationService)
         {
-            Title = "Edit Comment";
-
             if (string.IsNullOrEmpty(Settings.ReviewS) || Settings.ReviewS.Equals("reviewS"))
             {
                 Review = new ReviewResponse();
-                Type = "Create";
+                Type = Languages.Create;
+                Title = Languages.MakeAComment;
                 isCreate = true;
             }
             else
             {
                 Review = JsonConvert.DeserializeObject<ReviewResponse>(Settings.ReviewS);
-                Type = "Update";
+                Type = Languages.Update;
+                Title = Languages.EditComment;
                 isCreate = false;
             }
-            
+
         }
+        public DelegateCommand ValidCommand => _validCommand ?? (_validCommand = new DelegateCommand(ReviewAsync));
         public ReviewResponse Review
         {
             get => _revi;
@@ -49,14 +46,27 @@ namespace OpenLibrary.Prism.ViewModels
             get => _type;
             set => SetProperty(ref _type, value);
         }
-        private async Task<bool> ValidateDataAsync()
+        private async void ReviewAsync()
+        {
+            bool isValid = await ValidateDataAsync();
+            if (!isValid)
+            {
+                return;
+            }
+        }
+            private async Task<bool> ValidateDataAsync()
         {
             if (string.IsNullOrEmpty(Review.Comment))
             {
-                await App.Current.MainPage.DisplayAlert(Languages.Error, "You must enter a Comment", Languages.Accept);
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.YouEnterAComment , Languages.Accept);
+                return false;
+            }
+            if (Review.Rating < 0 || Review.Rating > 5)
+            {
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ValidNumberValue, Languages.Accept);
                 return false;
             }
             return true;
         }
-        }
     }
+}

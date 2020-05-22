@@ -90,14 +90,14 @@
             </Grid>
 
             <StackLayout Grid.Row="1">
-                <Button Text="{i18n:Translate Viewpdf}" Command="{Binding OpenDocCommand}"></Button>
+                <Button Text="{i18n:Translate Viewpdf}" CornerRadius="8" Margin="10,5" Command="{Binding OpenDocCommand}"></Button>
             </StackLayout>
             <StackLayout Grid.Row="2">
         <Editor Text="{Binding Doc.Summary}"
         IsReadOnly="true" />
     </StackLayout>
             <StackLayout Grid.Row="3" Margin="20,5" >
-                <Button Text="{i18n:Translate MakeComment}" Command="{Binding MakeCommentCommand}"></Button>
+                <Button Text="{i18n:Translate MakeComment}" BackgroundColor="Green" CornerRadius="8" IsVisible="{Binding IsVisible}" Command="{Binding MakeCommentCommand}"></Button>
             </StackLayout>
 
         </Grid>

@@ -91,7 +91,7 @@
                 <Button Grid.Row="0"
                         Grid.Column="1"
                         Text="{i18n:Translate Search}"
-                        Margin="2,60,10,70"
+                        Margin="2,90,10,90"
                         IsEnabled="{Binding IsEnabled}"
                         CornerRadius="10"
                         Command="{Binding SearchCommand}"></Button>

@@ -9,10 +9,16 @@ namespace OpenLibrary.Common.Helpers
         private const string _token = "token";
         private const string _isLogin = "isLogin";
         private const string _docDetail = "docDetail";
+        private const string _reviewS = "reviewS";
         private static readonly string _stringDefault = string.Empty;
         private static readonly bool _boolDefault = false;
 
         private static ISettings AppSettings => CrossSettings.Current;
+        public static string ReviewS
+        {
+            get => AppSettings.GetValueOrDefault(_reviewS, _stringDefault);
+            set => AppSettings.AddOrUpdateValue(_reviewS, value);
+        }
 
         public static string DocDetail
         {

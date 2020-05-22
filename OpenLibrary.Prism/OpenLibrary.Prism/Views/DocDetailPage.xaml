@@ -97,7 +97,7 @@
         IsReadOnly="true" />
     </StackLayout>
             <StackLayout Grid.Row="3" Margin="20,5" >
-                <Button Text="{i18n:Translate MakeComment}"></Button>
+                <Button Text="{i18n:Translate MakeComment}" Command="{Binding MakeCommentCommand}"></Button>
             </StackLayout>
 
         </Grid>

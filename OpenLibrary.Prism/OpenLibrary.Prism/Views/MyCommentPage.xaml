@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="OpenLibrary.Prism.Views.MyCommentPage"
+             xmlns:i18n="clr-namespace:OpenLibrary.Prism.Helpers"
+             Title="{Binding Title}">
+    <ScrollView>
+    <CollectionView ItemsSource="{Binding Comment}">
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout Orientation="Vertical"/>
+        </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="10,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+ 
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Margin="8,8">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Orientation="Horizontal" Grid.Column="0">
+                                <Label Text="{i18n:Translate Rating}"
+                                       LineBreakMode="TailTruncation"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="End" />
+
+                                <Label Text="{Binding Rating}"
+                                       LineBreakMode="TailTruncation"
+                                       FontAttributes="Italic" 
+                                       VerticalOptions="End" />
+                            </StackLayout>
+                            <StackLayout Grid.Column="2">
+                                <Button Text="Edit" HeightRequest="43" Command="{Binding SelectRevCommand}"></Button>
+                            </StackLayout>
+                            <StackLayout Grid.Column="3">
+                                <Button  Text="Delete" HeightRequest="43"></Button>
+                            </StackLayout>
+                        </Grid>
+                        <StackLayout Margin="10,0" Orientation="Horizontal" Grid.Row="1">
+                            <Label Text="{i18n:Translate Comment}"
+                                       LineBreakMode="TailTruncation"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="End" />
+                        </StackLayout>
+                        <StackLayout Margin="10,0" Grid.Row="2">
+                            <Editor Text="{Binding Comment}"
+        IsReadOnly="true" />
+                        </StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        </ScrollView>
+</ContentPage>

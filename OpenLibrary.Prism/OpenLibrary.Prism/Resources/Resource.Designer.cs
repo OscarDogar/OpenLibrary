@@ -511,6 +511,24 @@ namespace OpenLibrary.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to My Comments.
+        /// </summary>
+        public static string MyComment {
+            get {
+                return ResourceManager.GetString("MyComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to My favorites.
+        /// </summary>
+        public static string MyFavorite {
+            get {
+                return ResourceManager.GetString("MyFavorite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My Uploaded Documents.
         /// </summary>
         public static string MyUploadedDocuments {

@@ -101,8 +101,15 @@ namespace OpenLibrary.Prism.ViewModels
                   new Menu
                 {
                     Icon = "Document",
-                    PageName = "MyDocTabbedPage",
-                    Title = Languages.MyUploadedDocuments,
+                    PageName = "MyCommentPage",
+                    Title = Languages.MyComment,
+                    IsLoginRequired = true
+                },
+                  new Menu
+                {
+                    Icon = "Document",
+                    PageName = "MyFavoritesPage",
+                    Title = Languages.MyFavorite,
                     IsLoginRequired = true
                 },
                 new Menu

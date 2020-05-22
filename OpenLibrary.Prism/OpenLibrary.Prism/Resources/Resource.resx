@@ -366,4 +366,10 @@
   <data name="DocP" xml:space="preserve">
     <value>In process</value>
   </data>
+  <data name="MyComment" xml:space="preserve">
+    <value>My Comments</value>
+  </data>
+  <data name="MyFavorite" xml:space="preserve">
+    <value>My favorites</value>
+  </data>
 </root>

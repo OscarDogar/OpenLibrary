@@ -12,35 +12,27 @@ using System.Linq;
 
 namespace OpenLibrary.Prism.ViewModels
 {
-    public class DocDetailPageViewModel : ViewModelBase
+    public class MyCommentPageViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
-        private DelegateCommand _openDocCommand;
-        private DelegateCommand _makeCommand;
         private bool _isRunning;
         private bool _isEnabled;
-        private SearchResponse _doc;
-        public DocDetailPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
+        private List<ReviewItmViewModel> _com;
+        private readonly INavigationService _navigationService;
+        public MyCommentPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
         {
-            Title = Languages.Detail;
             _navigationService = navigationService;
             _apiService = apiService;
-            LoadDetailpage();
+            Title = Languages.Comments;
+            Settings.ReviewS = string.Empty;
             LoadDocumentsAsync();
-
-
         }
-        
-        public DelegateCommand OpenDocCommand => _openDocCommand ?? (_openDocCommand = new DelegateCommand(OpenDocAsync));
-
-        public DelegateCommand MakeCommentCommand => _makeCommand ?? (_makeCommand = new DelegateCommand(MakeAsync));
-
-        public SearchResponse Doc
+        public List<ReviewItmViewModel> Comment
         {
-            get => _doc;
-            set => SetProperty(ref _doc, value);
+            get => _com;
+            set => SetProperty(ref _com, value);
         }
+
         public bool IsRunning
         {
             get => _isRunning;
@@ -52,20 +44,6 @@ namespace OpenLibrary.Prism.ViewModels
             get => _isEnabled;
             set => SetProperty(ref _isEnabled, value);
         }
-
-        private async void MakeAsync()
-        {
-            if (Settings.IsLogin)
-            {  
-                await _navigationService.NavigateAsync("EditReviewPage");
-            }
-            else
-            {
-                await _navigationService.NavigateAsync("LoginPage");
-            }
-           
-        }
-
         private async void LoadDocumentsAsync()
         {
             try
@@ -90,27 +68,25 @@ namespace OpenLibrary.Prism.ViewModels
 
                 List<ReviewResponse> userDoc = (List<ReviewResponse>)response.Result;
                 UserResponse User = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
-                ReviewResponse list = new ReviewResponse();
-                bool ready=false;
+                List<ReviewResponse> list = new List<ReviewResponse>();
 
                 foreach (ReviewResponse li in userDoc)
                 {
-                    if (li.User.Id.Equals(User.Id) && Doc.Id==li.Document.Id)
+                    if (li.User.Id.Equals(User.Id))
                     {
-                        list =li;
-                        ready = true;
+                        list.Add(li);
                     }
                 }
 
-                if (ready)
+                Comment = list.Select(t => new ReviewItmViewModel(_navigationService)
                 {
-                    
-                    Settings.ReviewS= JsonConvert.SerializeObject(list);
-                }
-                else
-                {
-                    Settings.ReviewS = string.Empty;
-                }
+                    Id = t.Id,
+                    User = t.User,
+                    Comment = t.Comment,
+                    Rating = t.Rating,
+                    Favorite = t.Favorite,
+                    Document = t.Document
+                }).ToList(); ;
 
             }
             catch (Exception)
@@ -124,17 +100,5 @@ namespace OpenLibrary.Prism.ViewModels
 
         }
 
-        private async void OpenDocAsync()
-        {
-            await _navigationService.NavigateAsync("PDFPage");
-        }
-
-        private void LoadDetailpage()
-        {
-
-            SearchResponse _docs= JsonConvert.DeserializeObject<SearchResponse>(Settings.DocDetail);
-
-            Doc = _docs;
-        }
     }
 }

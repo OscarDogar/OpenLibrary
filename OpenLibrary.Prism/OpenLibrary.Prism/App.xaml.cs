@@ -41,7 +41,6 @@ namespace OpenLibrary.Prism
             containerRegistry.RegisterForNavigation<OpenLibraryMasterDetailPage, OpenLibraryMasterDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<ModifyUserPage, ModifyUserPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
-            containerRegistry.RegisterForNavigation<MyUploadedDocumentsPage, MyUploadedDocumentsPageViewModel>();
             containerRegistry.RegisterForNavigation<RegisterPage, RegisterPageViewModel>();
             containerRegistry.RegisterForNavigation<RememberPasswordPage, RememberPasswordPageViewModel>();
             containerRegistry.RegisterForNavigation<ChangePasswordPage, ChangePasswordPageViewModel>();
@@ -52,6 +51,9 @@ namespace OpenLibrary.Prism
             containerRegistry.RegisterForNavigation<MyDocTabbedPage, MyDocTabbedPageViewModel>();
             containerRegistry.RegisterForNavigation<AcepDocPage, AcepDocPageViewModel>();
             containerRegistry.RegisterForNavigation<ProcDocPage, ProcDocPageViewModel>();
+            containerRegistry.RegisterForNavigation<MyCommentPage, MyCommentPageViewModel>();
+            containerRegistry.RegisterForNavigation<EditReviewPage, EditReviewPageViewModel>();
+            containerRegistry.RegisterForNavigation<MyFavoritesPage, MyFavoritesPageViewModel>();
         }
     }
 }

@@ -30,14 +30,14 @@ namespace OpenLibrary.Prism.ViewModels
                 Review = new ReviewResponse();
                 Type = Languages.Create;
                 Title = Languages.MakeAComment;
-                isCreate = true;
+              
             }
             else
             {
                 Review = JsonConvert.DeserializeObject<ReviewResponse>(Settings.ReviewS);
                 Type = Languages.Update;
                 Title = Languages.EditComment;
-                isCreate = false;
+                
             }
 
         }

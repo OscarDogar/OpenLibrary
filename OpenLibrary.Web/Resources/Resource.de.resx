@@ -153,4 +153,10 @@
   <data name="PasswordChangedSuccess" xml:space="preserve">
     <value>Das Kennwort wurde erfolgreich geändert.</value>
   </data>
+  <data name="DocumentDoesntexist" xml:space="preserve">
+    <value>Dokument ist nicht vorhanden.!</value>
+  </data>
+  <data name="ADD" xml:space="preserve">
+    <value>Es wurde richtig gemacht!</value>
+  </data>
 </root>

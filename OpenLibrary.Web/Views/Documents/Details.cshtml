@@ -25,6 +25,15 @@
         <b>You have already comment this document</b>
     }
 }
+<style>
+    table {
+        table-layout: fixed;
+        width: 250px;
+    }
+    th, td {
+        word-wrap: break-word;
+    }
+</style>
 <div class="row">
 
     <div class="col-md-12">
@@ -39,16 +48,24 @@
                     <thead>
                         <tr>
                             <th>
-                                Name
+                                <center>
+                                    Name
+                                </center>
                             </th>
                             <th>
-                                Rating
+                                <center>
+                                    Rating
+                                </center>
+                            </th>
+                            <th width="500px">
+                                <center>
+                                    Comment
+                                </center>
                             </th>
                             <th>
-                                Comment
-                            </th>
-                            <th>
-                                Favorite
+                                <center>
+                                    Favorite
+                                </center>
                             </th>
                             <th>
                                 <center>
@@ -65,9 +82,11 @@
                                     @Html.DisplayFor(modelItem => item.User.FullName)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Rating)
+                                    <center>
+                                        @Html.DisplayFor(modelItem => item.Rating)
+                                    </center>
                                 </td>
-                                <td>
+                                <td  width="500px">
                                     @Html.DisplayFor(modelItem => item.Comment)
                                 </td>
                                 <td>

@@ -169,6 +169,24 @@ namespace OpenLibrary.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to the review was deleted successfully.
+        /// </summary>
+        public static string TheReviewWasDeletedSuccessfully {
+            get {
+                return ResourceManager.GetString("TheReviewWasDeletedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The review was edited successfully.
+        /// </summary>
+        public static string TheReviewWasEditedSuccessfully {
+            get {
+                return ResourceManager.GetString("TheReviewWasEditedSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User already exists..
         /// </summary>
         public static string UserAlreadyExists {

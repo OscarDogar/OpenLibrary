@@ -159,4 +159,10 @@
   <data name="ADD" xml:space="preserve">
     <value>Foi feito corretamente!</value>
   </data>
+  <data name="TheReviewWasDeletedSuccessfully" xml:space="preserve">
+    <value>a revisão foi excluída com sucesso</value>
+  </data>
+  <data name="TheReviewWasEditedSuccessfully" xml:space="preserve">
+    <value>A crítica foi editada com sucesso</value>
+  </data>
 </root>

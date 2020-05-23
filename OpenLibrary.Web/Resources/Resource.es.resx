@@ -159,4 +159,10 @@
   <data name="DocumentDoesntexist" xml:space="preserve">
     <value>¡El documento no existe!</value>
   </data>
+  <data name="TheReviewWasDeletedSuccessfully" xml:space="preserve">
+    <value>la revisión se eliminó con éxito</value>
+  </data>
+  <data name="TheReviewWasEditedSuccessfully" xml:space="preserve">
+    <value>La revisión se editó con éxito</value>
+  </data>
 </root>

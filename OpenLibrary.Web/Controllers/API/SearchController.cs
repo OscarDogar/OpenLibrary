@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +13,7 @@ using OpenLibrary.Common.Models;
 using OpenLibrary.Web.Data;
 using OpenLibrary.Web.Data.Entities;
 using OpenLibrary.Web.Helpers;
+using OpenLibrary.Web.Resources;
 
 namespace OpenLibrary.Web.Controllers.API
 {
@@ -91,6 +94,125 @@ namespace OpenLibrary.Web.Controllers.API
             }
 
             return Ok(_converterHelper.ToReviewResponse(reviewEntities));
+        }
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost]
+        [Route("InsertReview")]
+        public async Task<IActionResult> PostReview([FromBody] ReviewRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            CultureInfo cultureInfo = new CultureInfo(request.CultureInfo);
+            Resource.Culture = cultureInfo;
+
+
+            UserEntity userEntity = await _context.Users.FindAsync(request.User);
+            if (userEntity == null)
+            {
+                return BadRequest(new Response
+                {
+                    IsSuccess = false,
+                    Message = Resource.UserDoesntExists
+                });
+            }
+
+            DocumentEntity documentEntity = await _context.Documents.FindAsync(request.Document);
+
+            if (documentEntity == null)
+            {
+                return BadRequest(new Response
+                {
+                    IsSuccess = false,
+                    Message = Resource.DocumentDoesntexist
+                });
+
+            }
+
+            ReviewEntity reviewEntity = await _context.Reviews
+                       .FirstOrDefaultAsync(p => p.User.Id == request.User && p.Document.Id == request.Document);
+
+            if (reviewEntity == null)
+            {
+                reviewEntity = new ReviewEntity
+                {
+                    Document=documentEntity,
+                    Comment = request.Comment,
+                    Rating = request.Rating,
+                    Favorite = request.Favorite,
+                    User = userEntity
+                };
+
+                _context.Reviews.Add(reviewEntity);
+            }
+            else
+            {
+                reviewEntity.Comment = request.Comment;
+                reviewEntity.Rating = request.Rating;
+                reviewEntity.Favorite = request.Favorite;
+                _context.Reviews.Update(reviewEntity);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new Response
+            {
+                IsSuccess = true,
+                Message = Resource.ADD
+            });
+        }
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost]
+        [Route("DeleteReview")]
+        public async Task<IActionResult> DeleteReview([FromBody] ReviewDeleteRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            CultureInfo cultureInfo = new CultureInfo(request.CultureInfo);
+            Resource.Culture = cultureInfo;
+
+
+            UserEntity userEntity = await _context.Users.FindAsync(request.User);
+            if (userEntity == null)
+            {
+                return BadRequest(new Response
+                {
+                    IsSuccess = false,
+                    Message = Resource.UserDoesntExists
+                });
+            }
+
+            DocumentEntity documentEntity = await _context.Documents.FindAsync(request.Document);
+
+            if (documentEntity == null)
+            {
+                return BadRequest(new Response
+                {
+                    IsSuccess = false,
+                    Message = Resource.DocumentDoesntexist
+                });
+
+            }
+
+            ReviewEntity reviewEntity = await _context.Reviews
+                       .FirstOrDefaultAsync(p => p.User.Id == userEntity.Id && p.Document.Id == documentEntity.Id);
+
+            _context.Reviews.Remove(reviewEntity);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new Response
+            {
+                IsSuccess = true,
+                Message = Resource.ADD
+            });
         }
 
 

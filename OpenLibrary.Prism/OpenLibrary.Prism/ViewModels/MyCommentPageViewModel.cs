@@ -78,7 +78,7 @@ namespace OpenLibrary.Prism.ViewModels
                     }
                 }
 
-                Comment = list.Select(t => new ReviewItmViewModel(_navigationService)
+                Comment = list.Select(t => new ReviewItmViewModel(_navigationService, _apiService)
                 {
                     Id = t.Id,
                     User = t.User,

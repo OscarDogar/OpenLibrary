@@ -17,27 +17,45 @@ namespace OpenLibrary.Prism.ViewModels
     {
         private ReviewResponse _revi;
         private string _type;
-        private bool isCreate;
+        private bool _isRunning;
+        private bool _isEnabled;
+        private readonly IApiService _apiService;
+        private readonly INavigationService _navigationService;
+        private DelegateCommand _registerCommand;
         public EditReviewPageViewModel(
             INavigationService navigationService,
             IApiService apiService) : base(navigationService)
         {
             Title = "Edit Comment";
-
+            _apiService = apiService;
+            _navigationService = navigationService;
             if (string.IsNullOrEmpty(Settings.ReviewS) || Settings.ReviewS.Equals("reviewS"))
             {
                 Review = new ReviewResponse();
                 Type = "Create";
-                isCreate = true;
             }
             else
             {
                 Review = JsonConvert.DeserializeObject<ReviewResponse>(Settings.ReviewS);
                 Type = "Update";
-                isCreate = false;
             }
             
         }
+
+        public DelegateCommand RegisterCommand => _registerCommand ?? (_registerCommand = new DelegateCommand(CreateDetailAsync));
+
+        public bool IsRunning
+        {
+            get => _isRunning;
+            set => SetProperty(ref _isRunning, value);
+        }
+
+        public bool IsEnabled
+        {
+            get => _isEnabled;
+            set => SetProperty(ref _isEnabled, value);
+        }
+
         public ReviewResponse Review
         {
             get => _revi;
@@ -58,5 +76,59 @@ namespace OpenLibrary.Prism.ViewModels
             }
             return true;
         }
+
+        private async void CreateDetailAsync()
+        {
+
+            bool isValid = await ValidateDataAsync();
+            if (!isValid)
+            {
+                return;
+            }
+
+            IsRunning = true;
+            IsEnabled = false;
+            string url = App.Current.Resources["UrlAPI"].ToString();
+            bool connection = await _apiService.CheckConnectionAsync(url);
+            if (!connection)
+            {
+                IsRunning = false;
+                IsEnabled = true;
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ConnectionError, Languages.Accept);
+                return;
+            }
+
+            TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
+
+            ReviewRequest reviewRequest = new ReviewRequest
+            {
+                User = Review.User.ToString(),
+                Document = Review.Document.Id,
+                Comment = Review.Comment,
+                Rating = Review.Rating,
+                Favorite = Review.Favorite,
+                CultureInfo = Languages.Culture
+            };
+
+
+            Response response = await _apiService.CreateReviewAsync(url, "/api", "/Search/InsertReview", reviewRequest, "bearer", token.Token);
+            IsRunning = false;
+            IsEnabled = true;
+
+            if (!response.IsSuccess)
+            {
+                await App.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
+                return;
+            }
+
+            await App.Current.MainPage.DisplayAlert(Languages.Ok, response.Message, Languages.Accept);
+
+
+            IsRunning = false;
+            IsEnabled = true;
+
+            await _navigationService.NavigateAsync("/OpenLibraryMasterDetailPage/NavigationPage/MyCommentPage");
+
         }
+    }
     }

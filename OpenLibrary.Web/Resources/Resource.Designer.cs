@@ -61,6 +61,15 @@ namespace OpenLibrary.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It was done correctly.
+        /// </summary>
+        public static string ADD {
+            get {
+                return ResourceManager.GetString("ADD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm Email.
         /// </summary>
         public static string ConfirmEmail {
@@ -84,6 +93,15 @@ namespace OpenLibrary.Web.Resources {
         public static string ConfirmEmailSubject {
             get {
                 return ResourceManager.GetString("ConfirmEmailSubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document doesn&apos;t exists..
+        /// </summary>
+        public static string DocumentDoesntexist {
+            get {
+                return ResourceManager.GetString("DocumentDoesntexist", resourceCulture);
             }
         }
         

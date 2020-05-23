@@ -12,6 +12,44 @@ namespace OpenLibrary.Common.Services
 {
     public class ApiService : IApiService
     {
+
+        public async Task<Response> CreateReviewAsync(string urlBase, string servicePrefix, string controller, ReviewRequest reviewRequest, string tokenType, string accessToken)
+        {
+            try
+            {
+                string request = JsonConvert.SerializeObject(reviewRequest);
+                StringContent content = new StringContent(request, Encoding.UTF8, "application/json");
+                HttpClient client = new HttpClient
+                {
+                    BaseAddress = new Uri(urlBase)
+                };
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
+                string url = $"{servicePrefix}{controller}";
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                string answer = await response.Content.ReadAsStringAsync();
+                Response obj = JsonConvert.DeserializeObject<Response>(answer);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = obj.Message
+                    };
+                }
+
+                return obj;
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message
+                };
+            }
+        }
+
         public async Task<Response> GetListAsync<T>(
             string urlBase,
             string servicePrefix,
@@ -280,6 +318,42 @@ namespace OpenLibrary.Common.Services
             return await CrossConnectivity.Current.IsRemoteReachable(url);
         }
 
+        public async Task<Response> DeleteReviewAsync(string urlBase, string servicePrefix, string controller, ReviewDeleteRequest reviewRequest, string tokenType, string accessToken)
+        {
+            try
+            {
+                string request = JsonConvert.SerializeObject(reviewRequest);
+                StringContent content = new StringContent(request, Encoding.UTF8, "application/json");
+                HttpClient client = new HttpClient
+                {
+                    BaseAddress = new Uri(urlBase)
+                };
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
+                string url = $"{servicePrefix}{controller}";
+                HttpResponseMessage response = await client.PostAsync(url, content);
+                string answer = await response.Content.ReadAsStringAsync();
+                Response obj = JsonConvert.DeserializeObject<Response>(answer);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = obj.Message
+                    };
+                }
+
+                return obj;
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message
+                };
+            }
+        }
     }
 
 }

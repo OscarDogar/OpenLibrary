@@ -8,6 +8,10 @@ namespace OpenLibrary.Common.Services
 {
     public interface IApiService
     {
+        Task<Response> DeleteReviewAsync(string urlBase, string servicePrefix, string controller, ReviewDeleteRequest reviewRequest, string tokenType, string accessToken);
+
+        Task<Response> CreateReviewAsync(string urlBase, string servicePrefix, string controller, ReviewRequest reviewRequest, string tokenType, string accessToken);
+
         Task<Response> GetTokenAsync(string urlBase, string servicePrefix, string controller, TokenRequest request);
 
         Task<Response> ChangePasswordAsync(string urlBase, string servicePrefix, string controller, ChangePasswordRequest changePasswordRequest, string tokenType, string accessToken);

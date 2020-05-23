@@ -100,14 +100,14 @@ namespace OpenLibrary.Prism.ViewModels
                 },
                   new Menu
                 {
-                    Icon = "Document",
+                    Icon = "Comment",
                     PageName = "MyCommentPage",
                     Title = Languages.MyComment,
                     IsLoginRequired = true
                 },
                   new Menu
                 {
-                    Icon = "Document",
+                    Icon = "Star",
                     PageName = "MyFavoritesPage",
                     Title = Languages.MyFavorite,
                     IsLoginRequired = true

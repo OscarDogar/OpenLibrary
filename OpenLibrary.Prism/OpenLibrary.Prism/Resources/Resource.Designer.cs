@@ -187,6 +187,15 @@ namespace OpenLibrary.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        public static string Create {
+            get {
+                return ResourceManager.GetString("Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current password.
         /// </summary>
         public static string CurrentPassword {
@@ -210,6 +219,15 @@ namespace OpenLibrary.Prism.Resources {
         public static string CurrentPasswordPlaceHolder {
             get {
                 return ResourceManager.GetString("CurrentPasswordPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
             }
         }
         
@@ -273,6 +291,24 @@ namespace OpenLibrary.Prism.Resources {
         public static string Documents {
             get {
                 return ResourceManager.GetString("Documents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Comment.
+        /// </summary>
+        public static string EditComment {
+            get {
+                return ResourceManager.GetString("EditComment", resourceCulture);
             }
         }
         
@@ -345,6 +381,15 @@ namespace OpenLibrary.Prism.Resources {
         public static string ErrorTypeOfDocument {
             get {
                 return ResourceManager.GetString("ErrorTypeOfDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Favorite.
+        /// </summary>
+        public static string Favorite {
+            get {
+                return ResourceManager.GetString("Favorite", resourceCulture);
             }
         }
         
@@ -495,6 +540,15 @@ namespace OpenLibrary.Prism.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Make a Comment.
         /// </summary>
+        public static string MakeAComment {
+            get {
+                return ResourceManager.GetString("MakeAComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make a Comment.
+        /// </summary>
         public static string MakeComment {
             get {
                 return ResourceManager.GetString("MakeComment", resourceCulture);
@@ -507,6 +561,15 @@ namespace OpenLibrary.Prism.Resources {
         public static string ModifyUser {
             get {
                 return ResourceManager.GetString("ModifyUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to More.
+        /// </summary>
+        public static string More {
+            get {
+                return ResourceManager.GetString("More", resourceCulture);
             }
         }
         
@@ -790,11 +853,29 @@ namespace OpenLibrary.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        public static string Update {
+            get {
+                return ResourceManager.GetString("Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The user was updated successfully.
         /// </summary>
         public static string UserUpdated {
             get {
                 return ResourceManager.GetString("UserUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter a value between 0 and 5.
+        /// </summary>
+        public static string ValidNumberValue {
+            get {
+                return ResourceManager.GetString("ValidNumberValue", resourceCulture);
             }
         }
         
@@ -822,6 +903,15 @@ namespace OpenLibrary.Prism.Resources {
         public static string WriteTitle {
             get {
                 return ResourceManager.GetString("WriteTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter a Comment.
+        /// </summary>
+        public static string YouEnterAComment {
+            get {
+                return ResourceManager.GetString("YouEnterAComment", resourceCulture);
             }
         }
     }

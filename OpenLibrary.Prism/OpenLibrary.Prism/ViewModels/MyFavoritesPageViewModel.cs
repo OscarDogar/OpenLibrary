@@ -63,8 +63,6 @@ namespace OpenLibrary.Prism.ViewModels
                         Languages.Accept);
                     return;
                 }
-                IsRunning = false;
-                IsEnabled = true;
 
                 List<ReviewResponse> userRev = (List<ReviewResponse>)response.Result;
 
@@ -83,8 +81,6 @@ namespace OpenLibrary.Prism.ViewModels
                         Languages.Accept);
                     return;
                 }
-                IsRunning = false;
-                IsEnabled = true;
 
                 List<SearchResponse> doc = (List<SearchResponse>)response2.Result;
 
@@ -124,6 +120,8 @@ namespace OpenLibrary.Prism.ViewModels
                     Reviews = t.Reviews
                 }).ToList(); ;
 
+                IsRunning = false;
+                IsEnabled = true;
             }
             catch (Exception)
             {

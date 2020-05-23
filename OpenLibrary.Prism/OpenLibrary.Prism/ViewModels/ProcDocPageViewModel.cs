@@ -62,8 +62,7 @@ namespace OpenLibrary.Prism.ViewModels
                         Languages.Accept);
                     return;
                 }
-                IsRunning = false;
-                IsEnabled = true;
+               
 
                 List<SearchResponse> userDoc = (List<SearchResponse>)response.Result;
                 UserResponse User = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
@@ -76,7 +75,8 @@ namespace OpenLibrary.Prism.ViewModels
                         list.Add(li);
                     }
                 }
-
+                IsRunning = false;
+                IsEnabled = true;
                 UserDoc = list;
 
             }

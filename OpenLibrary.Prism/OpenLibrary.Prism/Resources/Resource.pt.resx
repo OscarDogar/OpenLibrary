@@ -339,4 +339,67 @@
   <data name="ErrorGender" xml:space="preserve">
     <value>Erro de obter o gênero!</value>
   </data>
+  <data name="PagesNumber" xml:space="preserve">
+    <value>Número de Páginas</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comentário:</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Comentários</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>Detalhe</value>
+  </data>
+  <data name="MakeComment" xml:space="preserve">
+    <value>A Comment.</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Classificação</value>
+  </data>
+  <data name="Viewpdf" xml:space="preserve">
+    <value>Exibir PDF</value>
+  </data>
+  <data name="DocA" xml:space="preserve">
+    <value>Aceito</value>
+  </data>
+  <data name="DocP" xml:space="preserve">
+    <value>Em Andamento</value>
+  </data>
+  <data name="MyComment" xml:space="preserve">
+    <value>Meus Comentários</value>
+  </data>
+  <data name="MyFavorite" xml:space="preserve">
+    <value>Meus Favoritos</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Excluir</value>
+  </data>
+  <data name="MakeAComment" xml:space="preserve">
+    <value>A Comment.</value>
+  </data>
+  <data name="EditComment" xml:space="preserve">
+    <value>Editar comentário</value>
+  </data>
+  <data name="YouEnterAComment" xml:space="preserve">
+    <value>Você deve escrever um comentário</value>
+  </data>
+  <data name="ValidNumberValue" xml:space="preserve">
+    <value>Você deve inserir um valor entre 0 e 5!</value>
+  </data>
+  <data name="Favorite" xml:space="preserve">
+    <value>Favorito</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Atualizar</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Criar</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>Mais</value>
+  </data>
 </root>

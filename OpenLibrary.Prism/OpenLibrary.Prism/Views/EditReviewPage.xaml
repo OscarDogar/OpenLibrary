@@ -3,11 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
+             BackgroundColor="{StaticResource ColorBackground}"
              x:Class="OpenLibrary.Prism.Views.EditReviewPage"
+             xmlns:i18n="clr-namespace:OpenLibrary.Prism.Helpers"
              Title="{Binding Title}">
     <ScrollView>
-        <StackLayout>
-
+        <StackLayout Margin="5">
+            
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -16,21 +18,22 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <StackLayout Grid.Row="0">
-                    <Label Text="favorite"></Label>
-                    <CheckBox IsChecked="{Binding Review.Favorite}" ></CheckBox>
-
-                </StackLayout>
+                    <Label Text="{i18n:Translate Favorite}"></Label>
+                <CheckBox IsChecked="{Binding Review.Favorite}" ></CheckBox>
+            
+        </StackLayout>
                 <StackLayout Grid.Row="1">
-                    <Label Text="rating"></Label>
-                    <Entry Keyboard="Numeric" Text="{Binding Review.Rating}"></Entry>
-                </StackLayout>
+                    <Label Text="{i18n:Translate Rating}"></Label>
+                <Entry Keyboard="Numeric" Text="{Binding Review.Rating}"></Entry>
+        </StackLayout>
                 <StackLayout Grid.Row="2">
-                    <Label Text="Comment"></Label>
+                    <Label Text="{i18n:Translate Comment}"></Label>
                     <Editor Text="{Binding Review.Comment}"
-        IsReadOnly="false" />
-                </StackLayout>
-                <Button Text="{Binding Type}" Grid.Row="3" Command="{Binding RegisterCommand}"></Button>
+                            IsReadOnly="false" />
+            </StackLayout>
+                
             </Grid>
+            <Button VerticalOptions="EndAndExpand" CornerRadius="8" Margin="5" Command="{Binding ValidCommand}" Text="{Binding Type}" Grid.Row="3"></Button>
         </StackLayout>
         
     </ScrollView>

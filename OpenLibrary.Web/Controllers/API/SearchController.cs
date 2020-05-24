@@ -135,7 +135,7 @@ namespace OpenLibrary.Web.Controllers.API
 
             ReviewEntity reviewEntity = await _context.Reviews
                        .FirstOrDefaultAsync(p => p.User.Id == request.User && p.Document.Id == request.Document);
-
+            string message = "";
             if (reviewEntity == null)
             {
                 reviewEntity = new ReviewEntity
@@ -146,8 +146,16 @@ namespace OpenLibrary.Web.Controllers.API
                     Favorite = request.Favorite,
                     User = userEntity
                 };
-
+                message = Resource.TheReviewWasMadeCorrectly;
                 _context.Reviews.Add(reviewEntity);
+            }
+            else
+            {
+                reviewEntity.Comment = request.Comment;
+                reviewEntity.Rating = request.Rating;
+                reviewEntity.Favorite = request.Favorite;
+                message = Resource.TheReviewWasEditedSuccessfully;
+                _context.Reviews.Update(reviewEntity);
             }
 
             await _context.SaveChangesAsync();
@@ -155,7 +163,7 @@ namespace OpenLibrary.Web.Controllers.API
             return Ok(new Response
             {
                 IsSuccess = true,
-                Message = Resource.ADD
+                Message = message
             });
         }
 

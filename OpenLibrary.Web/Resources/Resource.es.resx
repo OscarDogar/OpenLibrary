@@ -165,4 +165,7 @@
   <data name="TheReviewWasEditedSuccessfully" xml:space="preserve">
     <value>La revisión se editó con éxito</value>
   </data>
+  <data name="TheReviewWasMadeCorrectly" xml:space="preserve">
+    <value>La revisión se realizó correctamente</value>
+  </data>
 </root>

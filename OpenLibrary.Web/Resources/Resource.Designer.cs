@@ -187,6 +187,15 @@ namespace OpenLibrary.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The review was made correctly.
+        /// </summary>
+        public static string TheReviewWasMadeCorrectly {
+            get {
+                return ResourceManager.GetString("TheReviewWasMadeCorrectly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User already exists..
         /// </summary>
         public static string UserAlreadyExists {

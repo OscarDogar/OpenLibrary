@@ -17,6 +17,8 @@ namespace OpenLibrary.Prism.Helpers
 
         public static string Culture { get; set; }
 
+        public static string Map => Resource.Map;
+
         public static string Reject => Resource.Reject;
 
         public static string Question => Resource.Question;

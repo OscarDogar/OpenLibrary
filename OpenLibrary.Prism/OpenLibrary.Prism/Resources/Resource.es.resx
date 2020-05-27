@@ -411,4 +411,7 @@
   <data name="Reject" xml:space="preserve">
     <value>Rechazar</value>
   </data>
+  <data name="Map" xml:space="preserve">
+    <value>Mapa</value>
+  </data>
 </root>

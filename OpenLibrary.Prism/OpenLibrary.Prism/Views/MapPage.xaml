@@ -2,7 +2,62 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps" 
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="OpenLibrary.Prism.Views.MapPage">
-  
+             x:Class="OpenLibrary.Prism.Views.MapPage"
+              Title="{Binding Title}">
+
+    <StackLayout>
+        <maps:Map x:Name="MyMap" MapType="Street">
+            <x:Arguments>
+                <maps:MapSpan>
+                    <x:Arguments>
+                        <maps:Position>
+                            <x:Arguments>
+                                <x:Double>6.2518400</x:Double>
+                                <x:Double>-75.5635900</x:Double>
+                            </x:Arguments>
+                        </maps:Position>
+                        <x:Double>0.10</x:Double>
+                        <x:Double>0.10</x:Double>
+                    </x:Arguments>
+                </maps:MapSpan>
+            </x:Arguments>
+            <maps:Map.Pins>
+                <maps:Pin Label="ITM Fraternidad"
+                       Address="CLL 54A"
+                       Type="Place">
+                    <maps:Pin.Position>
+                        <maps:Position>
+                            <x:Arguments>
+                                <x:Double>6.245432</x:Double>
+                                <x:Double>-75.551460</x:Double>
+                            </x:Arguments>
+                        </maps:Position>
+                    </maps:Pin.Position>
+                </maps:Pin>
+                <maps:Pin Label="ITM Fraternidad"
+                       Address="CLL 54A"
+                       Type="Place">
+                    <maps:Pin.Position>
+                        <maps:Position>
+                            <x:Arguments>
+                                <x:Double>6.543432</x:Double>
+                                <x:Double>-75.551460</x:Double>
+                            </x:Arguments>
+                        </maps:Position>
+                    </maps:Pin.Position>
+                </maps:Pin>
+            </maps:Map.Pins>
+        </maps:Map>
+        <StackLayout Padding="5">
+            <Button BackgroundColor="Green"
+                    CornerRadius="20"
+                    HeightRequest="40"
+                    Margin="10,0"
+                    Text="Start Trip"
+                    TextColor="White"/>
+        </StackLayout>
+    </StackLayout>
+
 </ContentPage>

@@ -565,6 +565,15 @@ namespace OpenLibrary.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Map.
+        /// </summary>
+        public static string Map {
+            get {
+                return ResourceManager.GetString("Map", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Modify User.
         /// </summary>
         public static string ModifyUser {

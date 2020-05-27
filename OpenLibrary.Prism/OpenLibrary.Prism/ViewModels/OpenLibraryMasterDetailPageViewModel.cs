@@ -112,6 +112,12 @@ namespace OpenLibrary.Prism.ViewModels
                     Title = Languages.MyFavorite,
                     IsLoginRequired = true
                 },
+                   new Menu
+                {
+                    Icon = "Star",
+                    PageName = "MapPage",
+                    Title = Languages.Map
+                },
                 new Menu
                 {
                     Icon = "login",

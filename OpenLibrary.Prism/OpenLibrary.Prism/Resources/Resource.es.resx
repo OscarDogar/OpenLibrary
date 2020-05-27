@@ -402,4 +402,13 @@
   <data name="More" xml:space="preserve">
     <value>Más</value>
   </data>
+  <data name="Alert" xml:space="preserve">
+    <value>Aviso:</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>¿Estás seguro de eliminar esto?</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Rechazar</value>
+  </data>
 </root>

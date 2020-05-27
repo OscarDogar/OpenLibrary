@@ -54,6 +54,7 @@ namespace OpenLibrary.Prism
             containerRegistry.RegisterForNavigation<MyCommentPage, MyCommentPageViewModel>();
             containerRegistry.RegisterForNavigation<EditReviewPage, EditReviewPageViewModel>();
             containerRegistry.RegisterForNavigation<MyFavoritesPage, MyFavoritesPageViewModel>();
+            containerRegistry.RegisterForNavigation<MapPage, MapPageViewModel>();
         }
     }
 }

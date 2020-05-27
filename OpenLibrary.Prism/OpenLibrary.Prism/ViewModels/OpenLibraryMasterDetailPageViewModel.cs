@@ -114,7 +114,7 @@ namespace OpenLibrary.Prism.ViewModels
                 },
                    new Menu
                 {
-                    Icon = "Star",
+                    Icon = "ic_map",
                     PageName = "MapPage",
                     Title = Languages.Map
                 },

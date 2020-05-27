@@ -44,7 +44,7 @@ namespace OpenLibrary.Prism.ViewModels
 
             ReviewDeleteRequest reviewRequest = new ReviewDeleteRequest
             {
-                User=this.User.ToString(),
+                User=this.User.Id,
                 Document=this.Document.Id,
                 CultureInfo = Languages.Culture
             };

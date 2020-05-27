@@ -8,7 +8,7 @@
              BackgroundColor="{StaticResource ColorBackground}"
              xmlns:i18n="clr-namespace:OpenLibrary.Prism.Helpers"
              Title="{Binding Title}">
-    <AbsoluteLayout>
+    <StackLayout>
     <ScrollView>
     <CollectionView ItemsSource="{Binding Comment}">
         <CollectionView.ItemsLayout>
@@ -48,7 +48,7 @@
                                     <Button Text="{i18n:Translate Edit}" CornerRadius="8" HeightRequest="43" Command="{Binding SelectRevCommand}"></Button>
                             </StackLayout>
                             <StackLayout Grid.Column="3">
-                                    <Button  Text="{i18n:Translate Delete}" CornerRadius="8" HeightRequest="43"></Button>
+                                    <Button  Text="{i18n:Translate Delete}" CornerRadius="8" HeightRequest="43" Command="{Binding DelCommand}"></Button>
                             </StackLayout>
                         </Grid>
                         <StackLayout Margin="10,0" Orientation="Horizontal" Grid.Row="1">
@@ -77,5 +77,5 @@
                 	                   VerticalOptions="Center"
                 	                   ViewBoxWidth="80"
                 	                   ViewBoxHeight="80" />
-    </AbsoluteLayout>
+    </StackLayout>
 </ContentPage>

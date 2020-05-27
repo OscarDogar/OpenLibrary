@@ -33,7 +33,7 @@
             </StackLayout>
                 
             </Grid>
-            <Button VerticalOptions="EndAndExpand" CornerRadius="8" Margin="5" Command="{Binding ValidCommand}" Text="{Binding Type}" Grid.Row="3"></Button>
+            <Button VerticalOptions="EndAndExpand" CornerRadius="8" Margin="5" Command="{Binding RegisterCommand}" Text="{Binding Type}" Grid.Row="3"></Button>
         </StackLayout>
         
     </ScrollView>

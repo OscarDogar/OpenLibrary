@@ -115,7 +115,7 @@ namespace OpenLibrary.Prism.ViewModels
 
             ReviewRequest reviewRequest = new ReviewRequest
             {
-                User = Review.User.ToString(),
+                User = Review.User.Id,
                 Document = Review.Document.Id,
                 Comment = Review.Comment,
                 Rating = Review.Rating,

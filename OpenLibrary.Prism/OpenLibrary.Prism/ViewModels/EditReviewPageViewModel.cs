@@ -28,9 +28,13 @@ namespace OpenLibrary.Prism.ViewModels
             if (string.IsNullOrEmpty(Settings.ReviewS) || Settings.ReviewS.Equals("reviewS"))
             {
                 Review = new ReviewResponse();
+                UserResponse user = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
+                SearchResponse doc = JsonConvert.DeserializeObject<SearchResponse>(Settings.DocDetail);
                 Type = Languages.Create;
                 Title = Languages.MakeAComment;
-              
+                _revi.User= user;
+                _revi.Document = doc;
+
             }
             else
             {
@@ -67,14 +71,7 @@ namespace OpenLibrary.Prism.ViewModels
             get => _type;
             set => SetProperty(ref _type, value);
         }
-        private async void ReviewAsync()
-        {
-            bool isValid = await ValidateDataAsync();
-            if (!isValid)
-            {
-                return;
-            }
-        }
+
             private async Task<bool> ValidateDataAsync()
         {
             if (string.IsNullOrEmpty(Review.Comment))

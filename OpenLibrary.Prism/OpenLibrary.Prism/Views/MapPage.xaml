@@ -14,8 +14,8 @@
                     <x:Arguments>
                         <maps:Position>
                             <x:Arguments>
-                                <x:Double>6.2518400</x:Double>
-                                <x:Double>-75.5635900</x:Double>
+                                <x:Double>6.2820000</x:Double>
+                                <x:Double>-75.5735900</x:Double>
                             </x:Arguments>
                         </maps:Position>
                         <x:Double>0.10</x:Double>
@@ -25,7 +25,7 @@
             </x:Arguments>
             <maps:Map.Pins>
                 <maps:Pin Label="ITM Fraternidad"
-                       Address="CLL 54A"
+                       Address="CLL 54A #30-1"
                        Type="Place">
                     <maps:Pin.Position>
                         <maps:Position>
@@ -36,28 +36,44 @@
                         </maps:Position>
                     </maps:Pin.Position>
                 </maps:Pin>
-                <maps:Pin Label="ITM Fraternidad"
-                       Address="CLL 54A"
+                <maps:Pin Label="ITM Robledo"
+                       Address="Transversal 73"
                        Type="Place">
                     <maps:Pin.Position>
                         <maps:Position>
                             <x:Arguments>
-                                <x:Double>6.543432</x:Double>
-                                <x:Double>-75.551460</x:Double>
+                                <x:Double>6.273447</x:Double>
+                                <x:Double>-75.588601</x:Double>
+                            </x:Arguments>
+                        </maps:Position>
+                    </maps:Pin.Position>
+                </maps:Pin>
+                <maps:Pin Label="ITM Castilla"
+                       Address="Cra 65 #98A-75"
+                       Type="Place">
+                    <maps:Pin.Position>
+                        <maps:Position>
+                            <x:Arguments>
+                                <x:Double>6.293824</x:Double>
+                                <x:Double>-75.569311</x:Double>
+                            </x:Arguments>
+                        </maps:Position>
+                    </maps:Pin.Position>
+                </maps:Pin>
+                <maps:Pin Label="ITM Floresta"
+                       Address="CLL 47 #85-20"
+                       Type="Place">
+                    <maps:Pin.Position>
+                        <maps:Position>
+                            <x:Arguments>
+                                <x:Double>6.257570</x:Double>
+                                <x:Double>-75.602064</x:Double>
                             </x:Arguments>
                         </maps:Position>
                     </maps:Pin.Position>
                 </maps:Pin>
             </maps:Map.Pins>
         </maps:Map>
-        <StackLayout Padding="5">
-            <Button BackgroundColor="Green"
-                    CornerRadius="20"
-                    HeightRequest="40"
-                    Margin="10,0"
-                    Text="Start Trip"
-                    TextColor="White"/>
-        </StackLayout>
     </StackLayout>
 
 </ContentPage>

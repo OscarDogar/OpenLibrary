@@ -30,7 +30,10 @@ namespace OpenLibrary.Prism.ViewModels
 
         private async void CreateDetailAsync()
         {
-
+            var action = await App.Current.MainPage.DisplayAlert(Languages.Alert, Languages.Question, Languages.Accept, Languages.Reject);
+            if (action)
+            {
+            
             string url = App.Current.Resources["UrlAPI"].ToString();
             bool connection = await _apiService.CheckConnectionAsync(url);
             if (!connection)
@@ -62,8 +65,8 @@ namespace OpenLibrary.Prism.ViewModels
             await App.Current.MainPage.DisplayAlert(Languages.Ok, response.Message, Languages.Accept);
 
             await _navigationService.NavigateAsync("/OpenLibraryMasterDetailPage/NavigationPage/MyCommentPage");
-
         }
+    }
 
         private async void SelectDocAsync()
         {

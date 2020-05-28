@@ -26,43 +26,55 @@
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
- 
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0" Margin="8,8">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="50"/>
                             </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="*"/>
+                                    <Grid.ColumnDefinitions>
+                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
-                            <StackLayout Orientation="Horizontal" Grid.Column="0">
-                                <Label Text="{i18n:Translate Rating}"
+    
+                            <StackLayout Grid.Column="1">
+                                        <Button ImageSource="ic_edit" CornerRadius="8" WidthRequest="43" HeightRequest="43" Command="{Binding SelectRevCommand}"></Button>
+                            </StackLayout>
+                            <StackLayout Grid.Column="2">
+                                        <Button   ImageSource="ic_delete" CornerRadius="8" WidthRequest="43" HeightRequest="43" Command="{Binding DelCommand}"></Button>
+                            </StackLayout>
+                        </Grid>
+                                <StackLayout Orientation="Horizontal" Grid.Row="1">
+                                    <Label Text="{i18n:Translate Title}"
                                        LineBreakMode="TailTruncation"
                                        FontAttributes="Bold"
                                        VerticalOptions="End" />
 
-                                <Label Text="{Binding Rating}"
+                                    <Label Text="{Binding Document.Title}"
+                                       LineBreakMode="TailTruncation"
+                                       FontAttributes="Italic" 
+                                       VerticalOptions="End"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" Grid.Row="2">
+                                    <Label Text="{i18n:Translate Rating}"
+                                       LineBreakMode="TailTruncation"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="End" />
+
+                                    <Label Text="{Binding Rating}"
                                        LineBreakMode="TailTruncation"
                                        FontAttributes="Italic" 
                                        VerticalOptions="End" />
-                            </StackLayout>
-                            <StackLayout Grid.Column="2">
-                                        <Button ImageSource="ic_edit" CornerRadius="8" WidthRequest="43" HeightRequest="43" Command="{Binding SelectRevCommand}"></Button>
-                            </StackLayout>
-                            <StackLayout Grid.Column="3">
-                                        <Button   ImageSource="ic_delete" CornerRadius="8" WidthRequest="43" HeightRequest="43" Command="{Binding DelCommand}"></Button>
-                            </StackLayout>
-                        </Grid>
-                        <StackLayout Margin="10,0" Orientation="Horizontal" Grid.Row="1">
+                                </StackLayout>
+                                <StackLayout Margin="10,0" Orientation="Horizontal" Grid.Row="3">
                             <Label Text="{i18n:Translate Comment}"
                                        LineBreakMode="TailTruncation"
                                        FontAttributes="Bold"
                                        VerticalOptions="End" />
                         </StackLayout>
-                        <StackLayout Margin="10,0" Grid.Row="2">
+                        <StackLayout Margin="10,0" Grid.Row="4">
                             <Editor Text="{Binding Comment}"
                             IsReadOnly="true" />
                         </StackLayout>

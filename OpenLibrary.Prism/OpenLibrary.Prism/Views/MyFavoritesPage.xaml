@@ -9,7 +9,10 @@
              x:Class="OpenLibrary.Prism.Views.MyFavoritesPage" 
              Title="{Binding Title}">
     <AbsoluteLayout>
-    <CollectionView ItemsSource="{Binding Favorite}">
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
+            <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="30"  Text="{i18n:Translate NoFavorites}" IsVisible="{Binding IsVisible}"></Label>
+        </StackLayout>
+            <CollectionView ItemsSource="{Binding Favorite}">
         <CollectionView.ItemsLayout>
             <GridItemsLayout Orientation="Vertical"/>
         </CollectionView.ItemsLayout>
@@ -23,6 +26,7 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
+                       
                     <Image Grid.Column="0"
                                    Source="BigDocument"
                                    WidthRequest="100"/>

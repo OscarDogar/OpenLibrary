@@ -22,7 +22,8 @@ namespace OpenLibrary.Prism.ViewModels
             INavigationService navigationService,
             IApiService apiService) : base(navigationService)
         {
-            Title = "Edit Comment";
+
+            Title = Languages.EditComment;
             _apiService = apiService;
             _navigationService = navigationService;
             if (string.IsNullOrEmpty(Settings.ReviewS) || Settings.ReviewS.Equals("reviewS"))
@@ -40,10 +41,8 @@ namespace OpenLibrary.Prism.ViewModels
             {
                 Review = JsonConvert.DeserializeObject<ReviewResponse>(Settings.ReviewS);
                 Type = Languages.Update;
-                Title = Languages.EditComment;
                 
             }
-
         }
 
         public DelegateCommand RegisterCommand => _registerCommand ?? (_registerCommand = new DelegateCommand(CreateDetailAsync));
@@ -132,13 +131,9 @@ namespace OpenLibrary.Prism.ViewModels
             }
 
             await App.Current.MainPage.DisplayAlert(Languages.Ok, response.Message, Languages.Accept);
-
-
-            IsRunning = false;
-            IsEnabled = true;
-
+            Settings.ReviewS = null;
             await _navigationService.NavigateAsync("/OpenLibraryMasterDetailPage/NavigationPage/MyCommentPage");
 
         }
     }
-    }
+}

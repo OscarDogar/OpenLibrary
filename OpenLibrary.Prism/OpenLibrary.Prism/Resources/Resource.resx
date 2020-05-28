@@ -414,4 +414,13 @@
   <data name="Map" xml:space="preserve">
     <value>Map</value>
   </data>
+  <data name="NoFavorites" xml:space="preserve">
+    <value>You do not have any favorites</value>
+  </data>
+  <data name="NoReviews" xml:space="preserve">
+    <value>You do not have any reviews</value>
+  </data>
+  <data name="NoUploadedDocuments" xml:space="preserve">
+    <value>You do not have any uploaded documents</value>
+  </data>
 </root>

@@ -17,6 +17,7 @@ namespace OpenLibrary.Prism.ViewModels
         private readonly IApiService _apiService;
         private bool _isRunning;
         private bool _isEnabled;
+        private bool _isVisible;
         private List<ReviewItmViewModel> _com;
         private readonly INavigationService _navigationService;
         public MyCommentPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
@@ -25,7 +26,7 @@ namespace OpenLibrary.Prism.ViewModels
             _apiService = apiService;
             Title = Languages.Comments;
             Settings.ReviewS = string.Empty;
-            LoadDocumentsAsync();
+            LoadCommentsAsync();
         }
         public List<ReviewItmViewModel> Comment
         {
@@ -33,6 +34,11 @@ namespace OpenLibrary.Prism.ViewModels
             set => SetProperty(ref _com, value);
         }
 
+        public bool IsVisible
+        {
+            get => _isVisible;
+            set => SetProperty(ref _isVisible, value);
+        }
         public bool IsRunning
         {
             get => _isRunning;
@@ -44,10 +50,11 @@ namespace OpenLibrary.Prism.ViewModels
             get => _isEnabled;
             set => SetProperty(ref _isEnabled, value);
         }
-        private async void LoadDocumentsAsync()
+        private async void LoadCommentsAsync()
         {
             try
             {
+                IsVisible = false;
                 IsRunning = true;
                 IsEnabled = false;
                 string url = App.Current.Resources["UrlAPI"].ToString();
@@ -87,6 +94,14 @@ namespace OpenLibrary.Prism.ViewModels
                     Document = t.Document
                 }).ToList(); ;
 
+                if (Comment.Count == 0)
+                {
+                    IsVisible = true;
+                }
+                else
+                {
+                    IsVisible = false;
+                }
                 IsRunning = false;
                 IsEnabled = true;
             }

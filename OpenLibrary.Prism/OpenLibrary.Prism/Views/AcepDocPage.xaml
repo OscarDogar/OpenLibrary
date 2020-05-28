@@ -9,7 +9,10 @@
              x:Class="OpenLibrary.Prism.Views.AcepDocPage"
              Title="{Binding Title}">
     <AbsoluteLayout>
-    <CollectionView ItemsSource="{Binding UserDoc}">
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
+            <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="30"  Text="{i18n:Translate NoUploadedDocuments}" IsVisible="{Binding IsVisible}"></Label>
+        </StackLayout>
+        <CollectionView ItemsSource="{Binding UserDoc}">
         <CollectionView.ItemsLayout>
             <GridItemsLayout Orientation="Vertical"/>
         </CollectionView.ItemsLayout>

@@ -96,13 +96,15 @@
                         CornerRadius="10"
                         Command="{Binding SearchCommand}"></Button>
             </Grid>
+            
             <CollectionView ItemsSource="{Binding UserDoc}">
                 <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical"/>
+                    <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="10"/>
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
+
+                        <Grid BackgroundColor="{StaticResource ColorBack}">
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer  Command="{Binding SelectDocCommand}"/>
                             </Grid.GestureRecognizers>
@@ -164,6 +166,7 @@
                                 </StackLayout>
                             </StackLayout>
                         </Grid>
+                       
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

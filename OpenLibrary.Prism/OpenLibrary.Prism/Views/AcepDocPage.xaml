@@ -8,17 +8,17 @@
              BackgroundColor="{StaticResource ColorBackground}"
              x:Class="OpenLibrary.Prism.Views.AcepDocPage"
              Title="{Binding Title}">
-    <AbsoluteLayout>
+    <StackLayout>
         <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
             <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="30"  Text="{i18n:Translate NoUploadedDocuments}" IsVisible="{Binding IsVisible}"></Label>
         </StackLayout>
         <CollectionView ItemsSource="{Binding UserDoc}">
         <CollectionView.ItemsLayout>
-            <GridItemsLayout Orientation="Vertical"/>
+                <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="10"/>
         </CollectionView.ItemsLayout>
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Grid>
+                    <Grid BackgroundColor="{StaticResource ColorBack}">
                     <Grid.GestureRecognizers>
                         <TapGestureRecognizer  Command="{Binding SelectDocCommand}"/>
                     </Grid.GestureRecognizers>
@@ -94,5 +94,5 @@
                 	                   VerticalOptions="Center"
                 	                   ViewBoxWidth="80"
                 	                   ViewBoxHeight="80" />
-    </AbsoluteLayout>
+    </StackLayout>
 </ContentPage>

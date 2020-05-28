@@ -10,11 +10,12 @@
 
     <CollectionView ItemsSource="{Binding Reviews}">
         <CollectionView.ItemsLayout>
-            <GridItemsLayout Orientation="Vertical"/>
+            <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="10"/>
         </CollectionView.ItemsLayout>
         <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Grid>
+            <DataTemplate >
+                <Frame CornerRadius="10" HasShadow="True" BackgroundColor="{StaticResource ColorBack}" Padding="5">
+                <Grid Padding="5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
@@ -42,6 +43,7 @@
         IsReadOnly="true" />
                     </StackLayout>
                 </Grid>
+                </Frame>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>

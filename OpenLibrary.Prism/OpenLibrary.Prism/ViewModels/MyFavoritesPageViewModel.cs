@@ -17,6 +17,7 @@ namespace OpenLibrary.Prism.ViewModels
         private readonly IApiService _apiService;
         private bool _isRunning;
         private bool _isEnabled;
+        private bool _isVisible;
         private List<DocumentItemViewModel> _favor;
         private readonly INavigationService _navigationService;
         public MyFavoritesPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
@@ -24,6 +25,7 @@ namespace OpenLibrary.Prism.ViewModels
             _navigationService = navigationService;
             _apiService = apiService;
             Title = Languages.MyFavorite;
+            IsVisible = false;
             LoadDocumentsAsync();
         }
 
@@ -31,6 +33,11 @@ namespace OpenLibrary.Prism.ViewModels
         {
             get => _favor;
             set => SetProperty(ref _favor, value);
+        }
+        public bool IsVisible
+        {
+            get => _isVisible;
+            set => SetProperty(ref _isVisible, value);
         }
 
         public bool IsRunning
@@ -48,6 +55,7 @@ namespace OpenLibrary.Prism.ViewModels
         {
             try
             {
+                IsVisible = false;
                 IsRunning = true;
                 IsEnabled = false;
                 string url = App.Current.Resources["UrlAPI"].ToString();
@@ -83,11 +91,9 @@ namespace OpenLibrary.Prism.ViewModels
                 }
 
                 List<SearchResponse> doc = (List<SearchResponse>)response2.Result;
-
-
+                
                 UserResponse User = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
                 List<SearchResponse> list2 = new List<SearchResponse>();
-
                 foreach (ReviewResponse li in userRev)
                 {
                     if (li.Favorite==true && li.User.Id == User.Id)
@@ -119,6 +125,14 @@ namespace OpenLibrary.Prism.ViewModels
                     TypeOfDocument = t.TypeOfDocument,
                     Reviews = t.Reviews
                 }).ToList(); ;
+                if (Favorite.Count == 0)
+                {
+                    IsVisible = true;
+                }
+                else
+                {
+                    IsVisible = false;
+                }
 
                 IsRunning = false;
                 IsEnabled = true;

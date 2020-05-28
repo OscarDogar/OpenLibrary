@@ -4,9 +4,12 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              BackgroundColor="{StaticResource ColorBackground}"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
              x:Class="OpenLibrary.Prism.Views.EditReviewPage"
              xmlns:i18n="clr-namespace:OpenLibrary.Prism.Helpers"
              Title="{Binding Title}">
+    <AbsoluteLayout>
     <ScrollView>
         <StackLayout Margin="5">
             
@@ -27,14 +30,34 @@
                 <Entry Keyboard="Numeric" Text="{Binding Review.Rating}"></Entry>
         </StackLayout>
                 <StackLayout Grid.Row="2">
-                    <Label Text="{i18n:Translate Comment}"></Label>
-                    <Editor Text="{Binding Review.Comment}"
-                            IsReadOnly="false" />
-            </StackLayout>
+
+                        <StackLayout>
+                            <inputLayout:SfTextInputLayout ContainerType="Outlined"
+                                                   OutlineCornerRadius="8"
+                                                   ReserveSpaceForAssistiveLabels="False"
+                                                   ContainerBackgroundColor="{StaticResource ContainerBackgroundColor}"
+                                                   Hint="{i18n:Translate Comment}">
+                                <Editor Text="{Binding Review.Comment}"
+                                                 IsReadOnly="false" />
+                            </inputLayout:SfTextInputLayout>
+                        </StackLayout>
+                    </StackLayout>
                 
             </Grid>
             <Button VerticalOptions="EndAndExpand" CornerRadius="8" Margin="5" Command="{Binding RegisterCommand}" Text="{Binding Type}" Grid.Row="3"></Button>
         </StackLayout>
         
     </ScrollView>
+        <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
+                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                	                   AbsoluteLayout.LayoutFlags="All"
+                	                   BackgroundColor="{StaticResource ColorPrimary}"
+                	                   HorizontalOptions="Center"
+                	                   TextColor="{StaticResource ColorFontInverse}"
+                	                   IsBusy="{Binding IsRunning}"
+                	                   Title="{i18n:Translate Loading}"
+                	                   VerticalOptions="Center"
+                	                   ViewBoxWidth="80"
+                	                   ViewBoxHeight="80" />
+    </AbsoluteLayout>
 </ContentPage>

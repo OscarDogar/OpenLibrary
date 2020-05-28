@@ -646,6 +646,33 @@ namespace OpenLibrary.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You do not have any favorites.
+        /// </summary>
+        public static string NoFavorites {
+            get {
+                return ResourceManager.GetString("NoFavorites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You do not have any reviews.
+        /// </summary>
+        public static string NoReviews {
+            get {
+                return ResourceManager.GetString("NoReviews", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You do not have any uploaded documents.
+        /// </summary>
+        public static string NoUploadedDocuments {
+            get {
+                return ResourceManager.GetString("NoUploadedDocuments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ok.
         /// </summary>
         public static string Ok {

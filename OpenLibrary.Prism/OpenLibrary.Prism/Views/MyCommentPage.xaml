@@ -8,6 +8,10 @@
              BackgroundColor="{StaticResource ColorBackground}"
              xmlns:i18n="clr-namespace:OpenLibrary.Prism.Helpers"
              Title="{Binding Title}">
+    <AbsoluteLayout>
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
+            <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="30"  Text="{i18n:Translate NoReviews}" IsVisible="{Binding IsVisible}"></Label>
+        </StackLayout>
     <StackLayout>
     <ScrollView>
     <CollectionView ItemsSource="{Binding Comment}">
@@ -66,6 +70,8 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
         </ScrollView>
+       
+    </StackLayout>
         <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
                                        AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
                 	                   AbsoluteLayout.LayoutFlags="All"
@@ -77,5 +83,5 @@
                 	                   VerticalOptions="Center"
                 	                   ViewBoxWidth="80"
                 	                   ViewBoxHeight="80" />
-    </StackLayout>
+    </AbsoluteLayout>
 </ContentPage>

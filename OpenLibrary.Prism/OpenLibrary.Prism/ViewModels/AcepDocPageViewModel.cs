@@ -17,6 +17,7 @@ namespace OpenLibrary.Prism.ViewModels
         private readonly IApiService _apiService;
         private bool _isRunning;
         private bool _isEnabled;
+        private bool _isVisible;
         private List<SearchResponse> _Doc;
         private readonly INavigationService _navigationService;
         public AcepDocPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
@@ -32,6 +33,11 @@ namespace OpenLibrary.Prism.ViewModels
             set => SetProperty(ref _Doc, value);
         }
 
+        public bool IsVisible
+        {
+            get => _isVisible;
+            set => SetProperty(ref _isVisible, value);
+        }
         public bool IsRunning
         {
             get => _isRunning;
@@ -47,6 +53,7 @@ namespace OpenLibrary.Prism.ViewModels
         {
             try
             {
+                IsVisible = false;
                 IsRunning = true;
                 IsEnabled = false;
                 string url = App.Current.Resources["UrlAPI"].ToString();
@@ -76,7 +83,14 @@ namespace OpenLibrary.Prism.ViewModels
                         list.Add(li);
                     }
                 }
-
+                if (list.Count == 0)
+                {
+                    IsVisible = true;
+                }
+                else
+                {
+                    IsVisible = false;
+                }
                 UserDoc = list;
 
             }

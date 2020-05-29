@@ -104,7 +104,7 @@ namespace OpenLibrary.Prism.ViewModels
 
             User.CultureInfo = Languages.Culture;
 
-            Response response = await _apiService.RegisterUserAsync(url, "/api", "/Account", User);
+            Response response = await _apiService.RegisterUserAsync(url, "/api", "/Account/PostUser", User);
             IsRunning = false;
             IsEnabled = true;
 

@@ -49,6 +49,7 @@ namespace OpenLibrary.Web.Controllers.API
         }
 
         [HttpPost]
+        [Route("PostUser")]
         public async Task<IActionResult> PostUser([FromBody] UserRequest request)
         {
             if (!ModelState.IsValid)
@@ -90,7 +91,8 @@ namespace OpenLibrary.Web.Controllers.API
                 PhoneNumber = request.Phone,
                 UserName = request.Email,
                 PicturePath = picturePath,
-                UserType = UserType.User
+                UserType = UserType.User,
+                LoginType = LoginType.OpenLibrary
             };
 
             IdentityResult result = await _userHelper.AddUserAsync(user, request.Password);

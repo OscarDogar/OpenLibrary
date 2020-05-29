@@ -50,7 +50,8 @@
                                                    ReserveSpaceForAssistiveLabels="False"
                                                    Hint="{i18n:Translate FirstName}">
                             <Entry Placeholder="{i18n:Translate FirstNamePlaceHolder}"
-                               Text="{Binding User.FirstName}"/>
+                                   Text="{Binding User.FirstName}"
+                                   IsEnabled="{Binding IsOpenUser}"/>
                         </inputLayout:SfTextInputLayout>
                     </StackLayout>
 
@@ -61,6 +62,7 @@
                                                    ReserveSpaceForAssistiveLabels="False"
                                                    Hint="{i18n:Translate LastName}">
                             <Entry Placeholder="{i18n:Translate LastNamePlaceHolder}"
+                                   IsEnabled="{Binding IsOpenUser}"
                                    Text="{Binding User.LastName}"/>
                         </inputLayout:SfTextInputLayout>
                     </StackLayout>

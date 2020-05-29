@@ -25,6 +25,10 @@ namespace OpenLibrary.Web.Data.Entities
         [MaxLength(100, ErrorMessage = "The {0} field can not have more than {1} characters.")]
         public string Address { get; set; }
 
+        [Display(Name = "Login Type")]
+        public LoginType LoginType { get; set; }
+
+
         [Display(Name = "Picture")]
         public string PicturePath { get; set; }
 

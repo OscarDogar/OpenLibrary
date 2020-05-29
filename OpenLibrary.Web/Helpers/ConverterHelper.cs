@@ -134,7 +134,8 @@ namespace OpenLibrary.Web.Helpers
                 UserType = userEntity.UserType,
                 PhoneNumber = userEntity.PhoneNumber,
                 Id = userEntity.Id,
-                Email = userEntity.Email
+                Email = userEntity.Email,
+                LoginType = userEntity.LoginType
             };
         }
 

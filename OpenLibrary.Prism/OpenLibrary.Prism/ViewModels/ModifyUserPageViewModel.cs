@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using OpenLibrary.Common.Enums;
 using OpenLibrary.Common.Helpers;
 using OpenLibrary.Common.Models;
 using OpenLibrary.Common.Services;
@@ -27,6 +28,7 @@ namespace OpenLibrary.Prism.ViewModels
         private ImageSource _image;
         private UserResponse _user;
         private MediaFile _file;
+        private bool _isOpenUser;
         private DelegateCommand _changePasswordCommand;
         private DelegateCommand _changeImageCommand;
         private DelegateCommand _saveCommand;
@@ -41,6 +43,7 @@ namespace OpenLibrary.Prism.ViewModels
             IsEnabled = true;
             _isRunning = false;
             User = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
+            IsOpenUser = User.LoginType == LoginType.OpenLibrary;
             Image = User.PictureFullPath;
         }
 
@@ -50,6 +53,11 @@ namespace OpenLibrary.Prism.ViewModels
 
         public DelegateCommand ChangePasswordCommand => _changePasswordCommand ?? (_changePasswordCommand = new DelegateCommand(ChangePasswordAsync));
 
+        public bool IsOpenUser
+        {
+            get => _isOpenUser;
+            set => SetProperty(ref _isOpenUser, value);
+        }
 
         public ImageSource Image
         {
@@ -76,6 +84,11 @@ namespace OpenLibrary.Prism.ViewModels
         }
         private async void ChangePasswordAsync()
         {
+            if (!IsOpenUser)
+            {
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ChangePhotoNoOpenUser, Languages.Accept);
+                return;
+            }
             await _navigationService.NavigateAsync(nameof(ChangePasswordPage));
         }
 
@@ -167,6 +180,12 @@ namespace OpenLibrary.Prism.ViewModels
 
         private async void ChangeImageAsync()
         {
+            if (!IsOpenUser)
+            {
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ChangePhotoNoOpenUser, Languages.Accept);
+                return;
+            }
+
             await CrossMedia.Current.Initialize();
 
             string source = await Application.Current.MainPage.DisplayActionSheet(

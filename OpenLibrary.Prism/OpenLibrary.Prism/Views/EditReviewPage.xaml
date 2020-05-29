@@ -4,64 +4,95 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              BackgroundColor="{StaticResource ColorBackground}"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
              x:Class="OpenLibrary.Prism.Views.EditReviewPage"
              xmlns:i18n="clr-namespace:OpenLibrary.Prism.Helpers"
              Title="{Binding Title}">
     <AbsoluteLayout>
-    <ScrollView>
-        <StackLayout Margin="5">
-            
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
-                    <StackLayout Orientation="Horizontal" Grid.Row="0">
-                        <Label Text="{i18n:Translate Title}"
+        <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
+                     AbsoluteLayout.LayoutFlags="All"
+                     Padding="5">
+        <ScrollView>
+                <StackLayout Margin="5">
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <StackLayout Orientation="Horizontal" Grid.Row="0">
+                            <Label Text="{i18n:Translate Title}"
                                        LineBreakMode="TailTruncation"
                                        FontAttributes="Bold"
                                        VerticalOptions="End" />
 
-                        <Label Text="{Binding Review.Document.Title}"
+                            <Label Text="{Binding Review.Document.Title}"
                                        LineBreakMode="TailTruncation"
                                        FontAttributes="Italic" 
                                        VerticalOptions="End"/>
-                    </StackLayout>
-                    <StackLayout Grid.Row="1">
-                    <Label Text="{i18n:Translate Favorite}"></Label>
-                <CheckBox IsChecked="{Binding Review.Favorite}" ></CheckBox>
-            
-        </StackLayout>
-                <StackLayout Grid.Row="2">
-                    <Label Text="{i18n:Translate Rating}"></Label>
-                <Entry Keyboard="Numeric" Text="{Binding Review.Rating}"></Entry>
-        </StackLayout>
-                <StackLayout Grid.Row="3">
+                        </StackLayout>
+                        <StackLayout Grid.Row="1">
+                            <Label Text="{i18n:Translate Favorite}"></Label>
+                            <CheckBox IsChecked="{Binding Review.Favorite}" ></CheckBox>
 
-                        <StackLayout>
-                            <inputLayout:SfTextInputLayout ContainerType="Outlined"
+                        </StackLayout>
+                        <StackLayout Grid.Row="2">
+                            <Label Text="{i18n:Translate Rating}"></Label>
+                            <rating:SfRating HorizontalOptions="Center" 
+                             Margin="0,5"
+                             Precision="Standard"
+                             Value="{Binding Review.Rating}">
+                                <rating:SfRating.RatingSettings>
+                                    <rating:SfRatingSettings RatedFill="Red" UnRatedFill="Gray" UnRatedStroke="Black" RatedStroke="Black"/>
+                                </rating:SfRating.RatingSettings>
+                            </rating:SfRating>
+                        </StackLayout>
+                        <StackLayout Grid.Row="3">
+
+                            <StackLayout>
+                                <inputLayout:SfTextInputLayout ContainerType="Outlined"
                                                    OutlineCornerRadius="8"
                                                    ReserveSpaceForAssistiveLabels="False"
                                                    ContainerBackgroundColor="{StaticResource ContainerBackgroundColor}"
                                                    Hint="{i18n:Translate Comment}">
-                                <Editor Text="{Binding Review.Comment}"
+                                    <Editor Text="{Binding Review.Comment}"
                                                  IsReadOnly="false" />
-                            </inputLayout:SfTextInputLayout>
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
                         </StackLayout>
-                    </StackLayout>
-                
-            </Grid>
-            <Button VerticalOptions="EndAndExpand" CornerRadius="8" Margin="5" Command="{Binding RegisterCommand}" Text="{Binding Type}" Grid.Row="3"></Button>
+                        <StackLayout Grid.Row="4">
+
+                            <Button VerticalOptions="EndAndExpand"  CornerRadius="8" Margin="5" Command="{Binding RegisterCommand}" Text="{Binding Type}"></Button>
+
+                        </StackLayout>
+                    </Grid>
+
+
+
+
+                </StackLayout>
+            </ScrollView>
+
         </StackLayout>
-        
-    </ScrollView>
-        <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
-                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+    <Grid AbsoluteLayout.LayoutBounds="1,1,1,1"
+                  AbsoluteLayout.LayoutFlags="All"
+              IsVisible="{Binding IsRunning}" 
+              BackgroundColor="{StaticResource ColorPrimary}"
+              >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <busyindicator:SfBusyIndicator  Grid.Column="0" Grid.Row="0" AnimationType="Cupertino" 
+                                       AbsoluteLayout.LayoutBounds="1,1,1,1"
                 	                   AbsoluteLayout.LayoutFlags="All"
                 	                   BackgroundColor="{StaticResource ColorPrimary}"
                 	                   HorizontalOptions="Center"
@@ -71,5 +102,6 @@
                 	                   VerticalOptions="Center"
                 	                   ViewBoxWidth="80"
                 	                   ViewBoxHeight="80" />
+    </Grid>
     </AbsoluteLayout>
 </ContentPage>

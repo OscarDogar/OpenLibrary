@@ -12,31 +12,33 @@
         <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
                      AbsoluteLayout.LayoutFlags="All" 
                      Padding="5">
-            <Grid >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0"
-                           Grid.Column="0">
+            <StackLayout>
+                <Grid >
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="39"/>
-                        <RowDefinition Height="39"/>
-                        <RowDefinition Height="39"/>
-                        <RowDefinition Height="39"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
+                    <Grid Grid.Row="0"
+                           Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="39"/>
+                            <RowDefinition Height="39"/>
+                            <RowDefinition Height="39"/>
+                            <RowDefinition Height="39"/>
+                        </Grid.RowDefinitions>
 
 
-                    <Picker Grid.Row="0"
+                        <Picker Grid.Row="0"
                             Grid.Column="0"
                             Margin="5,0,5,0"
                             BackgroundColor="Azure"
@@ -46,7 +48,7 @@
                             Title="{i18n:Translate SelectType}"></Picker>
 
 
-                    <Picker Grid.Row="1"
+                        <Picker Grid.Row="1"
                             Grid.Column="0"
                             Margin="5,0,5,0"
                             BackgroundColor="Azure"
@@ -56,7 +58,7 @@
                             Title="{i18n:Translate SelectGender}"></Picker>
 
 
-                    <Picker Grid.Row="2"
+                        <Picker Grid.Row="2"
                             Grid.Column="0"
                             Margin="5,0,5,0"
                             BackgroundColor="Azure"
@@ -65,38 +67,38 @@
                             SelectedItem="{Binding Language}"
                             Title="{i18n:Translate SelectLanguage}"></Picker>
 
-                    <inputLayout:SfTextInputLayout Grid.Row="3"
+                        <inputLayout:SfTextInputLayout Grid.Row="3"
                                                    Grid.Column="0"  
                                                    ContainerType="Outlined"
                                                    OutlineCornerRadius="8"
                                                    Hint="{i18n:Translate Author}"
                                                    Margin="5,0,5,0"
                                                    ContainerBackgroundColor="Azure">
-                        <Entry 
+                            <Entry 
                                    Placeholder="{i18n:Translate WriteAutor}"
                                    Text="{Binding Author}"/>
-                    </inputLayout:SfTextInputLayout>
-                    <inputLayout:SfTextInputLayout Grid.Row="4"
+                        </inputLayout:SfTextInputLayout>
+                        <inputLayout:SfTextInputLayout Grid.Row="4"
                                                    Grid.Column="0"  
                                                    ContainerType="Outlined"
                                                    OutlineCornerRadius="8"
                                                    Hint="{i18n:Translate Title}"
                                                    Margin="5,15,5,0"
                                                    ContainerBackgroundColor="Azure">
-                    <Entry 
+                            <Entry 
                                    Placeholder="{i18n:Translate WriteTitle}"
                                    Text="{Binding TitleOfDocument}"/>
-                    </inputLayout:SfTextInputLayout>
-                </Grid>
-                <Button Grid.Row="0"
+                        </inputLayout:SfTextInputLayout>
+                    </Grid>
+                    <Button Grid.Row="0"
                         Grid.Column="1"
                         Text="{i18n:Translate Search}"
                         Margin="2,90,10,90"
                         IsEnabled="{Binding IsEnabled}"
                         CornerRadius="10"
                         Command="{Binding SearchCommand}"></Button>
-            </Grid>
-            
+                </Grid>
+            </StackLayout>
             <CollectionView ItemsSource="{Binding UserDoc}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="10"/>
@@ -171,16 +173,28 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </StackLayout>
-        <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
-                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+        <Grid AbsoluteLayout.LayoutBounds="1,1,1,1"
+                  AbsoluteLayout.LayoutFlags="All"
+              IsVisible="{Binding IsRunning}" 
+              BackgroundColor="{StaticResource ColorPrimary}"
+              >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <busyindicator:SfBusyIndicator  Grid.Column="0" Grid.Row="0" AnimationType="Cupertino" 
+                                       AbsoluteLayout.LayoutBounds="1,1,1,1"
                 	                   AbsoluteLayout.LayoutFlags="All"
                 	                   BackgroundColor="{StaticResource ColorPrimary}"
                 	                   HorizontalOptions="Center"
-                	                   TextColor="White"
+                	                   TextColor="{StaticResource ColorFontInverse}"
                 	                   IsBusy="{Binding IsRunning}"
                 	                   Title="{i18n:Translate Loading}"
                 	                   VerticalOptions="Center"
                 	                   ViewBoxWidth="80"
                 	                   ViewBoxHeight="80" />
+        </Grid>
     </AbsoluteLayout>
 </ContentPage>

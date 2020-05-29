@@ -4,15 +4,18 @@
              xmlns:prism="http://prismlibrary.com"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="OpenLibrary.Prism.Views.MyCommentPage"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              BackgroundColor="{StaticResource ColorBackground}"
              xmlns:i18n="clr-namespace:OpenLibrary.Prism.Helpers"
              Title="{Binding Title}">
-    <StackLayout>
+    <AbsoluteLayout>
         <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
             <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="30"  Text="{i18n:Translate NoReviews}" IsVisible="{Binding IsVisible}"></Label>
         </StackLayout>
-    <StackLayout>
+        <StackLayout  AbsoluteLayout.LayoutBounds="0,0,1,1"
+                     AbsoluteLayout.LayoutFlags="All"
+                     Padding="5">
     
     <CollectionView ItemsSource="{Binding Comment}">
         <CollectionView.ItemsLayout>
@@ -62,11 +65,16 @@
                                        LineBreakMode="TailTruncation"
                                        FontAttributes="Bold"
                                        VerticalOptions="End" />
-
-                                    <Label Text="{Binding Rating}"
-                                       LineBreakMode="TailTruncation"
-                                       FontAttributes="Italic" 
-                                       VerticalOptions="End" />
+                                    <rating:SfRating HorizontalOptions="Center" 
+                             Margin="0,5"
+                             Precision="Standard"
+                             ItemSize="20"
+                             ReadOnly="True"
+                             Value="{Binding Rating}">
+                                        <rating:SfRating.RatingSettings>
+                                            <rating:SfRatingSettings RatedFill="Red" UnRatedFill="Gray" UnRatedStroke="Black" RatedStroke="Black"/>
+                                        </rating:SfRating.RatingSettings>
+                                    </rating:SfRating>
                                 </StackLayout>
                                 <StackLayout Margin="10,0" Orientation="Horizontal" Grid.Row="3">
                             <Label Text="{i18n:Translate Comment}"
@@ -86,16 +94,28 @@
         
        
     </StackLayout>
-        <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
-                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+        <Grid AbsoluteLayout.LayoutBounds="1,1,1,1"
+                  AbsoluteLayout.LayoutFlags="All"
+              IsVisible="{Binding IsRunning}" 
+              BackgroundColor="{StaticResource ColorPrimary}"
+              >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <busyindicator:SfBusyIndicator  Grid.Column="0" Grid.Row="0" AnimationType="Cupertino" 
+                                       AbsoluteLayout.LayoutBounds="1,1,1,1"
                 	                   AbsoluteLayout.LayoutFlags="All"
                 	                   BackgroundColor="{StaticResource ColorPrimary}"
                 	                   HorizontalOptions="Center"
-                	                   TextColor="White"
+                	                   TextColor="{StaticResource ColorFontInverse}"
                 	                   IsBusy="{Binding IsRunning}"
                 	                   Title="{i18n:Translate Loading}"
                 	                   VerticalOptions="Center"
                 	                   ViewBoxWidth="80"
                 	                   ViewBoxHeight="80" />
-    </StackLayout>
+        </Grid>
+    </AbsoluteLayout>
 </ContentPage>

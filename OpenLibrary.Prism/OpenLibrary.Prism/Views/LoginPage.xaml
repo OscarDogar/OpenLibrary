@@ -14,7 +14,7 @@
             <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
                      AbsoluteLayout.LayoutFlags="All" 
                      Padding="5">
-            <Image HeightRequest="170"
+            <Image HeightRequest="120"
                    Margin="0,20,0,0"
                    Source="OpenLibrary"/>
             <Label FontSize="30" Margin="0" HorizontalOptions="CenterAndExpand" Text="{i18n:Translate Login}"></Label>
@@ -65,7 +65,14 @@
                         IsEnabled="{Binding IsEnabled}"
                         Text="{i18n:Translate Login}"
                         CornerRadius="8"/>
-                <Button Command="{Binding RegisterCommand}" 
+                    <Button BackgroundColor="#4768AD" 
+                        Command="{Binding LoginFacebookCommand}"
+                        HeightRequest="45"
+                        IsEnabled="{Binding IsEnabled}"
+                        ImageSource="ic_fb"
+                        Text="{i18n:Translate LoginFacebook}"
+                        TextColor="#FFFFFF"/>
+                    <Button Command="{Binding RegisterCommand}" 
                         IsEnabled="{Binding IsEnabled}"
                         Text="{i18n:Translate Register}"
                         BackgroundColor="Green"

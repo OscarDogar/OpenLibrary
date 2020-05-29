@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using OpenLibrary.Common.Enums;
+using OpenLibrary.Common.Models;
 using OpenLibrary.Web.Data.Entities;
 using OpenLibrary.Web.Models;
 using System;
@@ -16,6 +17,8 @@ namespace OpenLibrary.Web.Helpers
         Task<SignInResult> ValidatePasswordAsync(UserEntity user, string password);
        
         Task<UserEntity> GetUserAsync(string email);
+
+        Task<UserEntity> AddUserAsync(FacebookProfile model);
 
         Task<string> GeneratePasswordResetTokenAsync(UserEntity user);
 

@@ -14,9 +14,10 @@
                     <RelativeLayout.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ModifyUserCommand}"/>
                     </RelativeLayout.GestureRecognizers>
-                    <Image x:Name="Logo" Margin="30,2"
+                    <Image x:Name="Logo" HorizontalOptions="Center"
+                           Margin="30,2"
                            RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent,Property=X,Factor=1,Constant=60}"
-                           HeightRequest="140"
+                           HeightRequest="150"
                            Source="OpenLibrary"/>
                     <ffimageloading:CachedImage x:Name="Picture" 
                                                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=Logo,Property=Y,Factor=1,Constant=60}"
@@ -38,6 +39,7 @@
                            Text="{Binding User.FullName}"
                            TextColor="Black"/>
                 </RelativeLayout>
+
 
                 <ListView BackgroundColor="Transparent"
                 	      ItemsSource="{Binding Menus}"

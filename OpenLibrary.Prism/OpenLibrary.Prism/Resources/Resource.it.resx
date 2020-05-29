@@ -423,4 +423,13 @@
   <data name="NoUploadedDocuments" xml:space="preserve">
     <value>Non hai documenti caricati</value>
   </data>
+  <data name="Picture" xml:space="preserve">
+    <value>Immagine</value>
+  </data>
+  <data name="LoginFacebook" xml:space="preserve">
+    <value>Accedi con Facebook</value>
+  </data>
+  <data name="ChangePhotoNoOpenUser" xml:space="preserve">
+    <value>Gli utenti creati dai social network, devono modificare la foto o la password sul social network.!</value>
+  </data>
 </root>

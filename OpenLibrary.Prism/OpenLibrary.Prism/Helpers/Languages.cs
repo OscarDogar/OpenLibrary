@@ -17,6 +17,12 @@ namespace OpenLibrary.Prism.Helpers
 
         public static string Culture { get; set; }
 
+        public static string ChangePhotoNoOpenUser => Resource.ChangePhotoNoOpenUser;
+
+        public static string Picture => Resource.Picture;
+
+        public static string LoginFacebook => Resource.LoginFacebook;
+
         public static string NoFavorites => Resource.NoFavorites;
 
         public static string NoReviews => Resource.NoReviews;

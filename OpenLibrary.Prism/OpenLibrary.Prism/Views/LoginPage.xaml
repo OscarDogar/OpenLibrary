@@ -9,12 +9,14 @@
              x:Class="OpenLibrary.Prism.Views.LoginPage"
              BackgroundColor="{StaticResource ColorBackground}"
              Title="{Binding Title}">
-    <ScrollView>
-        <AbsoluteLayout>
+    <AbsoluteLayout>
+  
             <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
                      AbsoluteLayout.LayoutFlags="All" 
                      Padding="5">
-            <Image HeightRequest="120"
+                <ScrollView>
+                <StackLayout>
+                    <Image HeightRequest="120"
                    Margin="0,20,0,0"
                    Source="OpenLibrary"/>
             <Label FontSize="30" Margin="0" HorizontalOptions="CenterAndExpand" Text="{i18n:Translate Login}"></Label>
@@ -78,10 +80,25 @@
                         BackgroundColor="Green"
                         CornerRadius="8"/>
             </StackLayout>
+                </StackLayout>
+            </ScrollView>
         </StackLayout>
-        
-        <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
-                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+       
+
+
+                <Grid AbsoluteLayout.LayoutBounds="1,1,1,1"
+                  AbsoluteLayout.LayoutFlags="All"
+              IsVisible="{Binding IsRunning}" 
+              BackgroundColor="{StaticResource ColorPrimary}"
+              >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <busyindicator:SfBusyIndicator  Grid.Column="0" Grid.Row="0" AnimationType="Cupertino" 
+                                       AbsoluteLayout.LayoutBounds="1,1,1,1"
                 	                   AbsoluteLayout.LayoutFlags="All"
                 	                   BackgroundColor="{StaticResource ColorPrimary}"
                 	                   HorizontalOptions="Center"
@@ -91,6 +108,6 @@
                 	                   VerticalOptions="Center"
                 	                   ViewBoxWidth="80"
                 	                   ViewBoxHeight="80" />
-    </AbsoluteLayout>
-    </ScrollView>
+                </Grid>
+        </AbsoluteLayout>
 </ContentPage>

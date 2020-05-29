@@ -2,12 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="OpenLibrary.Prism.Views.DocDetailPage"
              BackgroundColor="{StaticResource ColorBackground}"
              xmlns:i18n="clr-namespace:OpenLibrary.Prism.Helpers"
              Title="{Binding Title}">
-    <ScrollView>
+    <AbsoluteLayout>
+        <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
+                     AbsoluteLayout.LayoutFlags="All" 
+                     Padding="5">
+            <ScrollView>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -90,16 +95,41 @@
             </Grid>
 
             <StackLayout Grid.Row="1">
-                <Button Text="{i18n:Translate Viewpdf}" CornerRadius="8" Margin="10,5" Command="{Binding OpenDocCommand}"></Button>
+                        <Button Text="{i18n:Translate Viewpdf}" CornerRadius="8" Margin="10,5" IsEnabled="{Binding IsEnabled}" Command="{Binding OpenDocCommand}"></Button>
             </StackLayout>
             <StackLayout Grid.Row="2">
         <Editor Text="{Binding Doc.Summary}"
         IsReadOnly="true" />
     </StackLayout>
             <StackLayout Grid.Row="3" Margin="20,5" >
-                <Button Text="{i18n:Translate MakeComment}" BackgroundColor="Green" CornerRadius="8" IsVisible="{Binding IsVisible}" Command="{Binding MakeCommentCommand}"></Button>
+                        <Button Text="{i18n:Translate MakeComment}" BackgroundColor="Green" IsEnabled="{Binding IsEnabled}" CornerRadius="8"  Command="{Binding MakeCommentCommand}"></Button>
             </StackLayout>
 
         </Grid>
     </ScrollView>
+        </StackLayout>
+        <Grid AbsoluteLayout.LayoutBounds="1,1,1,1"
+                  AbsoluteLayout.LayoutFlags="All"
+              IsVisible="{Binding IsRunning}" 
+              BackgroundColor="{StaticResource ColorPrimary}"
+              >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <busyindicator:SfBusyIndicator  Grid.Column="0" Grid.Row="0" AnimationType="Cupertino" 
+                                       AbsoluteLayout.LayoutBounds="1,1,1,1"
+                	                   AbsoluteLayout.LayoutFlags="All"
+                	                   BackgroundColor="{StaticResource ColorPrimary}"
+                	                   HorizontalOptions="Center"
+                	                   TextColor="{StaticResource ColorFontInverse}"
+                	                   IsBusy="{Binding IsRunning}"
+                	                   Title="{i18n:Translate Loading}"
+                	                   VerticalOptions="Center"
+                	                   ViewBoxWidth="80"
+                	                   ViewBoxHeight="80" />
+    </Grid>
+    </AbsoluteLayout>
 </ContentPage>

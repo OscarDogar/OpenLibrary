@@ -18,18 +18,21 @@ namespace OpenLibrary.Prism.ViewModels
         private DelegateCommand _selectRevCommand;
         private DelegateCommand _delCommand;
         private readonly IApiService _apiService;
+  
 
         public ReviewItmViewModel(INavigationService navigationService, IApiService apiService)
         {
             _navigationService = navigationService;
             _apiService = apiService;
         }
+
         public DelegateCommand DelCommand => _delCommand ?? (_delCommand = new DelegateCommand(CreateDetailAsync));
 
         public DelegateCommand SelectRevCommand => _selectRevCommand ?? (_selectRevCommand = new DelegateCommand(SelectDocAsync));
 
         private async void CreateDetailAsync()
         {
+           
             var action = await App.Current.MainPage.DisplayAlert(Languages.Alert, Languages.Question, Languages.Accept, Languages.Reject);
             if (action)
             {

@@ -8,10 +8,13 @@
              BackgroundColor="{StaticResource ColorBackground}"
              x:Class="OpenLibrary.Prism.Views.MyFavoritesPage" 
              Title="{Binding Title}">
-    <StackLayout>
+    <AbsoluteLayout>
         <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
             <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="30"  Text="{i18n:Translate NoFavorites}" IsVisible="{Binding IsVisible}"></Label>
         </StackLayout>
+        <StackLayout  AbsoluteLayout.LayoutBounds="0,0,1,1"
+                     AbsoluteLayout.LayoutFlags="All"
+                     Padding="5">
             <CollectionView ItemsSource="{Binding Favorite}">
         <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"  VerticalItemSpacing="10"/>
@@ -84,16 +87,29 @@
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
-        <busyindicator:SfBusyIndicator AnimationType="Cupertino" 
-                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+        </StackLayout>
+        <Grid AbsoluteLayout.LayoutBounds="1,1,1,1"
+                  AbsoluteLayout.LayoutFlags="All"
+              IsVisible="{Binding IsRunning}" 
+              BackgroundColor="{StaticResource ColorPrimary}"
+              >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <busyindicator:SfBusyIndicator  Grid.Column="0" Grid.Row="0" AnimationType="Cupertino" 
+                                       AbsoluteLayout.LayoutBounds="1,1,1,1"
                 	                   AbsoluteLayout.LayoutFlags="All"
                 	                   BackgroundColor="{StaticResource ColorPrimary}"
                 	                   HorizontalOptions="Center"
-                	                   TextColor="White"
+                	                   TextColor="{StaticResource ColorFontInverse}"
                 	                   IsBusy="{Binding IsRunning}"
                 	                   Title="{i18n:Translate Loading}"
                 	                   VerticalOptions="Center"
                 	                   ViewBoxWidth="80"
                 	                   ViewBoxHeight="80" />
-    </StackLayout>
+        </Grid>
+    </AbsoluteLayout>
 </ContentPage>

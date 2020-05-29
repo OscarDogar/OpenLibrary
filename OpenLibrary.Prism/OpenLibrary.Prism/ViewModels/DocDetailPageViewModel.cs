@@ -28,8 +28,10 @@ namespace OpenLibrary.Prism.ViewModels
             _navigationService = navigationService;
             _apiService = apiService;
             IsVisible = Settings.IsLogin;
+            IsEnabled = false;
             LoadDetailpage();
             LoadDocumentsAsync();
+            IsEnabled = true;
         }
         
         public DelegateCommand OpenDocCommand => _openDocCommand ?? (_openDocCommand = new DelegateCommand(OpenDocAsync));
@@ -61,6 +63,8 @@ namespace OpenLibrary.Prism.ViewModels
 
         private async void MakeAsync()
         {
+            IsEnabled = false;
+            IsRunning = true;
             if (Settings.IsLogin)
             {  
                 await _navigationService.NavigateAsync("EditReviewPage");
@@ -69,7 +73,9 @@ namespace OpenLibrary.Prism.ViewModels
             {
                 await _navigationService.NavigateAsync("LoginPage");
             }
-           
+            IsRunning = false;
+            IsEnabled = true;
+
         }
 
         private async void LoadDocumentsAsync()
@@ -132,7 +138,11 @@ namespace OpenLibrary.Prism.ViewModels
 
         private async void OpenDocAsync()
         {
+            IsEnabled = false;
+            IsRunning = true;
             await _navigationService.NavigateAsync("PDFPage");
+            IsRunning = false;
+            IsEnabled = true;
         }
 
         private void LoadDetailpage()

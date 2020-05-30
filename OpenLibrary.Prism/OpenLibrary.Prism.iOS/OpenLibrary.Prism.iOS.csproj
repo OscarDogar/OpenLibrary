@@ -192,6 +192,9 @@
     <PackageReference Include="Plugin.FacebookClient">
       <Version>2.2.1</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.Buttons">
+      <Version>18.1.0.53</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Core">
       <Version>18.1.0.53</Version>
     </PackageReference>

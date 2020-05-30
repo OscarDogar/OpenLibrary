@@ -4,6 +4,7 @@
              x:Class="OpenLibrary.Prism.Views.MainPage"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              BackgroundColor="{StaticResource ColorBackground}"
              xmlns:i18n="clr-namespace:OpenLibrary.Prism.Helpers"
              Title="{Binding Title}">
@@ -90,13 +91,18 @@
                                    Text="{Binding TitleOfDocument}"/>
                         </inputLayout:SfTextInputLayout>
                     </Grid>
-                    <Button Grid.Row="0"
+                    <buttons:SfButton Grid.Row="0"
                         Grid.Column="1"
                         Text="{i18n:Translate Search}"
-                        Margin="2,90,10,90"
+                        Margin="0,90,2,90"
+                        ImageAlignment="Top"
+                        TextColor="Black"
+                        FontAttributes="Bold"
+                        ImageSource="search.png" 
+                        ShowIcon="True"
                         IsEnabled="{Binding IsEnabled}"
                         CornerRadius="10"
-                        Command="{Binding SearchCommand}"></Button>
+                        Command="{Binding SearchCommand}"/>
                 </Grid>
             </StackLayout>
             <CollectionView ItemsSource="{Binding UserDoc}">

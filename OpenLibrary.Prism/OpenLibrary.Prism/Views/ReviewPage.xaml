@@ -8,7 +8,10 @@
              xmlns:i18n="clr-namespace:OpenLibrary.Prism.Helpers"
              BackgroundColor="{StaticResource ColorBackground}"
              Title="{Binding Title}">
-
+    <StackLayout>
+    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
+            <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="30"  Text="{i18n:Translate NoCommentsInDocument}" IsVisible="{Binding IsVisible}"></Label>
+    </StackLayout>
     <CollectionView ItemsSource="{Binding Reviews}">
         <CollectionView.ItemsLayout>
             <GridItemsLayout Orientation="Vertical" VerticalItemSpacing="10"/>
@@ -29,7 +32,7 @@
                                        VerticalOptions="End" />
                             <rating:SfRating HorizontalOptions="Center" 
                              Margin="0,5"
-                             Precision="Standard"
+                             Precision="Half"
                              ItemSize="20"
                              ReadOnly="True"
                              Value="{Binding Rating}">
@@ -54,5 +57,5 @@
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
-
+    </StackLayout>
 </ContentPage>

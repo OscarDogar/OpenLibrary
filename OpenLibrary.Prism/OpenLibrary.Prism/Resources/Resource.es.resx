@@ -432,4 +432,7 @@
   <data name="ChangePhotoNoOpenUser" xml:space="preserve">
     <value>Los usuarios creados por redes sociales, deben cambiar la foto o contraseña en la red social.</value>
   </data>
+  <data name="NoCommentsInDocument" xml:space="preserve">
+    <value>Este documento no tiene ningún comentario</value>
+  </data>
 </root>

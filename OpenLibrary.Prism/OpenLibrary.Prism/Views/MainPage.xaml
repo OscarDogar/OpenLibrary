@@ -121,7 +121,7 @@
                                          Margin="5"
                                          VerticalOptions="Fill">
                                 <Label Text="{Binding Title}" 
-                                       TextColor="DarkBlue"
+                                       TextColor="Black"
                                        FontAttributes="Bold"
                                        FontSize="Medium"
                                        LineBreakMode="TailTruncation" />

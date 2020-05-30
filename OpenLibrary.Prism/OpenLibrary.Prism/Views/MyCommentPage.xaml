@@ -67,7 +67,7 @@
                                        VerticalOptions="End" />
                                     <rating:SfRating HorizontalOptions="Center" 
                              Margin="0,5"
-                             Precision="Standard"
+                             Precision="Half"
                              ItemSize="20"
                              ReadOnly="True"
                              Value="{Binding Rating}">

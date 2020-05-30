@@ -664,6 +664,15 @@ namespace OpenLibrary.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This document does not have any comment.
+        /// </summary>
+        public static string NoCommentsInDocument {
+            get {
+                return ResourceManager.GetString("NoCommentsInDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You do not have any favorites.
         /// </summary>
         public static string NoFavorites {

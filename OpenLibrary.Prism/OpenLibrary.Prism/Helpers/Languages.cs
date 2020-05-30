@@ -17,6 +17,8 @@ namespace OpenLibrary.Prism.Helpers
 
         public static string Culture { get; set; }
 
+        public static string NoCommentsInDocument => Resource.NoCommentsInDocument;
+
         public static string ChangePhotoNoOpenUser => Resource.ChangePhotoNoOpenUser;
 
         public static string Picture => Resource.Picture;

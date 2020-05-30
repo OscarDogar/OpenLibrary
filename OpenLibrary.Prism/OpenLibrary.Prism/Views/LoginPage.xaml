@@ -10,83 +10,81 @@
              BackgroundColor="{StaticResource ColorBackground}"
              Title="{Binding Title}">
     <AbsoluteLayout>
-  
-            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
+
+        <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
                      AbsoluteLayout.LayoutFlags="All" 
                      Padding="5">
-                <ScrollView>
+            <ScrollView>
                 <StackLayout>
                     <Image HeightRequest="120"
                    Margin="0,20,0,0"
                    Source="OpenLibrary"/>
-            <Label FontSize="30" Margin="0" HorizontalOptions="CenterAndExpand" Text="{i18n:Translate Login}"></Label>
-            <StackLayout VerticalOptions="CenterAndExpand"
+                    <Label FontSize="30" Margin="0" HorizontalOptions="CenterAndExpand" Text="{i18n:Translate Login}"></Label>
+                    <StackLayout VerticalOptions="CenterAndExpand"
                          Margin="10,5">
-            <StackLayout >
-                    <inputLayout:SfTextInputLayout ContainerType="Outlined"
+                        <StackLayout >
+                            <inputLayout:SfTextInputLayout ContainerType="Outlined"
                                                    OutlineCornerRadius="8"
                                                    ReserveSpaceForAssistiveLabels="False"
                                                    ContainerBackgroundColor="{StaticResource ContainerBackgroundColor}"
                                                    Hint="{i18n:Translate Email}">
-                        <Entry Grid.Column="1"
+                                <Entry Grid.Column="1"
                        Grid.Row="0"
                        BackgroundColor="{StaticResource ColorFontInverse}"
                        Keyboard="Email"
                        Placeholder="{i18n:Translate EmailPlaceHolder}"
                        Text="{Binding Email}"/>
-                    </inputLayout:SfTextInputLayout>
-                </StackLayout>
-            <StackLayout >
-                <inputLayout:SfTextInputLayout ContainerType="Outlined"
+                            </inputLayout:SfTextInputLayout>
+                        </StackLayout>
+                        <StackLayout >
+                            <inputLayout:SfTextInputLayout ContainerType="Outlined"
                                                OutlineCornerRadius="8"
                                                ContainerBackgroundColor="{StaticResource ContainerBackgroundColor}"
                                                Hint="{i18n:Translate Password}" 
                                                ReserveSpaceForAssistiveLabels="False"
                                                EnablePasswordVisibilityToggle="true">
-                    <Entry Grid.Column="1"
+                                <Entry Grid.Column="1"
                        Grid.Row="1"
                        BackgroundColor="{StaticResource ColorFontInverse}"
                        IsPassword="True"
                        Placeholder="{i18n:Translate PasswordPlaceHolder}"
                        Text="{Binding Password}"/>
-                </inputLayout:SfTextInputLayout>
-            </StackLayout>
-                <Label FontAttributes="Bold"
+                            </inputLayout:SfTextInputLayout>
+                        </StackLayout>
+                        <Label FontAttributes="Bold"
                        Margin="10"
                        HorizontalOptions="Center" 
                        Text="{i18n:Translate ForgotPassword}"
-                       TextColor="{StaticResource ColorAccent}">   
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
-                    </Label.GestureRecognizers>
-                </Label>
+                       TextColor="{StaticResource ColorAccent}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
 
-            </StackLayout>
-            <StackLayout Margin="10" VerticalOptions="EndAndExpand">
-                <Button Command="{Binding LoginCommand}" 
+                    </StackLayout>
+                    <StackLayout Margin="10" VerticalOptions="EndAndExpand">
+                        <Button Command="{Binding LoginCommand}" 
                         IsEnabled="{Binding IsEnabled}"
                         Text="{i18n:Translate Login}"
                         CornerRadius="8"/>
-                    <Button BackgroundColor="#4768AD" 
+                        <Button BackgroundColor="#4768AD" 
                         Command="{Binding LoginFacebookCommand}"
                         HeightRequest="45"
+                        CornerRadius="8"
                         IsEnabled="{Binding IsEnabled}"
                         ImageSource="ic_fb"
                         Text="{i18n:Translate LoginFacebook}"
                         TextColor="#FFFFFF"/>
-                    <Button Command="{Binding RegisterCommand}" 
+                        <Button Command="{Binding RegisterCommand}" 
                         IsEnabled="{Binding IsEnabled}"
                         Text="{i18n:Translate Register}"
                         BackgroundColor="Green"
                         CornerRadius="8"/>
-            </StackLayout>
+                    </StackLayout>
                 </StackLayout>
             </ScrollView>
         </StackLayout>
-       
-
-
-                <Grid AbsoluteLayout.LayoutBounds="1,1,1,1"
+        <Grid AbsoluteLayout.LayoutBounds="1,1,1,1"
                   AbsoluteLayout.LayoutFlags="All"
               IsVisible="{Binding IsRunning}" 
               BackgroundColor="{StaticResource ColorPrimary}"

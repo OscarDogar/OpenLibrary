@@ -8,7 +8,7 @@
              xmlns:i18n="clr-namespace:OpenLibrary.Prism.Helpers"
              BackgroundColor="{StaticResource ColorBackground}"
              Title="{Binding Title}">
-    <StackLayout>
+    <StackLayout Padding="8">
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
             <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="30"  Text="{i18n:Translate NoCommentsInDocument}" IsVisible="{Binding IsVisible}"></Label>
     </StackLayout>

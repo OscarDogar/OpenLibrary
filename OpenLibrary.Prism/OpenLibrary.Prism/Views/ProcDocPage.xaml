@@ -19,69 +19,71 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid BackgroundColor="{StaticResource ColorBack}">
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer  Command="{Binding SelectDocCommand}"/>
-                        </Grid.GestureRecognizers>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0"
+                        <Frame CornerRadius="10" Margin="0" Padding="0">
+                            <Grid BackgroundColor="{StaticResource ColorBack}" Padding="0" Margin="0">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer  Command="{Binding SelectDocCommand}"/>
+                                </Grid.GestureRecognizers>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="0"
                                    Source="BigDocument"
                                    WidthRequest="100"/>
-                        <StackLayout Grid.Column="1"
+                                <StackLayout Grid.Column="1"
                                          Margin="5"
                                          VerticalOptions="Fill">
-                            <Label Text="{Binding Title}" 
+                                    <Label Text="{Binding Title}" 
                                        TextColor="DarkBlue"
                                        FontAttributes="Bold"
                                        FontSize="Medium"
                                        LineBreakMode="TailTruncation" />
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{i18n:Translate Gender}"
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{i18n:Translate Gender}"
                                        LineBreakMode="TailTruncation"
                                        FontAttributes="Bold"
                                        VerticalOptions="End" />
 
-                                <Label Text="{Binding Gender.Name}"
+                                        <Label Text="{Binding Gender.Name}"
                                        LineBreakMode="TailTruncation"
                                        FontAttributes="Italic" 
                                        VerticalOptions="End" />
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{i18n:Translate TypeOfDocument}"
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{i18n:Translate TypeOfDocument}"
                                        LineBreakMode="TailTruncation"
                                        FontAttributes="Bold"
                                        VerticalOptions="End" />
-                                <Label Text="{Binding TypeOfDocument.Name}"
+                                        <Label Text="{Binding TypeOfDocument.Name}"
                                        LineBreakMode="TailTruncation"
                                        FontAttributes="Italic" 
                                        VerticalOptions="End" />
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{i18n:Translate Language}"
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{i18n:Translate Language}"
                                        LineBreakMode="TailTruncation"
                                        FontAttributes="Bold"
                                        VerticalOptions="End" />
-                                <Label Text="{Binding DocumentLanguage.Name}"
+                                        <Label Text="{Binding DocumentLanguage.Name}"
                                        LineBreakMode="TailTruncation"
                                        FontAttributes="Italic" 
                                        VerticalOptions="End" />
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{i18n:Translate Author}"
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{i18n:Translate Author}"
                                        LineBreakMode="TailTruncation"
                                        FontAttributes="Bold"
                                        VerticalOptions="End" />
-                                <Label Text="{Binding Author.Name}"
+                                        <Label Text="{Binding Author.Name}"
                                        LineBreakMode="TailTruncation"
                                        FontAttributes="Italic" 
                                        VerticalOptions="End" />
-                            </StackLayout>
-                        </StackLayout>
-                    </Grid>
-                </DataTemplate>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
     </StackLayout>

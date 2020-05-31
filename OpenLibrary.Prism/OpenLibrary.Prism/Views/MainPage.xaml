@@ -111,8 +111,8 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-
-                        <Grid BackgroundColor="{StaticResource ColorBack}">
+                        <Frame CornerRadius="10" Margin="0" Padding="0">
+                            <Grid BackgroundColor="{StaticResource ColorBack}" Padding="0" Margin="0">
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer  Command="{Binding SelectDocCommand}"/>
                             </Grid.GestureRecognizers>
@@ -174,7 +174,7 @@
                                 </StackLayout>
                             </StackLayout>
                         </Grid>
-                       
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

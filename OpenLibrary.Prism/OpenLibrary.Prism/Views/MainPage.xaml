@@ -5,6 +5,7 @@
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
              BackgroundColor="{StaticResource ColorBackground}"
              xmlns:i18n="clr-namespace:OpenLibrary.Prism.Helpers"
              Title="{Binding Title}">
@@ -13,8 +14,9 @@
         <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
                      AbsoluteLayout.LayoutFlags="All" 
                      Padding="5">
-
+    
             <StackLayout>
+
                 <Grid >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -38,36 +40,42 @@
                             <RowDefinition Height="39"/>
                         </Grid.RowDefinitions>
 
+                        <combobox:SfComboBox
+                    BackgroundColor="White"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    MaximumDropDownHeight="400"
+                    DropDownCornerRadius="10"
+                    Margin="5,0,5,0"
+                    Watermark="{i18n:Translate SelectType}"
+                    DataSource="{Binding Types}" 
+                    SelectedItem="{Binding Type}"
+                    DisplayMemberPath="Name"/>
 
-                        <Picker Grid.Row="0"
-                            Grid.Column="0"
-                            Margin="5,0,5,0"
-                            BackgroundColor="Azure"
-                            ItemDisplayBinding="{Binding Name}"
-                            ItemsSource="{Binding Types}"
-                            SelectedItem="{Binding Type}"
-                            Title="{i18n:Translate SelectType}"></Picker>
+                        <combobox:SfComboBox
+                    BackgroundColor="White"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    MaximumDropDownHeight="400"
+                    DropDownCornerRadius="10"
+                    Margin="5,0,5,0"
+                    Watermark="{i18n:Translate SelectGender}"
+                    DataSource="{Binding Genders}" 
+                    SelectedItem="{Binding Gender}"
+                    DisplayMemberPath="Name"/>
 
-
-                        <Picker Grid.Row="1"
-                            Grid.Column="0"
-                            Margin="5,0,5,0"
-                            BackgroundColor="Azure"
-                            ItemDisplayBinding="{Binding Name}"
-                            ItemsSource="{Binding Genders}"
-                            SelectedItem="{Binding Gender}"
-                            Title="{i18n:Translate SelectGender}"></Picker>
-
-
-                        <Picker Grid.Row="2"
-                            Grid.Column="0"
-                            Margin="5,0,5,0"
-                            BackgroundColor="Azure"
-                            ItemDisplayBinding="{Binding Name}"
-                            ItemsSource="{Binding LanguageDocument}"
-                            SelectedItem="{Binding Language}"
-                            Title="{i18n:Translate SelectLanguage}"></Picker>
-
+                        <combobox:SfComboBox
+                    BackgroundColor="White"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    MaximumDropDownHeight="400"
+                    DropDownCornerRadius="10"
+                    Margin="5,0,5,0"
+                    Watermark="{i18n:Translate SelectLanguage}"
+                    DataSource="{Binding LanguageDocument}" 
+                    SelectedItem="{Binding Language}"
+                    DisplayMemberPath="Name"/>
+                        
                         <inputLayout:SfTextInputLayout Grid.Row="3"
                                                    Grid.Column="0"  
                                                    ContainerType="Outlined"

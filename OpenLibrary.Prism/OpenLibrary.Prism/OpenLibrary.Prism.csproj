@@ -9,6 +9,7 @@
     <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.1.0.53" />
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.1.0.53" />
     <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="18.1.0.53" />
+    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="18.1.0.53" />
     <PackageReference Include="Syncfusion.Xamarin.SfPdfViewer" Version="18.1.0.53" />
     <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="18.1.0.53" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />

@@ -31,6 +31,7 @@ namespace OpenLibrary.Prism.ViewModels
         private string _titleOfDocument;
         private bool _isRunning;
         private bool _isEnabled;
+        
         private readonly INavigationService _navigationService;
 
 
@@ -300,7 +301,7 @@ namespace OpenLibrary.Prism.ViewModels
                 Name = "No Filter"
             });
 
-            Types = new ObservableCollection<TypeOfDocumentResponse>(list.OrderBy(t => t.Id));
+            Types = new ObservableCollection<TypeOfDocumentResponse>(list.OrderBy(t => t.Id).ToList());
         }
 
         private async void LoadGendersAsync()
